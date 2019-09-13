@@ -18,6 +18,11 @@ public class ChessBoard {
                     flag = 1;
                 }
             }
+
+            if (flag == 2)
+                flag = 1;
+            else
+                flag = 2;
         }
     }
 
