@@ -1,6 +1,6 @@
-package units;
+package chess.units;
 
-import board.Cell;
+import chess.board.Cell;
 
 public abstract class Unit {
 

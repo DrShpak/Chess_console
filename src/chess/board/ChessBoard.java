@@ -1,21 +1,18 @@
-package board;
+package chess.board;
 
 public class ChessBoard {
 
     private int[][] board = new int[8][8];
-    private final int WHITE_EMPTY_CELL_CODE = 9898;
-    private final int BLACK_EMPTY_CELL_CODE = 9899;
+    private final char WHITE_EMPTY_CELL_CODE = '\u26AB';
+    private final char BLACK_EMPTY_CELL_CODE = '\u26AA';
 
     public ChessBoard() {
-        int flag = 1;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (flag == 1) {
+                if ((i + j) % 2 == 1) {
                     board[i][j] = WHITE_EMPTY_CELL_CODE;
-                    flag = 2;
                 } else {
                     board[i][j] = BLACK_EMPTY_CELL_CODE;
-                    flag = 1;
                 }
             }
         }
