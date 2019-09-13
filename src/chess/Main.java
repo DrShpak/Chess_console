@@ -6,9 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int code = 9818;
-//        System.out.println((char) code);
-
         ChessBoard board = new ChessBoard();
 
         for (int i = 0; i < 8; i++) {

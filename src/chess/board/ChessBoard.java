@@ -15,11 +15,6 @@ public class ChessBoard {
                     board[i][j] = BLACK_EMPTY_CELL_CODE;
                 }
             }
-
-            if (flag == 2)
-                flag = 1;
-            else
-                flag = 2;
         }
     }
 
