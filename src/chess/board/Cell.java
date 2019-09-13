@@ -1,4 +1,4 @@
-package board;
+package chess.board;
 
 public class Cell {
 
