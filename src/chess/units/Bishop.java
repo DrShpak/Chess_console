@@ -10,6 +10,10 @@ public class Bishop extends Unit {
         this.currentPoint = currPoint;
     }
 
+    public Bishop(int code) {
+        this.code = code;
+    }
+
     @Override
     public boolean canMove(Point startPoint, Point endPoint) {
         return Math.abs(endPoint.getX() - startPoint.getX()) == Math.abs(endPoint.getY() - startPoint.getY());
@@ -18,10 +22,7 @@ public class Bishop extends Unit {
     //todo определить целесообразность этого метода
     @Override
     public boolean canAttack(Point startPoint, Point endPoint, Unit unit2) {
-        if (!isFriendly(unit2) && endPoint != null)
-            return true;
-        else
-            return false;
+        return !isFriendly(unit2) && endPoint != null;
     }
 
     @Override

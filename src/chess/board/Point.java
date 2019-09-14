@@ -10,6 +10,15 @@ public class Point {
         this.y = y;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y;
+    }
+
     public int getX() {
         return x;
     }

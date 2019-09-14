@@ -5,6 +5,9 @@ import chess.board.Point;
 
 public class Knight extends Unit {
 
+    public Knight(int code) {
+        this.code = code;
+    }
 
     @Override
     public boolean canMove(Point startPoint, Point endPoint) {
@@ -14,6 +17,7 @@ public class Knight extends Unit {
 
     @Override
     public boolean canAttack(Point startPoint, Point endPoint, Unit unit2) {
+
         return false;
     }
 

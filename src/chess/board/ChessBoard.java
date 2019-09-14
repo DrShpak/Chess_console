@@ -1,43 +1,54 @@
 package chess.board;
 
-import chess.units.Bishop;
-import chess.units.Codes;
-import chess.units.Pawn;
-import chess.units.Unit;
+import chess.units.*;
 
 public class ChessBoard {
 
-//    private char[][] board = new char[8][8];
     private Unit[][] board = new Unit[8][8];
 
     public ChessBoard() {
-        /*for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if ((i + j) % 2 == 0) {
-                    board[i][j] = WHITE_EMPTY_CELL_CODE;
-                } else {
-                    board[i][j] = BLACK_EMPTY_CELL_CODE;
-                }
-            }
-        }*/
-
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if ((i + j) % 2 == 0) {
-                    board[i][j] = null;
-                } else {
-                    board[i][j] = null;
-                }
+                board[i][j] = null;
             }
         }
     }
 
-    public void setUnits() {
-        Bishop bishop = new Bishop(new Point(0, 7), Codes.getBLACK_BISHOP());
-        board[0][7] = bishop;
+    //todo расставить фигуры на исходные позиции
+    public void setBlackUnits() {
+        board[0][0] = new Rook(Codes.getBlackRook());
+        board[0][7] = new Rook(Codes.getBlackRook());
 
-        Pawn pawn = new Pawn(Codes.getBlackPawn());
-        board[0][0] = pawn;
+        board[0][1] = new Knight(Codes.getBlackKnight());
+        board[0][6] = new Knight(Codes.getBlackKnight());
+
+        board[0][2] = new Bishop(Codes.getBLACK_BISHOP());
+        board[0][5] = new Bishop(Codes.getBLACK_BISHOP());
+
+        board[0][3] = new Queen(Codes.getBlackQueen());
+        board[0][4] = new King(Codes.getBlackKing());
+
+        for (int i = 0; i < 8; i++) {
+            board[1][i] = new Pawn(Codes.getBlackPawn());
+        }
+    }
+
+    public void setWhiteUnits() {
+        board[7][0] = new Rook(Codes.getWhiteRook());
+        board[7][7] = new Rook(Codes.getWhiteRook());
+
+        board[7][1] = new Knight(Codes.getWhiteKnight());
+        board[7][6] = new Knight(Codes.getWhiteKnight());
+
+        board[7][2] = new Bishop(Codes.getWHITE_BISHOP());
+        board[7][5] = new Bishop(Codes.getWHITE_BISHOP());
+
+        board[7][3] = new Queen(Codes.getWhiteQueen());
+        board[7][4] = new King(Codes.getWhiteKing());
+
+        for (int i = 0; i < 8; i++) {
+            board[6][i] = new Pawn(Codes.getWhitePawn());
+        }
     }
 
     public Unit[][] getBoard() {

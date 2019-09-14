@@ -10,7 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         ChessBoard board = new ChessBoard();
-        board.setUnits();
+        board.setBlackUnits();
+        board.setWhiteUnits();
 
 //        Scanner input = new Scanner(System.in);
         int code = 1;
