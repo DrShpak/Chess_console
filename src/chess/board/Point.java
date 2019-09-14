@@ -19,6 +19,14 @@ public class Point {
                 y == point.y;
     }
 
+    public Point sum(Point rhs, Point lhs) {
+        return new Point(rhs.getX() + lhs.getX(), rhs.getY() + lhs.getY());
+    }
+
+    public Point diff(Point rhs, Point lhs) {
+        return new Point(rhs.getX() - lhs.getX(), rhs.getY() - lhs.getY());
+    }
+
     public int getX() {
         return x;
     }

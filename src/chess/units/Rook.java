@@ -1,12 +1,11 @@
 package chess.units;
 
-import chess.board.ChessBoard;
 import chess.board.Point;
 
 public class Rook extends Unit {
 
     public Rook(int code) {
-        this.code = code;
+        super(code);
     }
 
     @Override
@@ -15,17 +14,7 @@ public class Rook extends Unit {
     }
 
     @Override
-    public boolean canAttack(Point startPoint, Point endPoint, Unit unit2) {
-        return false;
-    }
-
-    @Override
-    public boolean isFriendly(Unit unit2) {
-        return this.code == unit2.code;
-    }
-
-    @Override
-    public void move(Point startPoint, Point endPoint, ChessBoard board, Unit unit2) {
-
+    public boolean canAttack(Point startPoint, Point endPoint) {
+        return canMove(startPoint, endPoint);
     }
 }

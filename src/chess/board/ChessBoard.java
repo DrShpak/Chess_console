@@ -51,6 +51,25 @@ public class ChessBoard {
         }
     }
 
+    public void move(Point startPoint, Point endPoint) {
+        var unit = board[startPoint.getX()][startPoint.getY()];
+        if (unit == null) {
+            //...
+        }
+        var victim = board[endPoint.getX()][endPoint.getY()];
+        var attack = false;
+        if (victim != null &&
+                ((!victim.isEnemy(unit)) || (attack = !unit.canAttack(startPoint, endPoint)))) {
+            //...
+        }
+        if (!attack && !unit.canMove(startPoint, endPoint)) {
+            throw new RuntimeException("Неверный ход!");
+        }
+
+        board[startPoint.getX()][startPoint.getY()] = null;
+        board[endPoint.getX()][endPoint.getY()] = unit;
+    }
+
     public Unit[][] getBoard() {
         return board;
     }

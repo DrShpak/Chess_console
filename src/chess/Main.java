@@ -16,6 +16,7 @@ public class Main {
 //        Scanner input = new Scanner(System.in);
         int code = 1;
         test(board);
+        test(board);
 
         while (code != 0) {
             Scanner input = new Scanner(System.in);
@@ -24,7 +25,7 @@ public class Main {
             Point startPoint = new Point(Integer.parseInt(line.split(" ")[0]), Integer.parseInt(line.split(" ")[1]));
             Point endPoint = new Point(Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]));
 
-            board.getBoard()[startPoint.getX()][startPoint.getY()].move(startPoint, endPoint, board, board.getBoard()[endPoint.getX()][endPoint.getY()]);
+            board.move(startPoint, endPoint);
 
             System.out.println("\n\n\n\n");
 
@@ -46,7 +47,7 @@ public class Main {
                     System.out.print((char) board.getBoard()[i][j].getCode() + " ");
                 }
             }
-            System.out.println();
+            System.out.print('\n');
         }
     }
 }
