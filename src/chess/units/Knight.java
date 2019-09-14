@@ -3,15 +3,13 @@ package chess.units;
 import chess.board.ChessBoard;
 import chess.board.Point;
 
-public class Pawn extends Unit {
+public class Knight extends Unit {
 
-    public Pawn(int code) {
-        this.code = code;
-    }
 
     @Override
     public boolean canMove(Point startPoint, Point endPoint) {
-        return startPoint.getY() == endPoint.getY();
+        return  ((Math.abs(endPoint.getX() - startPoint.getX()) == 2 && Math.abs(endPoint.getY() - startPoint.getY()) == 1)
+                ||(Math.abs(endPoint.getX() - startPoint.getX()) == 1 && Math.abs(endPoint.getY() - startPoint.getY()) == 2));
     }
 
     @Override
@@ -26,10 +24,6 @@ public class Pawn extends Unit {
 
     @Override
     public void move(Point startPoint, Point endPoint, ChessBoard board, Unit unit2) {
-        if (canMove(startPoint, endPoint)) {
-            board.getBoard()[startPoint.getX()][startPoint.getY()] = null;
-            board.getBoard()[endPoint.getX()][endPoint.getY()] = this;
-        } else
-            throw new RuntimeException("кек");
+
     }
 }

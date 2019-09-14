@@ -2,6 +2,7 @@ package chess.board;
 
 import chess.units.Bishop;
 import chess.units.Codes;
+import chess.units.Pawn;
 import chess.units.Unit;
 
 public class ChessBoard {
@@ -34,6 +35,9 @@ public class ChessBoard {
     public void setUnits() {
         Bishop bishop = new Bishop(new Point(0, 7), Codes.getBLACK_BISHOP());
         board[0][7] = bishop;
+
+        Pawn pawn = new Pawn(Codes.getBlackPawn());
+        board[0][0] = pawn;
     }
 
     public Unit[][] getBoard() {

@@ -12,12 +12,14 @@ public class Main {
         ChessBoard board = new ChessBoard();
         board.setUnits();
 
-        Scanner input = new Scanner(System.in);
+//        Scanner input = new Scanner(System.in);
         int code = 1;
+        test(board);
 
         while (code != 0) {
-            test(board);
+            Scanner input = new Scanner(System.in);
             String line = input.nextLine();
+//            input.close();
             Point startPoint = new Point(Integer.parseInt(line.split(" ")[0]), Integer.parseInt(line.split(" ")[1]));
             Point endPoint = new Point(Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]));
 
@@ -36,9 +38,9 @@ public class Main {
             for (int j = 0; j < 8; j++) {
                 if (board.getBoard()[i][j] == null) {
                     if (((i + j) % 2 == 0))
-                        System.out.print((char) Codes.getWHITE_CELL() + "");
+                        System.out.print((char) Codes.getWHITE_CELL() + " ");
                     else
-                        System.out.print((char) Codes.getBLACK_CELL() + "");
+                        System.out.print((char) Codes.getBLACK_CELL() + " ");
                 } else {
                     System.out.print((char) board.getBoard()[i][j].getCode() + " ");
                 }
