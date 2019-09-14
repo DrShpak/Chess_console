@@ -1,16 +1,16 @@
 package chess.board;
 
-public class Cell {
+public class Point {
 
-    private String x;
+    private int x;
     private int y;
 
-    public Cell(String x, int y) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public String getX() {
+    public int getX() {
         return x;
     }
 

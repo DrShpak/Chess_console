@@ -1,13 +1,16 @@
 package chess.board;
 
+import chess.units.Bishop;
+import chess.units.Codes;
+import chess.units.Unit;
+
 public class ChessBoard {
 
-    private char[][] board = new char[8][8];
-    private final char BLACK_EMPTY_CELL_CODE = '\u26AB';
-    private final char WHITE_EMPTY_CELL_CODE = '\u26AA';
+//    private char[][] board = new char[8][8];
+    private Unit[][] board = new Unit[8][8];
 
     public ChessBoard() {
-        for (int i = 0; i < 8; i++) {
+        /*for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if ((i + j) % 2 == 0) {
                     board[i][j] = WHITE_EMPTY_CELL_CODE;
@@ -15,10 +18,25 @@ public class ChessBoard {
                     board[i][j] = BLACK_EMPTY_CELL_CODE;
                 }
             }
+        }*/
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ((i + j) % 2 == 0) {
+                    board[i][j] = null;
+                } else {
+                    board[i][j] = null;
+                }
+            }
         }
     }
 
-    public char[][] getBoard() {
+    public void setUnits() {
+        Bishop bishop = new Bishop(new Point(0, 7), Codes.getBLACK_BISHOP());
+        board[0][7] = bishop;
+    }
+
+    public Unit[][] getBoard() {
         return board;
     }
 }
