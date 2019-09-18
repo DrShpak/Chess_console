@@ -2,7 +2,7 @@ package chess;
 
 import chess.board.ChessBoard;
 import chess.board.Point;
-import chess.units.Codes;
+import misc.Codes;
 
 import java.util.Scanner;
 
@@ -16,15 +16,13 @@ public class Main {
 //        Scanner input = new Scanner(System.in);
         int code = 1;
         test(board);
-        test(board);
 
         while (code != 0) {
             Scanner input = new Scanner(System.in);
             String line = input.nextLine();
-//            input.close();
-            Point startPoint = new Point(Integer.parseInt(line.split(" ")[0]), Integer.parseInt(line.split(" ")[1]));
-            Point endPoint = new Point(Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]));
-
+            var splited = line.split(" ");
+            Point startPoint = Point.parse(splited[0]);
+            Point endPoint = Point.parse(splited[1]);
             board.move(startPoint, endPoint);
 
             System.out.println("\n\n\n\n");
@@ -36,7 +34,7 @@ public class Main {
     }
 
     private static void test(ChessBoard board) {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 7; i >= 0; i--) {
             for (int j = 0; j < 8; j++) {
                 if (board.getBoard()[i][j] == null) {
                     if (((i + j) % 2 == 0))

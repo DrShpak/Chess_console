@@ -12,7 +12,6 @@ public abstract class Unit {
 
     public abstract boolean canMove(Point startPoint, Point endPoint);
 
-    //todo целесообразность этого метода???
     public abstract boolean canAttack(Point startPoint, Point endPoint);
 
     public boolean isEnemy(Unit unit2) {

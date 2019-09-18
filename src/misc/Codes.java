@@ -1,4 +1,4 @@
-package chess.units;
+package misc;
 
 public class Codes {
 

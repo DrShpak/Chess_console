@@ -1,6 +1,7 @@
 package chess.units;
 
 import chess.board.Point;
+import misc.Codes;
 
 public class Pawn extends Unit {
 
@@ -10,11 +11,14 @@ public class Pawn extends Unit {
 
     @Override
     public boolean canMove(Point startPoint, Point endPoint) {
-        return startPoint.getY() == endPoint.getY();
+        var diff = Point.diff(endPoint, startPoint);
+        return diff.getY() == 0 && diff.getX() == (Codes.getWhitePawn() == code ? 1 : -1);
     }
 
     @Override
     public boolean canAttack(Point startPoint, Point endPoint) {
-        return false;
+        var diff = Point.diff(endPoint, startPoint);
+        return Math.abs(diff.getY()) == 1 && diff.getX() == (Codes.getWhitePawn() == code ? 1 : -1);
+//        return false;
     }
 }

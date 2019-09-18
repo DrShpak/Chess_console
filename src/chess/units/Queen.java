@@ -10,11 +10,13 @@ public class Queen extends Unit {
 
     @Override
     public boolean canMove(Point startPoint, Point endPoint) {
-        return false;
+        var diff = Point.diff(endPoint, startPoint);
+        return Math.abs(diff.getY()) == Math.abs(diff.getX())
+                || diff.getX() == 0 || diff.getY() == 0;
     }
 
     @Override
     public boolean canAttack(Point startPoint, Point endPoint) {
-        return false;
+        return canMove(startPoint, endPoint);
     }
 }

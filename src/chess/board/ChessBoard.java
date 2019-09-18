@@ -1,6 +1,7 @@
 package chess.board;
 
 import chess.units.*;
+import misc.Codes;
 
 public class ChessBoard {
 
@@ -16,38 +17,38 @@ public class ChessBoard {
 
     //todo расставить фигуры на исходные позиции
     public void setBlackUnits() {
-        board[0][0] = new Rook(Codes.getBlackRook());
-        board[0][7] = new Rook(Codes.getBlackRook());
+        board[7][0] = new Rook(Codes.getBlackRook());
+        board[7][7] = new Rook(Codes.getBlackRook());
 
-        board[0][1] = new Knight(Codes.getBlackKnight());
-        board[0][6] = new Knight(Codes.getBlackKnight());
+        board[7][1] = new Knight(Codes.getBlackKnight());
+        board[7][6] = new Knight(Codes.getBlackKnight());
 
-        board[0][2] = new Bishop(Codes.getBLACK_BISHOP());
-        board[0][5] = new Bishop(Codes.getBLACK_BISHOP());
+        board[7][2] = new Bishop(Codes.getBLACK_BISHOP());
+        board[7][5] = new Bishop(Codes.getBLACK_BISHOP());
 
-        board[0][3] = new Queen(Codes.getBlackQueen());
-        board[0][4] = new King(Codes.getBlackKing());
+        board[7][3] = new Queen(Codes.getBlackQueen());
+        board[7][4] = new King(Codes.getBlackKing());
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(Codes.getBlackPawn());
+            board[6][i] = new Pawn(Codes.getBlackPawn());
         }
     }
 
     public void setWhiteUnits() {
-        board[7][0] = new Rook(Codes.getWhiteRook());
-        board[7][7] = new Rook(Codes.getWhiteRook());
+        board[0][0] = new Rook(Codes.getWhiteRook());
+        board[0][7] = new Rook(Codes.getWhiteRook());
 
-        board[7][1] = new Knight(Codes.getWhiteKnight());
-        board[7][6] = new Knight(Codes.getWhiteKnight());
+        board[0][1] = new Knight(Codes.getWhiteKnight());
+        board[0][6] = new Knight(Codes.getWhiteKnight());
 
-        board[7][2] = new Bishop(Codes.getWHITE_BISHOP());
-        board[7][5] = new Bishop(Codes.getWHITE_BISHOP());
+        board[0][2] = new Bishop(Codes.getWHITE_BISHOP());
+        board[0][5] = new Bishop(Codes.getWHITE_BISHOP());
 
-        board[7][3] = new Queen(Codes.getWhiteQueen());
-        board[7][4] = new King(Codes.getWhiteKing());
+        board[0][3] = new Queen(Codes.getWhiteQueen());
+        board[0][4] = new King(Codes.getWhiteKing());
 
         for (int i = 0; i < 8; i++) {
-            board[6][i] = new Pawn(Codes.getWhitePawn());
+            board[1][i] = new Pawn(Codes.getWhitePawn());
         }
     }
 
@@ -57,10 +58,11 @@ public class ChessBoard {
             //...
         }
         var victim = board[endPoint.getX()][endPoint.getY()];
-        var attack = false;
+        var attack = unit.canAttack(startPoint, endPoint);
         if (victim != null &&
-                ((!victim.isEnemy(unit)) || (attack = !unit.canAttack(startPoint, endPoint)))) {
-            //...
+                //переделать
+                ((!victim.isEnemy(unit)) || !attack)) {
+            throw new RuntimeException("Неправильная атака!");
         }
         if (!attack && !unit.canMove(startPoint, endPoint)) {
             throw new RuntimeException("Неверный ход!");

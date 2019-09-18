@@ -10,11 +10,12 @@ public class King extends Unit {
 
     @Override
     public boolean canMove(Point startPoint, Point endPoint) {
-        return (endPoint.getX() - startPoint.getX() <= 1 && endPoint.getY() - startPoint.getY() <= 1);
+        var diff = Point.diff(endPoint, startPoint);
+        return diff.getY() <=1 && diff.getX() <= 1;
     }
 
     @Override
     public boolean canAttack(Point startPoint, Point endPoint) {
-        return false;
+        return canMove(startPoint, endPoint);
     }
 }

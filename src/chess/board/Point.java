@@ -19,11 +19,22 @@ public class Point {
                 y == point.y;
     }
 
+    public static Point parse(String sub) {
+        return new Point(
+                Integer.parseInt(
+                        String.valueOf(sub.charAt(1))
+                ) - 1,
+                Integer.parseInt(
+                        String.valueOf(sub.charAt(0) - 'a')
+                )
+        );
+    }
+
     public Point sum(Point rhs, Point lhs) {
         return new Point(rhs.getX() + lhs.getX(), rhs.getY() + lhs.getY());
     }
 
-    public Point diff(Point rhs, Point lhs) {
+    public static Point diff(Point rhs, Point lhs) {
         return new Point(rhs.getX() - lhs.getX(), rhs.getY() - lhs.getY());
     }
 
