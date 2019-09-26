@@ -1,24 +1,27 @@
 package chess.units;
 
-import chess.board.Point;
+import chess.misc.Direction;
+import chess.misc.Point;
+import chess.misc.Team;
 
 public abstract class Unit {
+    protected Direction[] directions;
+    public Team team;
 
-    int code;
-
-    Unit(int code) {
-        this.code = code;
+    public Unit(Direction[] directions) {
+        this.directions = directions;
     }
-
-    public abstract boolean canMove(Point startPoint, Point endPoint);
-
-    public abstract boolean canAttack(Point startPoint, Point endPoint);
 
     public boolean isEnemy(Unit unit2) {
-        return this.code != unit2.code;
+        return !this.team.equals(unit2.team);
     }
 
-    public int getCode() {
-        return code;
-    }
+    public Direction[] getDirections() {
+        return this.directions;
+    };
+
+    public abstract boolean canMove(Point startPoint, Point endPoint);
+    public abstract boolean canAttack(Point startPoint, Point endPoint);
+
+    public boolean isFortified() {return false;}
 }

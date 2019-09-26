@@ -1,51 +1,34 @@
 package chess;
 
-import chess.board.ChessBoard;
-import chess.board.Point;
-import misc.Codes;
-
-import java.util.Scanner;
+import chess.board.BoardBuilder;
+import chess.ui.impl.consoleUI.ConsoleUI;
+import chess.units.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        ChessBoard board = new ChessBoard();
-        board.setBlackUnits();
-        board.setWhiteUnits();
-
-//        Scanner input = new Scanner(System.in);
-        int code = 1;
-        test(board);
-
-        while (code != 0) {
-            Scanner input = new Scanner(System.in);
-            String line = input.nextLine();
-            var splited = line.split(" ");
-            Point startPoint = Point.parse(splited[0]);
-            Point endPoint = Point.parse(splited[1]);
-            board.move(startPoint, endPoint);
-
-            System.out.println("\n\n\n\n");
-
-            code = input.nextByte();
-
-            test(board);
-        }
-    }
-
-    private static void test(ChessBoard board) {
-        for (int i = 7; i >= 0; i--) {
-            for (int j = 0; j < 8; j++) {
-                if (board.getBoard()[i][j] == null) {
-                    if (((i + j) % 2 == 0))
-                        System.out.print((char) Codes.getWHITE_CELL() + " ");
-                    else
-                        System.out.print((char) Codes.getBLACK_CELL() + " ");
-                } else {
-                    System.out.print((char) board.getBoard()[i][j].getCode() + " ");
-                }
-            }
-            System.out.print('\n');
-        }
+        var board = new BoardBuilder().
+                startGroup().
+                    withUnit(Rook.class).
+                    withUnit(Knight.class).
+                    withUnit(Bishop.class).
+                    withUnit(Queen.class).
+                    withUnit(King.class).
+                    withUnit(Bishop.class).
+                    withUnit(Knight.class).
+                    withUnit(Rook.class).
+                endGroup().
+                withTeam("White").
+                    withGroup(0).
+                    withUnitRange(Pawn.class, 8, 1).
+                withGap().
+                withTeam("Black").
+                    withUnitRange(Pawn.class, 8, -1).
+                    withGroup(0).
+                height(8).
+                width(8).
+                build();
+        var ui = new ConsoleUI(board);
+        ui.start();
     }
 }

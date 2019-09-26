@@ -1,11 +1,25 @@
 package chess.units;
 
-import chess.board.Point;
+import chess.misc.Direction;
+import chess.misc.Point;
+import chess.misc.Team;
+
+import java.util.Arrays;
 
 public class King extends Unit {
-
-    public King(int code) {
-        super(code);
+    public King(Team team) {
+        super(new Direction[] {
+                new Direction(1, 0, 1),
+                new Direction(-1, 0, 1),
+                new Direction(0, 1, 1),
+                new Direction(0, -1, 1),
+                new Direction(0, -1, 1),
+                new Direction(1, -1, 1),
+                new Direction(-1, 1, 1),
+                new Direction(1, -1, 1),
+                new Direction(1, -1, 1)
+        });
+        this.team = team;
     }
 
     @Override
@@ -17,5 +31,10 @@ public class King extends Unit {
     @Override
     public boolean canAttack(Point startPoint, Point endPoint) {
         return canMove(startPoint, endPoint);
+    }
+
+    @Override
+    public boolean isFortified() {
+        return true;
     }
 }

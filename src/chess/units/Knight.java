@@ -1,11 +1,22 @@
 package chess.units;
 
-import chess.board.Point;
+import chess.misc.Direction;
+import chess.misc.Point;
+import chess.misc.Team;
 
 public class Knight extends Unit {
-
-    public Knight(int code) {
-        super(code);
+    public Knight(Team team) {
+        super(new Direction[] {
+                new Direction(1, 2, 1),
+                new Direction(-1, 2, 1),
+                new Direction(1, -2, 1),
+                new Direction(-1, -2, 1),
+                new Direction(2, 1, 1),
+                new Direction(-2, 1, 1),
+                new Direction(2, -1, 1),
+                new Direction(-2, -1, 1)
+        });
+        this.team = team;
     }
 
     @Override
@@ -20,8 +31,6 @@ public class Knight extends Unit {
                  diff.equals(new Point(2, -1)) ||
                 diff.equals(new Point(-2, -1)) ||
                 diff.equals(new Point(-1, -2));
-        //return  ((Math.abs(endPoint.getX() - startPoint.getX()) == 2 && Math.abs(endPoint.getY() - startPoint.getY()) == 1)
-        //        ||(Math.abs(endPoint.getX() - startPoint.getX()) == 1 && Math.abs(endPoint.getY() - startPoint.getY()) == 2));
     }
 
     @Override

@@ -1,11 +1,18 @@
 package chess.units;
 
-import chess.board.Point;
+import chess.misc.Direction;
+import chess.misc.Point;
+import chess.misc.Team;
 
 public class Rook extends Unit {
-
-    public Rook(int code) {
-        super(code);
+    public Rook(Team team) {
+        super(new Direction[] {
+                new Direction(1, 0),
+                new Direction(-1, 0),
+                new Direction(0, 1),
+                new Direction(0, -1)
+        });
+        this.team = team;
     }
 
     @Override

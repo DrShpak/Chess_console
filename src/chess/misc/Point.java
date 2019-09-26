@@ -1,9 +1,11 @@
-package chess.board;
+package chess.misc;
 
 public class Point {
-
     private int x;
     private int y;
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private int lx = 0, ly = 0, ux = 7, uy = 7;
 
     public Point(int x, int y) {
         this.x = x;
@@ -30,7 +32,7 @@ public class Point {
         );
     }
 
-    public Point sum(Point rhs, Point lhs) {
+    static Point sum(Point rhs, Point lhs) {
         return new Point(rhs.getX() + lhs.getX(), rhs.getY() + lhs.getY());
     }
 
@@ -44,5 +46,18 @@ public class Point {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public String toString() {
+        return x + "|" + y;
+    }
+
+    boolean validate() {
+        return
+                lx <= x &&
+                ly <= y &&
+                ux >= x &&
+                uy >= y;
     }
 }

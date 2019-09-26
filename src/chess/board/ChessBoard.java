@@ -1,78 +1,86 @@
 package chess.board;
 
+import chess.misc.*;
 import chess.units.*;
-import misc.Codes;
+
+import java.util.Arrays;
 
 public class ChessBoard {
+    private Cell[][] board;
 
-    private Unit[][] board = new Unit[8][8];
-
-    public ChessBoard() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                board[i][j] = null;
-            }
-        }
+    ChessBoard(Unit[][] board) {
+        this.board = Arrays.stream(board).map(x -> Arrays.stream(x).map(Cell::new).toArray(Cell[]::new)).toArray(Cell[][]::new);
     }
 
-    //todo расставить фигуры на исходные позиции
-    public void setBlackUnits() {
-        board[7][0] = new Rook(Codes.getBlackRook());
-        board[7][7] = new Rook(Codes.getBlackRook());
-
-        board[7][1] = new Knight(Codes.getBlackKnight());
-        board[7][6] = new Knight(Codes.getBlackKnight());
-
-        board[7][2] = new Bishop(Codes.getBLACK_BISHOP());
-        board[7][5] = new Bishop(Codes.getBLACK_BISHOP());
-
-        board[7][3] = new Queen(Codes.getBlackQueen());
-        board[7][4] = new King(Codes.getBlackKing());
-
-        for (int i = 0; i < 8; i++) {
-            board[6][i] = new Pawn(Codes.getBlackPawn());
+    public Point[] getPossibleMoves(Point unitCell) {
+        var unit = board[unitCell.getX()][unitCell.getY()].getHolding();
+        if (unit == null) {
+            throw new NullPointerException();
         }
-    }
 
-    public void setWhiteUnits() {
-        board[0][0] = new Rook(Codes.getWhiteRook());
-        board[0][7] = new Rook(Codes.getWhiteRook());
-
-        board[0][1] = new Knight(Codes.getWhiteKnight());
-        board[0][6] = new Knight(Codes.getWhiteKnight());
-
-        board[0][2] = new Bishop(Codes.getWHITE_BISHOP());
-        board[0][5] = new Bishop(Codes.getWHITE_BISHOP());
-
-        board[0][3] = new Queen(Codes.getWhiteQueen());
-        board[0][4] = new King(Codes.getWhiteKing());
-
-        for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(Codes.getWhitePawn());
-        }
+        return Arrays.stream(unit.getDirections()).
+                map(
+                        x -> StreamUtils.takeWhileEx(
+                                x.move(unitCell),
+                                y -> board[y.getX()][y.getY()].getHolding() == null
+                        ).
+                        filter(y -> board[y.getX()][y.getY()].getHolding() == null ||
+                                x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0 &&
+                                unit.isEnemy(board[y.getX()][y.getY()].getHolding())).
+                        filter(y -> board[y.getX()][y.getY()].getHolding() != null ||
+                                x.getMovePolicy().compareTo(MovePolicy.BOTH) <= 0)
+                ).
+                flatMap(x -> x).
+                toArray(Point[]::new);
     }
 
     public void move(Point startPoint, Point endPoint) {
-        var unit = board[startPoint.getX()][startPoint.getY()];
-        if (unit == null) {
-            //...
+        var cell = board[startPoint.getX()][startPoint.getY()];
+        if (cell.getHolding() == null) {
+            throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= unit not found");
         }
-        var victim = board[endPoint.getX()][endPoint.getY()];
-        var attack = unit.canAttack(startPoint, endPoint);
-        if (victim != null &&
-                //переделать
-                ((!victim.isEnemy(unit)) || !attack)) {
-            throw new RuntimeException("Неправильная атака!");
-        }
-        if (!attack && !unit.canMove(startPoint, endPoint)) {
-            throw new RuntimeException("Неверный ход!");
+        var possibleMoves = this.getPossibleMoves(startPoint);
+        if (Arrays.stream(possibleMoves).noneMatch(x -> x.equals(endPoint))) {
+            throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= forbidden move");
         }
 
-        board[startPoint.getX()][startPoint.getY()] = null;
-        board[endPoint.getX()][endPoint.getY()] = unit;
+        var newCell = board[endPoint.getX()][endPoint.getY()];
+
+        onRaisingUnit(startPoint);
+        if (newCell.getHolding() != null) {
+            onRaisingUnit(endPoint);
+        }
+        Cell.moveUnit(cell, board[endPoint.getX()][endPoint.getY()]);
+        onLowingUnit(endPoint);
     }
 
-    public Unit[][] getBoard() {
+    private void onRaisingUnit(Point from) {
+        var oldCell = getBoard()[from.getX()][from.getY()];
+        oldCell.getOwnIncidents().forEach(AttackingIncident::unpinIncident);
+        oldCell.getIncidents().forEach(x -> x.iterateIncidents().forEach(y -> y.getBarrages().remove(oldCell.getHolding())));
+    }
+
+    private void onLowingUnit(Point to) {
+        var newCell = getBoard()[to.getX()][to.getY()];
+        newCell.
+                getIncidents().
+                stream().
+                map(AttackingIncident::iterateIncidents).
+                flatMap(y -> y).
+                forEach(y -> y.getBarrages().add(newCell.getHolding()));
+
+        var newIncident = new AttackingIncident(newCell.getHolding(), newCell);
+        Arrays.stream(newCell.
+                getHolding().
+                getDirections()).
+                forEach(x -> StreamUtils.mapEx(
+                        newIncident,
+                        x.move(to),
+                        (y, z) -> new AttackingIncident(newIncident, getBoard()[z.getX()][z.getY()]))
+                );
+    }
+
+    public Cell[][] getBoard() {
         return board;
     }
 }
