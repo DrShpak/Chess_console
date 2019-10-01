@@ -2,6 +2,7 @@
   <dictionary name="user">
     <words>
       <w>coords</w>
+      <w>inplace</w>
     </words>
   </dictionary>
 </component>

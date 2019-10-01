@@ -59,7 +59,7 @@ extends UI {
                                         )
                         )
                 ).
-                map(x -> x.map(UnitSymbols::getSymbol).
+                map(x -> x.map(y -> y.getSymbol() + " ").
                         reduce(
                                 "",
                                 (s, c) -> s + c
