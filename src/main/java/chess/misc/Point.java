@@ -5,9 +5,15 @@ public class Point {
     private int y;
 
     @SuppressWarnings("FieldCanBeLocal")
-    private int lx = 0, ly = 0, ux = 7, uy = 7;
+    private int lx = 0;
+    @SuppressWarnings("FieldCanBeLocal")
+    private int ly = 0;
+    @SuppressWarnings("FieldCanBeLocal")
+    private int ux = 7;
+    @SuppressWarnings("FieldCanBeLocal")
+    private int uy = 7;
 
-    public Point(int x, int y) {
+    Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -38,10 +44,6 @@ public class Point {
 
     static Point sum(Point rhs, Point lhs) {
         return new Point(rhs.getX() + lhs.getX(), rhs.getY() + lhs.getY());
-    }
-
-    public static Point diff(Point rhs, Point lhs) {
-        return new Point(rhs.getX() - lhs.getX(), rhs.getY() - lhs.getY());
     }
 
     public int getX() {

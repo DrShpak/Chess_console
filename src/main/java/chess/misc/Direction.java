@@ -19,11 +19,6 @@ public class Direction {
         this.maxLength = maxLength;
     }
 
-    public Direction(int dx, int dy, MovePolicy movePolicy) {
-        this(dx, dy);
-        this.movePolicy = movePolicy;
-    }
-
     public Direction(int dx, int dy, int maxLength, MovePolicy movePolicy) {
         this(dx, dy);
         this.maxLength = maxLength;
@@ -39,14 +34,6 @@ public class Direction {
                         x.getValue1() + 1
                 )
         ).map(Pair::getValue0);
-    }
-
-    public int getDx() {
-        return dx;
-    }
-
-    public int getDy() {
-        return dy;
     }
 
     public MovePolicy getMovePolicy() {

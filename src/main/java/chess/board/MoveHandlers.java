@@ -1,7 +1,6 @@
 package chess.board;
 
 import chess.misc.Point;
-import chess.units.Unit;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +15,7 @@ public class MoveHandlers {
                 forEach(x -> x.handleMove(feedback, oldPoint, newPoint));
     }
 
-    @SuppressWarnings("SuspiciousMethodCalls")
+    @SuppressWarnings({"SuspiciousMethodCalls", "UnusedReturnValue"})
     boolean remove(Object entity) {
         return handlers.remove(entity);
     }

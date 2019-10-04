@@ -1,6 +1,5 @@
 package chess.misc;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;

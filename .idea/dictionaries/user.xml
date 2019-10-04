@@ -3,6 +3,7 @@
     <words>
       <w>coords</w>
       <w>inplace</w>
+      <w>xlint</w>
     </words>
   </dictionary>
 </component>

@@ -1,11 +1,10 @@
 package chess.units;
 
 import chess.misc.Direction;
-import chess.misc.Point;
 import chess.misc.Team;
 
 public abstract class Unit {
-    protected Direction[] directions;
+    private Direction[] directions;
     public Team team;
 
     public Unit(Direction[] directions) {
@@ -18,10 +17,7 @@ public abstract class Unit {
 
     public Direction[] getDirections() {
         return this.directions;
-    };
-
-    public abstract boolean canMove(Point startPoint, Point endPoint);
-    public abstract boolean canAttack(Point startPoint, Point endPoint);
+    }
 
     public boolean isFortified() {return false;}
 }

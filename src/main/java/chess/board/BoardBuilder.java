@@ -62,7 +62,11 @@ public class BoardBuilder {
         var args = ArrayUtils.insert(0, param, currentTeam);
         Unit unit;
         try {
-            unit = clazz.getConstructor(Arrays.stream(args).map(Object::getClass).toArray(Class[]::new)).newInstance(args);
+            unit = clazz.
+                    getConstructor(Arrays.stream(args).
+                            map(Object::getClass).
+                            toArray(Class[]::new)).
+                    newInstance(args);
         }
         catch (Exception ex) {
             throw new IllegalArgumentException

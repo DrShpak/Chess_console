@@ -5,7 +5,6 @@ import chess.ui.impl.consoleUI.ConsoleUI;
 import chess.units.*;
 
 public class Main {
-
     public static void main(String[] args) {
         var board = new BoardBuilder().
                 startGroup().
