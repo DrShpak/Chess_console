@@ -12,6 +12,10 @@ public class Point {
         this.y = y;
     }
 
+    public Point(long i, long j) {
+        this((int)i, (int)j);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,7 +54,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return x + "|" + y;
+        return (char)((int)'a' + y) + Integer.toString(x + 1);
     }
 
     boolean validate() {
