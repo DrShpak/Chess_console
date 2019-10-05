@@ -1,11 +1,16 @@
 package chess.units;
 
+import chess.board.IMoveHandler;
+import chess.board.IPawnMark;
+import chess.board.MoveHandlers;
 import chess.misc.Direction;
 import chess.misc.MovePolicy;
+import chess.misc.Point;
 import chess.misc.Team;
 
 @SuppressWarnings("unused")
-public class Pawn extends Unit {
+public class Pawn extends Unit
+implements IMoveHandler<IPawnMark> {
     public Pawn(Team team) {
         super(null);
         this.team = team;
@@ -21,4 +26,12 @@ public class Pawn extends Unit {
         this.team = team;
     }
 
+    @Override
+    public void handleMove(IPawnMark feedback, Point oldPoint, Point newPoint) {
+    }
+
+    @Override
+    public void register(MoveHandlers registry) {
+        registry.register(this);
+    }
 }

@@ -13,5 +13,4 @@ public class Rook extends Unit {
         });
         this.team = team;
     }
-
 }

@@ -9,76 +9,82 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChessBoard
-extends IBoard{
+public class ChessBoardImpl
+        implements IBoard {
     private Cell[][] board;
     private MoveHandlers moveHandlers = new MoveHandlers();
     private Map<Team, Cell> kingsCells = new HashMap<>();
 
-    ChessBoard(Unit[][] board) {
+    ChessBoardImpl(Unit[][] board) {
         this.board = Arrays.
-                stream(board).
-                map(x -> Arrays.stream(x).
-                        map(Cell::new).toArray(Cell[]::new)).
+            stream(board).
+            map(x -> Arrays.stream(x).
+                map(Cell::new).
+                toArray(Cell[]::new)
+            ).
                 toArray(Cell[][]::new);
         //noinspection all
+        Streams.mapWithIndex(
+            Arrays.stream(board), (x, i) ->
                 Streams.mapWithIndex(
-                        Arrays.stream(board),
-                        (x, i) -> Streams.mapWithIndex(
-                                Arrays.stream(x),
-                                (y, j) -> new Pair<>(y, new Point(i, j))
-                        )
-                ).
-                        flatMap(x -> x).
-                        filter(x -> x.getValue0() instanceof IMoveHandler).
-                        map(x -> new Pair<>((IMoveHandler<? super IBoard>)x.getValue0(), x.getValue1())).
-                        forEach(x -> {
-                            x.getValue0().register(moveHandlers);
-                            x.getValue0().handleMove(this, null, x.getValue1());
-                        });
+                    Arrays.stream(x), (y, j) -> new Pair<>(y, new Point(i, j))
+                )
+        ).
+            flatMap(x -> x).
+            filter(x -> x.getValue0() instanceof IMoveHandler).
+            map(x -> new Pair<>((IMoveHandler<? super IKingTracker>) x.getValue0(), x.getValue1())).
+            forEach(x -> {
+                x.getValue0().register(moveHandlers);
+                x.getValue0().handleMove(this, null, x.getValue1());
+            });
     }
 
-    public Point[] getPossibleMoves(Point unitCell) {
-        var unit = board[unitCell.getX()][unitCell.getY()].getHolding();
+    public Point[] getPossibleMoves(Point unitPoint) {
+        var unit = board[unitPoint.getX()][unitPoint.getY()].getHolding();
         if (unit == null) {
             throw new NullPointerException();
         }
 
         return Arrays.stream(unit.getDirections()).
-                map(
-                        x -> StreamUtils.takeWhileEx(
-                                x.move(unitCell),
-                                y -> board[y.getX()][y.getY()].getHolding() == null
-                        ).
-                        filter(y -> board[y.getX()][y.getY()].getHolding() == null ||
-                                x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0 &&
-                                unit.isEnemy(board[y.getX()][y.getY()].getHolding())).
-                        filter(y -> board[y.getX()][y.getY()].getHolding() != null ||
-                                x.getMovePolicy().compareTo(MovePolicy.BOTH) <= 0).
-                        filter(y -> checkFortified(unit, board[y.getX()][y.getY()]))
+            map(x -> StreamUtils.takeWhileEx(
+                x.move(unitPoint), y ->
+                    board[y.getX()][y.getY()].getHolding() == null
                 ).
-                flatMap(x -> x).
-                toArray(Point[]::new);
+                filter(y -> board[y.getX()][y.getY()].getHolding() == null
+                    || x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0
+                    && unit.isEnemy(board[y.getX()][y.getY()].getHolding())
+                ).
+                filter(y -> board[y.getX()][y.getY()].getHolding() != null
+                     || x.getMovePolicy().compareTo(MovePolicy.BOTH) <= 0).
+                filter(y -> checkFortified(unit, board[y.getX()][y.getY()]))
+            ).
+            flatMap(x -> x).
+            toArray(Point[]::new);
     }
 
     private boolean checkFortified(Unit unit, Cell to) {
         if (unit.isFortified()) {
-            return to.onFire(unit) < 1;
+            return to.onFire(unit.team) < 1;
         }
+
+        //двойной шах короля
         var fortifiedUnit = this.kingsCells.get(unit.team);
-        if (fortifiedUnit.onFire(unit) > 1) {
+        if (fortifiedUnit.onFire(unit.team) > 1) {
             return false;
         }
-        if (fortifiedUnit.onFire(unit) > 0) {
-            var context = fortifiedUnit.getEnemy(unit);
+
+        //одинарный шах
+        if (fortifiedUnit.onFire(unit.team) > 0) {
+            var context = fortifiedUnit.getEnemy(unit.team);
             var equivalent = to.
                     getContexts().
                     stream().
                     filter(x -> x.isEquivalent(context)).
-                    filter(x -> !x.isInvolved(fortifiedUnit.getHolding())).
+                    filter(x -> !x.getBarrages().contains(fortifiedUnit.getHolding())).
                     findAny();
             return equivalent.isPresent();
         }
+
         var context = fortifiedUnit.
                 getSleepingEnemy(unit).
                 filter(x -> x.isInvolved(unit)).
@@ -129,35 +135,35 @@ extends IBoard{
     private void onRaisingUnit(Point from) {
         var oldCell = getBoard()[from.getX()][from.getY()];
         oldCell.unpinContexts();
-        oldCell.getContexts().forEach(x -> x.iterateContexts().forEach(y -> y.getBarrages().remove(oldCell.getHolding())));
+        oldCell.getContexts().stream().map(AttackingContext::iterateContexts).flatMap(x -> x).forEach(y -> y.getBarrages().remove(oldCell.getHolding()));
     }
 
     private void onLowedUnit(Point to) {
         var newCell = getBoard()[to.getX()][to.getY()];
         newCell.
-                getContexts().
-                stream().
-                map(AttackingContext::iterateContexts).
-                flatMap(y -> y).
-                forEach(y -> y.getBarrages().add(newCell.getHolding()));
+            getContexts().
+            stream().
+            map(AttackingContext::iterateContexts).
+            flatMap(y -> y).
+            forEach(y -> y.getBarrages().add(newCell.getHolding()));
 
-        //var newContext = new AttackingContext(newCell.getHolding(), newCell);
+
         newCell.pinContexts(Arrays.stream(newCell.
-                getHolding().
-                getDirections()).
-                filter(x -> x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0).
-                map(x -> StreamUtils.mapEx(
-                        (Pair<Cell, AttackingContext>)null,
-                        x.move(to),
-                        (y, z) -> new Pair<>(
-                                getBoard()[z.getX()][z.getY()],
-                                y != null ?
+            getHolding().
+            getDirections()).
+            filter(x -> x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0).
+            map(x ->
+                StreamUtils.mapEx(
+                (Pair<Cell, AttackingContext>) null,
+                x.move(to),
+                (y, z) -> new Pair<>(getBoard()[z.getX()][z.getY()], (y != null ?
                                         new AttackingContext(y.getValue1()) :
-                                        new AttackingContext(newCell.getHolding())
-                            )
+                                        new AttackingContext(newCell.getHolding()))
+//                        .setBarrage(getBoard()[z.getX()][z.getY()].getHolding())
                         )
-                ).
-        flatMap(x -> x));
+                )
+            ).
+            flatMap(x -> x));
     }
 
     public Cell[][] getBoard() {

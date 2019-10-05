@@ -52,6 +52,13 @@ public class BoardBuilder {
         return this;
     }
 
+    public BoardBuilder withUnitRange(Class<? extends Unit> clazz, int length, Object... param) {
+        for (int i = 0; i < length; i++) {
+            withUnit(clazz, param);
+        }
+        return this;
+    }
+
     public BoardBuilder withUnit(Class<? extends Unit> clazz, Object... param) {
         var currentGroup = Iterables.getLast(groups);
         if (currentGroup != null) {
@@ -62,11 +69,13 @@ public class BoardBuilder {
         var args = ArrayUtils.insert(0, param, currentTeam);
         Unit unit;
         try {
-            unit = clazz.
-                    getConstructor(Arrays.stream(args).
-                            map(Object::getClass).
-                            toArray(Class[]::new)).
-                    newInstance(args);
+            unit = clazz.getConstructor
+            (
+                Arrays.stream(args).
+                map(Object::getClass).
+                toArray(Class[]::new)
+            ).
+                newInstance(args);
         }
         catch (Exception ex) {
             throw new IllegalArgumentException
@@ -74,13 +83,6 @@ public class BoardBuilder {
         }
         units.add(unit);
 
-        return this;
-    }
-
-    public BoardBuilder withUnitRange(Class<? extends Unit> clazz, int length, Object... param) {
-        for (int i = 0; i < length; i++) {
-            withUnit(clazz, param);
-        }
         return this;
     }
 
@@ -101,14 +103,14 @@ public class BoardBuilder {
         return this;
     }
 
-    public ChessBoard build() {
+    public ChessBoardImpl build() {
         var size = height * width;
         if (units.size() > size) {
             throw new IllegalArgumentException
                     ("unable to instantiate board " + height + "x" + width + " unit`s count(" + units.size() + ") > size(" + size + ")");
         }
         var iterator = new UnitIterator(size);
-        return new ChessBoard(fillMatrix(iterator));
+        return new ChessBoardImpl(fillMatrix(iterator));
     }
 
     private Unit[][] fillMatrix(UnitIterator iterator) {
@@ -142,9 +144,8 @@ public class BoardBuilder {
             units.addAll(BoardBuilder.this.units);
             //noinspection UnstableApiUsage
             divisionIndices.addAll(
-                    mapWithIndex(
-                            BoardBuilder.this.divisionIndices.stream(),
-                            (x, i) -> (int)(x + i * gapSize)
+                    mapWithIndex(BoardBuilder.this.divisionIndices.stream(),
+                        (x, i) -> (int)(x + i * gapSize)
                     ).collect(Collectors.toList())
             );
         }
@@ -158,11 +159,11 @@ public class BoardBuilder {
         public Unit next() {
             if (!hasNext())
                 throw new NoSuchElementException();
-            var currDiv = divisionIndices.peek();
-            if (currDiv == null || index++ < currDiv ) {
+            var currDivisionIndex = divisionIndices.peek();
+            if (currDivisionIndex == null || index++ < currDivisionIndex ) {
                 return units.poll();
             }
-            if (index - currDiv > gapSize) {
+            if (index - currDivisionIndex > gapSize) {
                 divisionIndices.pop();
                 return units.poll();
             }

@@ -17,17 +17,17 @@ public class Cell {
         this.holding = holding;
     }
 
-    public int onFire(Unit unitFor) {
+    public int onFire(Team myTeam) {
         return (int)
                 contexts.stream().
-                filter(x -> unitFor.isEnemy(x.getAttacker()) && x.getBarrages().size() < 1).
+                filter(x -> myTeam.isEnemy(x.getAttacker().team) && x.getBarrages().size() < 1).
                 count();
     }
 
-    public AttackingContext getEnemy(Unit unitFor) {
+    public AttackingContext getEnemy(Team myTeam) {
         //noinspection OptionalGetWithoutIsPresent todo !
         return contexts.stream().
-                        filter(x -> unitFor.isEnemy(x.getAttacker()) && x.getBarrages().size() < 1).
+                        filter(x -> myTeam.isEnemy(x.getAttacker().team) && x.getBarrages().size() < 1).
                         findAny().get();
     }
 

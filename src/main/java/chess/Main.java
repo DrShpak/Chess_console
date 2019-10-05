@@ -7,7 +7,7 @@ import chess.units.*;
 public class Main {
     public static void main(String[] args) {
         var board = new BoardBuilder().
-                startGroup().
+            startGroup().
                     withUnit(Rook.class).
                     withUnit(Knight.class).
                     withUnit(Bishop.class).

@@ -26,7 +26,7 @@ public class Direction {
     }
 
     public Stream<Point> move(Point from) {
-        return Stream.iterate(
+        var flag = Stream.iterate(
                 new Pair<>(Point.sum(from, new Point(dx, dy)), 0),
                 x -> x.getValue0().validate() && x.getValue1() < maxLength,
                 x -> new Pair<>(
@@ -34,6 +34,7 @@ public class Direction {
                         x.getValue1() + 1
                 )
         ).map(Pair::getValue0);
+        return flag;
     }
 
     public MovePolicy getMovePolicy() {

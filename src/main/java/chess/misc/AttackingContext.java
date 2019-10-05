@@ -21,8 +21,16 @@ public class AttackingContext {
     public AttackingContext(AttackingContext previous) {
         this(previous.attacker);
         identity = previous.identity;
-        barrages.addAll(previous.barrages);
+        this.barrages.addAll(previous.barrages);
         previous.next = this;
+    }
+
+    public AttackingContext setBarrage(Unit unit) {
+        if (unit == null) {
+            return this;
+        }
+        this.getBarrages().add(unit);
+        return this;
     }
 
     Unit getAttacker() {
@@ -30,14 +38,16 @@ public class AttackingContext {
     }
 
     public boolean isEquivalent(AttackingContext other) {
-        return identity.equals(other.identity);
+        return identity == other.identity;
     }
 
     public boolean isInvolved(Unit other) {
         return iterateContexts().anyMatch(x -> x.barrages.contains(other));
     }
 
-    public boolean isInferior(AttackingContext other) { return iterateContexts().anyMatch(x -> x == other); }
+    public boolean isInferior(AttackingContext other) {
+        return iterateContexts().anyMatch(x -> x == other);
+    }
 
     public Stream<AttackingContext> iterateContexts() {
         return Stream.iterate(this, Objects::nonNull, AttackingContext::getNext);

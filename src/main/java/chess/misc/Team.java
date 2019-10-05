@@ -9,4 +9,5 @@ public class Team {
     public String getTeamTag() {
         return teamTag;
     }
+    public boolean isEnemy(Team other) {return this != other;}
 }

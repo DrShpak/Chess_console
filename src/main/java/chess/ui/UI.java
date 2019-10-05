@@ -1,11 +1,11 @@
 package chess.ui;
 
-import chess.board.ChessBoard;
+import chess.board.ChessBoardImpl;
 
 public abstract class UI {
-    protected ChessBoard board;
+    protected ChessBoardImpl board;
 
-    public UI(ChessBoard board) {
+    public UI(ChessBoardImpl board) {
         this.board = board;
     }
 

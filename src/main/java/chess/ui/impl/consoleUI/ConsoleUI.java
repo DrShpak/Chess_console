@@ -1,6 +1,6 @@
 package chess.ui.impl.consoleUI;
 
-import chess.board.ChessBoard;
+import chess.board.ChessBoardImpl;
 import chess.misc.Point;
 import chess.ui.UI;
 import com.google.common.collect.Lists;
@@ -14,7 +14,7 @@ public class ConsoleUI
 extends UI {
     private Scanner input = new Scanner(System.in);
 
-    public ConsoleUI(ChessBoard board) {
+    public ConsoleUI(ChessBoardImpl board) {
         super(board);
     }
 
@@ -45,27 +45,25 @@ extends UI {
     {
         //noinspection UnstableApiUsage
         Lists.reverse(
-                Streams.mapWithIndex(
-                        Arrays.stream(board.getBoard()),
-                        (x, i) -> Streams.mapWithIndex(
-                                Arrays.stream(x),
-                                (y, j) -> Arrays.stream(UnitSymbols.values()).
-                                        filter(s -> s.match(y.getHolding())).
-                                        findFirst().
-                                        orElse(
-                                                (i + j) % 2 == 0 ?
-                                                UnitSymbols.EvenCell :
-                                                UnitSymbols.OddCell
-                                        )
-                        )
-                ).
-                map(x -> x.map(y -> y.getSymbol() + " ").
-                        reduce(
-                                "",
-                                (s, c) -> s + c
-                        )
-                        + "\n"
-                ).
+            Streams.mapWithIndex
+            (
+                Arrays.stream(board.getBoard()),
+                (x, i) -> Streams.mapWithIndex
+                (
+                    Arrays.stream(x), (y, j) ->
+                    Arrays.stream(UnitSymbols.values()).
+                    filter(s -> s.match(y.getHolding())).
+                    findFirst().
+                    orElse
+                    (
+                        (i + j) % 2 == 0 ?
+                        UnitSymbols.EvenCell :
+                        UnitSymbols.OddCell
+                    )
+                )
+            ).
+            map(x -> x.map(y -> y.getSymbol() + " ").
+            reduce("", (s, c) -> s + c) + "\n").
                 collect(Collectors.toList())
         ).forEach(System.out::print);
     }

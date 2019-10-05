@@ -61,9 +61,9 @@ public class Point {
 
     boolean validate() {
         return
-                lx <= x &&
-                ly <= y &&
-                ux >= x &&
-                uy >= y;
+            lx <= x &&
+            ly <= y &&
+            ux >= x &&
+            uy >= y;
     }
 }

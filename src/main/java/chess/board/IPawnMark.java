@@ -1,5 +1,4 @@
 package chess.board;
 
-interface IPawnMark
-extends IFeedback {
+public interface IPawnMark extends IFeedback {
 }
