@@ -3,21 +3,43 @@ package chess.units;
 import chess.misc.Direction;
 import chess.misc.Team;
 
+/**
+ * Abstract class for chess units
+ */
 public abstract class Unit {
-    private Direction[] directions;
-    public Team team;
+    private final Direction[] directions;
+    private final Team team;
 
-    public Unit(Direction[] directions) {
+    public Unit(Direction[] directions, Team team) {
         this.directions = directions;
+        this.team = team;
     }
 
-    public boolean isEnemy(Unit unit2) {
-        return !this.team.equals(unit2.team);
+    /**
+     * Defines if this unit is enemy for other
+     * @param unit other unit
+     * @return true if other unit is enemy for this unit
+     */
+    public boolean isEnemy(Unit unit) {
+        return !this.getTeam().equals(unit.getTeam());
     }
 
+    /**
+     * Get {@link Direction} array for this unit
+     * @return {@link Direction} array
+     */
     public Direction[] getDirections() {
         return this.directions;
     }
 
-    public boolean isFortified() {return false;}
+    /**
+     * Indicates that this unit should not be under attack by enemy
+     *
+     * @return true for such a unit
+     */
+    public boolean isImportant() {return false;}
+
+    public Team getTeam() {
+        return team;
+    }
 }

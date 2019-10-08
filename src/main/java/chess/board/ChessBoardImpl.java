@@ -8,12 +8,13 @@ import org.javatuples.Pair;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ChessBoardImpl
         implements IBoard {
-    private Cell[][] board;
-    private MoveHandlers moveHandlers = new MoveHandlers();
-    private Map<Team, Cell> kingsCells = new HashMap<>();
+    private final Cell[][] board;
+    private final MoveHandlers moveHandlers = new MoveHandlers();
+    private final Map<Team, Cell> kingsCells = new HashMap<>();
 
     ChessBoardImpl(Unit[][] board) {
         this.board = Arrays.
@@ -23,7 +24,7 @@ public class ChessBoardImpl
                 toArray(Cell[]::new)
             ).
                 toArray(Cell[][]::new);
-        //noinspection all
+        //noinspection UnstableApiUsage,unchecked
         Streams.mapWithIndex(
             Arrays.stream(board), (x, i) ->
                 Streams.mapWithIndex(
@@ -39,135 +40,166 @@ public class ChessBoardImpl
             });
     }
 
-    public Point[] getPossibleMoves(Point unitPoint) {
-        var unit = board[unitPoint.getX()][unitPoint.getY()].getHolding();
+    /**
+     * Get all possible movements for unit on unitPos allowed by game rules
+     *
+     * @param unitPos unit position
+     * @return all possible movements for unit on unitPos
+     * @throws IllegalArgumentException if there is no unit on unitPos
+     */
+    public Point[] getPossibleMovements(Point unitPos) {
+        var unit = getCell(unitPos).getUnit();
         if (unit == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException("there is no unit on " + unitPos);
         }
 
         return Arrays.stream(unit.getDirections()).
-            map(x -> StreamUtils.takeWhileEx(
-                x.move(unitPoint), y ->
-                    board[y.getX()][y.getY()].getHolding() == null
+            map(direction ->
+                StreamUtils.takeWhileEx
+                (
+                    direction.getPointsAlong(unitPos),
+                    y -> getCell(y).isEmpty()
                 ).
-                filter(y -> board[y.getX()][y.getY()].getHolding() == null
-                    || x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0
-                    && unit.isEnemy(board[y.getX()][y.getY()].getHolding())
-                ).
-                filter(y -> board[y.getX()][y.getY()].getHolding() != null
-                     || x.getMovePolicy().compareTo(MovePolicy.BOTH) <= 0).
-                filter(y -> checkFortified(unit, board[y.getX()][y.getY()]))
+                filter(point -> checkPolicyRestrictions(unit, point, direction)).
+                filter(point -> checkDefense(unit, getCell(point)))
             ).
             flatMap(x -> x).
             toArray(Point[]::new);
     }
 
-    private boolean checkFortified(Unit unit, Cell to) {
-        if (unit.isFortified()) {
-            return to.onFire(unit.team) < 1;
-        }
+    /**
+     *  Forbid {@link Unit}
+     *  to move to {@link Point}
+     *  if such a movement violates policy restrictions for {@link Direction}
+     *
+     *  @param unit moving unit
+     *  @param point destination
+     *  @param direction direction of movement
+     *  @return check result
+     */
+    private boolean checkPolicyRestrictions(Unit unit,
+                                            Point point,
+                                            Direction direction)
+    {
+        return getCell(point).hasEnemyUnit(unit) && direction.getMovePolicy().allowAttack() ||
+                getCell(point).isEmpty() && direction.getMovePolicy().allowWalk();
+    }
 
-        //двойной шах короля
-        var fortifiedUnit = this.kingsCells.get(unit.team);
-        if (fortifiedUnit.onFire(unit.team) > 1) {
-            return false;
-        }
+    /**
+     * Forbid {@link Unit}
+     * destination move destination {@link Point}
+     * if such a movement cause destination King`s defenselessness
+     *
+     * @param unit moving unit
+     * @param destination destination cell
+     * @return check result
+     */
+    private boolean checkDefense(Unit unit, Cell destination) {
+        var importantUnitCell = this.kingsCells.get(unit.getTeam());
+        if (unit.isImportant()) {
+            return this.checkKingMovement(unit, destination);
+        } else return
+            this.checkDoubleShah(importantUnitCell, unit) &&
+            this.checkSingleShah(importantUnitCell, destination, unit) &&
+            this.checkBack(importantUnitCell, unit, destination);
+    }
+    //todo check bug(1 and 2)
 
-        //одинарный шах
-        if (fortifiedUnit.onFire(unit.team) > 0) {
-            var context = fortifiedUnit.getEnemy(unit.team);
-            var equivalent = to.
-                    getContexts().
-                    stream().
-                    filter(x -> x.isEquivalent(context)).
-                    filter(x -> !x.getBarrages().contains(fortifiedUnit.getHolding())).
-                    findAny();
-            return equivalent.isPresent();
-        }
+    private boolean checkKingMovement(Unit unit, Cell destination) {
+        return destination.countAttackers(unit) < 1;
+    }
 
-        var context = fortifiedUnit.
-                getSleepingEnemy(unit).
-                filter(x -> x.isInvolved(unit)).
-                findAny().
-                orElse(null);
-        //todo check
+    private boolean checkDoubleShah(Cell cell, Unit unit) {
+        return cell.countAttackers(unit) <= 1;
+    }
+
+    private boolean checkSingleShah(Cell cell, Cell destination, Unit unit) {
+        if (cell.countAttackers(unit) > 0) {
+            return this.getEquivalentContext(
+                    destination,
+                    cell.getAttackerContext(unit),
+                    cell.getUnit()
+            ).isPresent();
+        }
+        return true;
+    }
+
+    private boolean checkBack(Cell importantUnitCell, Unit unit, Cell destination) {
+        var context = importantUnitCell.
+            getPotentialAttackers(unit).
+            filter(x -> x.isInvolved(unit)).
+            findAny().
+            orElse(null);
         return (context == null) || (context.getBarrages().size() != 1) ||
-                to.
+                destination.
                         getContexts().
                         stream().
                         anyMatch(context::isInferior);
     }
-    //todo check bug(!)
+
+    private Optional<AttackingContext> getEquivalentContext(Cell destination, AttackingContext otherContext, Unit importantUnit) {
+        return destination.
+                getContexts().
+                stream().
+                filter(x -> x.isEquivalent(otherContext)).
+                filter(x -> !x.getBarrages().contains(importantUnit)).
+                findAny();
+    }
+
+    private boolean checkMove(Point startPoint, Point endPoint) {
+        return Arrays.asList(this.getPossibleMovements(startPoint)).contains(endPoint);
+    }
 
     public void move(Point startPoint, Point endPoint) {
-        var cell = board[startPoint.getX()][startPoint.getY()];
-        if (cell.getHolding() == null) {
+        var startCell = board[startPoint.getX()][startPoint.getY()];
+        if (startCell.getUnit() == null) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= unit not found");
         }
-        var possibleMoves = this.getPossibleMoves(startPoint);
-        if (Arrays.stream(possibleMoves).noneMatch(x -> x.equals(endPoint))) {
+        if (!this.checkMove(startPoint, endPoint)) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= forbidden move");
         }
-
-        var newCell = board[endPoint.getX()][endPoint.getY()];
+        var endCell = board[endPoint.getX()][endPoint.getY()];
 
         onRaisingUnit(startPoint);
-        if (newCell.getHolding() != null) {
-            onRaisingUnit(endPoint);
-            this.moveHandlers.handle(
-                    this,
-                    newCell.getHolding(),
-                    endPoint,
-                    null
-            );
-            this.moveHandlers.remove(newCell.getHolding());
+        if (endCell.getUnit() != null) {
+            chopFigure(endPoint);
         }
-        Cell.moveUnit(cell, board[endPoint.getX()][endPoint.getY()]);
+        Cell.moveUnit(startCell, getCell(endPoint));
         onLowedUnit(endPoint);
+
         this.moveHandlers.handle(
-                this,
-                newCell.getHolding(),
-                startPoint,
-                endPoint
+                this, endCell.getUnit(),
+                startPoint, endPoint
         );
     }
 
+    private void chopFigure(Point pos) {
+        onRaisingUnit(pos);
+        this.moveHandlers.handle(
+                this, getCell(pos).getUnit(),
+                pos, null
+        );
+        this.moveHandlers.remove(getCell(pos).getUnit());
+    }
+
     private void onRaisingUnit(Point from) {
-        var oldCell = getBoard()[from.getX()][from.getY()];
+        var oldCell = this.getCell(from);
         oldCell.unpinContexts();
-        oldCell.getContexts().stream().map(AttackingContext::iterateContexts).flatMap(x -> x).forEach(y -> y.getBarrages().remove(oldCell.getHolding()));
+        oldCell.removeBarrageFromContexts();
     }
 
     private void onLowedUnit(Point to) {
-        var newCell = getBoard()[to.getX()][to.getY()];
-        newCell.
-            getContexts().
-            stream().
-            map(AttackingContext::iterateContexts).
-            flatMap(y -> y).
-            forEach(y -> y.getBarrages().add(newCell.getHolding()));
-
-
-        newCell.pinContexts(Arrays.stream(newCell.
-            getHolding().
-            getDirections()).
-            filter(x -> x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0).
-            map(x ->
-                StreamUtils.mapEx(
-                (Pair<Cell, AttackingContext>) null,
-                x.move(to),
-                (y, z) -> new Pair<>(getBoard()[z.getX()][z.getY()], (y != null ?
-                                        new AttackingContext(y.getValue1()) :
-                                        new AttackingContext(newCell.getHolding()))
-//                        .setBarrage(getBoard()[z.getX()][z.getY()].getHolding())
-                        )
-                )
-            ).
-            flatMap(x -> x));
+        var newCell = getCell(to);
+        newCell.addBarrageToContexts();
+        newCell.emitContexts(to, this::getCell);
     }
 
     public Cell[][] getBoard() {
         return board;
+    }
+
+    private Cell getCell(Point coords){
+        return this.board[coords.getX()][coords.getY()];
     }
 
     @Override

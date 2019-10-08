@@ -8,30 +8,32 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public class AttackingContext {
-    private Unit attacker;
-    private AttackingContext identity;
-    private List<Unit> barrages = new ArrayList<>();
+    private final Unit attacker;
+    private final AttackingContext identity;
+    private final List<Unit> barrages = new ArrayList<>();
     private AttackingContext next;
 
-    public AttackingContext(Unit attacker) {
+    AttackingContext(Unit attacker) {
         this.attacker = attacker;
         identity = this;
     }
 
-    public AttackingContext(AttackingContext previous) {
-        this(previous.attacker);
+    AttackingContext(AttackingContext previous) {
+        this.attacker = previous.attacker;
         identity = previous.identity;
         this.barrages.addAll(previous.barrages);
         previous.next = this;
     }
 
-    public AttackingContext setBarrage(Unit unit) {
-        if (unit == null) {
-            return this;
-        }
-        this.getBarrages().add(unit);
-        return this;
-    }
+// --Commented out by Inspection START (10/7/2019 4:09 PM):
+//    public AttackingContext setBarrage(Unit unit) {
+//        if (unit == null) {
+//            return this;
+//        }
+//        this.getBarrages().add(unit);
+//        return this;
+//    }
+// --Commented out by Inspection STOP (10/7/2019 4:09 PM)
 
     Unit getAttacker() {
         return attacker;
@@ -49,7 +51,7 @@ public class AttackingContext {
         return iterateContexts().anyMatch(x -> x == other);
     }
 
-    public Stream<AttackingContext> iterateContexts() {
+    Stream<AttackingContext> iterateContexts() {
         return Stream.iterate(this, Objects::nonNull, AttackingContext::getNext);
     }
 

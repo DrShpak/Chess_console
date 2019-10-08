@@ -1,10 +1,11 @@
 package chess;
 
 import chess.board.BoardBuilder;
+import chess.ui.UI;
 import chess.ui.impl.consoleUI.ConsoleUI;
 import chess.units.*;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         var board = new BoardBuilder().
             startGroup().
@@ -27,7 +28,7 @@ public class Main {
                 height(8).
                 width(8).
                 build();
-        var ui = new ConsoleUI(board);
+        UI ui = new ConsoleUI(board);
         ui.start();
     }
 }

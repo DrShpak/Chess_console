@@ -4,53 +4,89 @@ import chess.units.Unit;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Cell {
-    private Unit holding;
-    private List<AttackingContext> contexts = new ArrayList<>();
-    private List<Pair<Cell, AttackingContext>> homeContexts = new ArrayList<>();
+    private Unit unit;
+    private final List<AttackingContext> contexts = new ArrayList<>();
+    private final List<Pair<Cell, AttackingContext>> homeContexts = new ArrayList<>();
 
-    public Cell(Unit holding) {
-        this.holding = holding;
+    public Cell(Unit unit) {
+        this.unit = unit;
     }
 
-    public int onFire(Team myTeam) {
+    public int countAttackers(Unit unit) {
         return (int)
                 contexts.stream().
-                filter(x -> myTeam.isEnemy(x.getAttacker().team) && x.getBarrages().size() < 1).
+                filter(x -> unit.isEnemy(x.getAttacker()) && x.getBarrages().size() < 1).
                 count();
     }
 
-    public AttackingContext getEnemy(Team myTeam) {
-        //noinspection OptionalGetWithoutIsPresent todo !
+    public AttackingContext getAttackerContext(Unit unit) {
         return contexts.stream().
-                        filter(x -> myTeam.isEnemy(x.getAttacker().team) && x.getBarrages().size() < 1).
-                        findAny().get();
+                        filter(x -> unit.isEnemy(x.getAttacker()) && x.getBarrages().size() < 1).
+                        findAny().
+                orElseThrow();
     }
 
-    public Stream<AttackingContext> getSleepingEnemy(Unit unitFor) {
-        //todo barrages to NEXT context
+    public Stream<AttackingContext> getPotentialAttackers(Unit unitFor) {
         return contexts.stream().
                 filter(x -> unitFor.isEnemy(x.getAttacker()) && x.getBarrages().size() > 0);
     }
 
     public static void moveUnit(Cell from, Cell to) {
-        to.holding = from.holding;
-        from.holding = null;
+        to.unit = from.unit;
+        from.unit = null;
     }
 
-    public Unit getHolding() {
-        return holding;
+    public void addBarrageToContexts() {
+        this.getContexts().stream().
+                map(AttackingContext::iterateContexts).
+                flatMap(y -> y).
+                forEach(y -> y.getBarrages().add(this.unit));
     }
+
+    public void removeBarrageFromContexts() {
+        this.getContexts().stream().
+                map(AttackingContext::iterateContexts).
+                flatMap(x -> x).
+                forEach(y -> y.getBarrages().remove(this.unit));
+    }
+
+    public void emitContexts(Point to, Function<Point, Cell> cellsGetter) {
+        this.pinContexts(Arrays.stream(this.unit.
+                getDirections()).
+                filter(x -> x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0).
+                map(x ->
+                        StreamUtils.mapEx(
+                                (Pair<Cell, AttackingContext>) null,
+                                x.getPointsAlong(to),
+                                (y, z) -> new Pair<>(cellsGetter.apply(z), y != null ?
+                                        new AttackingContext(y.getValue1()) :
+                                        new AttackingContext(this.unit)
+                                )
+                        )
+                ).
+                flatMap(x -> x));
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public boolean isEmpty() { return unit == null;}
+
+    public boolean hasEnemyUnit(Unit friendlyUnit) { return unit != null && unit.isEnemy(friendlyUnit); }
 
     public List<AttackingContext> getContexts() {
         return contexts;
     }
 
-    public void pinContexts(Stream<Pair<Cell, AttackingContext>> contextStream) {
+    private void pinContexts(Stream<Pair<Cell, AttackingContext>> contextStream) {
         if (!this.homeContexts.isEmpty()) {
             throw new IllegalStateException("home is busy!");
         }

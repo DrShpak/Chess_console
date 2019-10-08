@@ -14,8 +14,7 @@ public class Queen extends Unit {
                 new Direction(-1, 1),
                 new Direction(1, -1),
                 new Direction(-1, -1),
-        });
-        this.team = team;
+        }, team);
     }
 
 }

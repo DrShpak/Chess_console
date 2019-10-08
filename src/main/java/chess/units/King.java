@@ -19,18 +19,17 @@ implements IMoveHandler<IKingTracker> {
                 new Direction(-1, 1, 1),
                 new Direction(1, -1, 1),
                 new Direction(-1, -1, 1)
-        });
-        this.team = team;
+        }, team);
     }
 
     @Override
-    public boolean isFortified() {
+    public boolean isImportant() {
         return true;
     }
 
     @Override
     public void handleMove(IKingTracker feedback, Point oldPoint, Point newPoint) {
-        feedback.trackKing(team, newPoint);
+        feedback.trackKing(this.getTeam(), newPoint);
     }
 
     @Override
