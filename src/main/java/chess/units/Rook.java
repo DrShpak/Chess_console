@@ -4,6 +4,7 @@ import chess.misc.Direction;
 import chess.misc.Team;
 
 public class Rook extends Unit {
+
     public Rook(Team team) {
         super(new Direction[] {
                 new Direction(1, 0),

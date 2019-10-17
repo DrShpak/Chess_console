@@ -5,6 +5,7 @@ import chess.units.*;
 import com.google.common.collect.Streams;
 import org.javatuples.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +76,7 @@ public class ChessBoardImpl
 
         //одинарный шах
         if (fortifiedUnit.onFire(unit.team) > 0) {
+
             var context = fortifiedUnit.getEnemy(unit.team);
             var equivalent = to.
                     getContexts().
@@ -147,7 +149,6 @@ public class ChessBoardImpl
             flatMap(y -> y).
             forEach(y -> y.getBarrages().add(newCell.getHolding()));
 
-
         newCell.pinContexts(Arrays.stream(newCell.
             getHolding().
             getDirections()).
@@ -156,10 +157,9 @@ public class ChessBoardImpl
                 StreamUtils.mapEx(
                 (Pair<Cell, AttackingContext>) null,
                 x.move(to),
-                (y, z) -> new Pair<>(getBoard()[z.getX()][z.getY()], (y != null ?
-                                        new AttackingContext(y.getValue1()) :
-                                        new AttackingContext(newCell.getHolding()))
-//                        .setBarrage(getBoard()[z.getX()][z.getY()].getHolding())
+                (y, z) -> new Pair<>(getBoard()[z.getX()][z.getY()], (y != null
+                        ? new AttackingContext(y.getValue1()).setBarrage(newCell.getHolding())
+                        : new AttackingContext(newCell.getHolding()).setBarrage(newCell.getHolding()))
                         )
                 )
             ).

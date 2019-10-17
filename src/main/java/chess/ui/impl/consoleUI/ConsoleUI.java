@@ -10,8 +10,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class ConsoleUI
-extends UI {
+public class ConsoleUI extends UI {
     private Scanner input = new Scanner(System.in);
 
     public ConsoleUI(ChessBoardImpl board) {
