@@ -11,7 +11,6 @@ public class Rook extends Unit {
                 new Direction(-1, 0),
                 new Direction(0, 1),
                 new Direction(0, -1)
-        });
-        this.team = team;
+        }, team);
     }
 }

@@ -14,7 +14,7 @@ public class MainTest {
     private static final String PACKAGE_NAME = "chess.units";
 
     @Rule
-    public ErrorCollector collector = new ErrorCollector();
+    public final ErrorCollector collector = new ErrorCollector();
 
     @Test
     public void main() {
@@ -31,6 +31,6 @@ public class MainTest {
                         }
                 ).
                 filter(Objects::nonNull).
-                forEach(x -> collector.addError(x));
+                forEach(collector::addError);
     }
 }

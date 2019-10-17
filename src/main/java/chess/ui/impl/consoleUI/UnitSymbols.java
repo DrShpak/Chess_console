@@ -7,84 +7,84 @@ public enum  UnitSymbols {
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Pawn &&
-                    unit.team.getTeamTag().equals("White");
+                    unit.getTeam().getTeamTag().equals("White");
         }
     },
     WhiteKnight("\u2658"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Knight &&
-                    unit.team.getTeamTag().equals("White");
+                    unit.getTeam().getTeamTag().equals("White");
         }
     },
     WhiteBishop("\u2657"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Bishop &&
-                    unit.team.getTeamTag().equals("White");
+                    unit.getTeam().getTeamTag().equals("White");
         }
     },
     WhiteRook("\u2656"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Rook &&
-                    unit.team.getTeamTag().equals("White");
+                    unit.getTeam().getTeamTag().equals("White");
         }
     },
     WhiteQueen("\u2655"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Queen &&
-                    unit.team.getTeamTag().equals("White");
+                    unit.getTeam().getTeamTag().equals("White");
         }
     },
     WhiteKing("\u2654"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof King &&
-                    unit.team.getTeamTag().equals("White");
+                    unit.getTeam().getTeamTag().equals("White");
         }
     },
     BlackPawn("\u265F"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Pawn &&
-                    unit.team.getTeamTag().equals("Black");
+                    unit.getTeam().getTeamTag().equals("Black");
         }
     },
     BlackKnight("\u265E"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Knight &&
-                    unit.team.getTeamTag().equals("Black");
+                    unit.getTeam().getTeamTag().equals("Black");
         }
     },
     BlackBishop("\u265D"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Bishop &&
-                    unit.team.getTeamTag().equals("Black");
+                    unit.getTeam().getTeamTag().equals("Black");
         }
     },
     BlackRook("\u265C"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Rook &&
-                    unit.team.getTeamTag().equals("Black");
+                    unit.getTeam().getTeamTag().equals("Black");
         }
     },
     BlackQueen("\u265B"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof Queen &&
-                    unit.team.getTeamTag().equals("Black");
+                    unit.getTeam().getTeamTag().equals("Black");
         }
     },
     BlackKing("\u265A"){
         @Override
         public boolean match(Unit unit) {
             return unit instanceof King &&
-                    unit.team.getTeamTag().equals("Black");
+                    unit.getTeam().getTeamTag().equals("Black");
         }
     },
     EvenCell("\u25EF"){
@@ -100,7 +100,7 @@ public enum  UnitSymbols {
         }
     };
 
-    private String symbol;
+    private final String symbol;
 
     UnitSymbols(String symbol) {
         this.symbol = symbol;

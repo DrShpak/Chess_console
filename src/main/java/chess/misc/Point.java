@@ -1,17 +1,17 @@
 package chess.misc;
 
 public class Point {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     @SuppressWarnings("FieldCanBeLocal")
-    private int lx = 0;
+    private final int lx = 0;
     @SuppressWarnings("FieldCanBeLocal")
-    private int ly = 0;
+    private final int ly = 0;
     @SuppressWarnings("FieldCanBeLocal")
-    private int ux = 7;
+    private final int ux = 7;
     @SuppressWarnings("FieldCanBeLocal")
-    private int uy = 7;
+    private final int uy = 7;
 
     Point(int x, int y) {
         this.x = x;

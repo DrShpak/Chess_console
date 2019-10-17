@@ -3,9 +3,9 @@ package chess.ui;
 import chess.board.ChessBoardImpl;
 
 public abstract class UI {
-    protected ChessBoardImpl board;
+    protected final ChessBoardImpl board;
 
-    public UI(ChessBoardImpl board) {
+    protected UI(ChessBoardImpl board) {
         this.board = board;
     }
 

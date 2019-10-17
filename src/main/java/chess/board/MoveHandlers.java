@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class MoveHandlers {
-    private Collection<IMoveHandler<? super IBoard>> handlers = new ArrayList<>();
+    private final Collection<IMoveHandler<? super IBoard>> handlers = new ArrayList<>();
 
     void handle(IBoard feedback, Object handler, Point oldPoint, Point newPoint) {
         handlers.

@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 import static com.google.common.collect.Streams.mapWithIndex;
 
 public class BoardBuilder {
-    private int height = -1, width = -1;
+    private final Set<String> usedTags = new HashSet<>();
+    private final List<Unit> units = new ArrayList<>();
+    private final List<Integer> divisionIndices = new ArrayList<>();
+    private final List<List<Class<? extends Unit>>> groups = new ArrayList<>();
+    private int
+            height = -1,
+            width = -1;
     private Team currentTeam;
-    private Set<String> usedTags = new HashSet<>();
-    private List<Unit> units = new ArrayList<>();
-    private List<Integer> divisionIndices = new ArrayList<>();
-    private List<List<Class<? extends Unit>>> groups = new ArrayList<>();
 
     {
         groups.add(null);
@@ -93,8 +95,7 @@ public class BoardBuilder {
 
     public BoardBuilder withGap() {
         var nextIndex = units.size();
-        var previousIndex = Iterables.getLast(divisionIndices, -1);
-        //noinspection ConstantConditions
+        var previousIndex = Optional.ofNullable(Iterables.getLast(divisionIndices, -1)).orElse(-1);
         if (previousIndex >= nextIndex) {
             throw new IllegalStateException
                     ("Repeated invocation 'withGap()', index = " + previousIndex);
@@ -129,10 +130,10 @@ public class BoardBuilder {
     class UnitIterator
     implements Iterator<Unit> {
         private int index;
-        private int gapSize;
-        private int size;
-        private Queue<Unit> units = new ArrayDeque<>();
-        private Deque<Integer> divisionIndices = new ArrayDeque<>();
+        private final int gapSize;
+        private final int size;
+        private final Queue<Unit> units = new ArrayDeque<>();
+        private final Deque<Integer> divisionIndices = new ArrayDeque<>();
 
         private UnitIterator(int size) {
             var divsCount = BoardBuilder.this.divisionIndices.size();

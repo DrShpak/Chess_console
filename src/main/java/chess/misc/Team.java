@@ -6,8 +6,8 @@ public class Team {
     public Team(String TeamTag) {
         this.teamTag = TeamTag;
     }
+
     public String getTeamTag() {
         return teamTag;
     }
-    public boolean isEnemy(Team other) {return this != other;}
 }

@@ -5,7 +5,8 @@ import org.javatuples.Pair;
 import java.util.stream.Stream;
 
 public class Direction {
-    private int dx, dy;
+    private final int dx;
+    private final int dy;
     private int maxLength = Integer.MAX_VALUE;
     private MovePolicy movePolicy = MovePolicy.BOTH;
 
@@ -25,8 +26,8 @@ public class Direction {
         this.movePolicy = movePolicy;
     }
 
-    public Stream<Point> move(Point from) {
-        var flag = Stream.iterate(
+    public Stream<Point> getPointsAlong(Point from) {
+        return Stream.iterate(
                 new Pair<>(Point.sum(from, new Point(dx, dy)), 0),
                 x -> x.getValue0().validate() && x.getValue1() < maxLength,
                 x -> new Pair<>(
@@ -34,7 +35,6 @@ public class Direction {
                         x.getValue1() + 1
                 )
         ).map(Pair::getValue0);
-        return flag;
     }
 
     public MovePolicy getMovePolicy() {

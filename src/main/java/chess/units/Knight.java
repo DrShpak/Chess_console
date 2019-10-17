@@ -14,8 +14,7 @@ public class Knight extends Unit {
                 new Direction(-2, 1, 1),
                 new Direction(2, -1, 1),
                 new Direction(-2, -1, 1)
-        });
-        this.team = team;
+        }, team);
     }
 
 }

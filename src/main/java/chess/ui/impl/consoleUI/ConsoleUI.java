@@ -10,8 +10,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class ConsoleUI extends UI {
-    private Scanner input = new Scanner(System.in);
+public class ConsoleUI
+extends UI {
+    private final Scanner input = new Scanner(System.in);
 
     public ConsoleUI(ChessBoardImpl board) {
         super(board);
@@ -20,7 +21,7 @@ public class ConsoleUI extends UI {
     @Override
     public void start() {
         //noinspection StatementWithEmptyBody
-        while (loop()) ;
+        while (loop());
     }
 
     private boolean loop()
@@ -28,7 +29,7 @@ public class ConsoleUI extends UI {
         draw();
         var nextLine = input.nextLine();
         if (nextLine.matches("^test [a-h][1-8]$")) {
-            System.out.println(Arrays.stream(board.getPossibleMoves(Point.parse(nextLine.replaceFirst("test ", "")))).map(x -> x + " ")
+            System.out.println(Arrays.stream(board.getPossibleMovements(Point.parse(nextLine.replaceFirst("test ", "")))).map(x -> x + " ")
                     .reduce("", (s, c) -> s + c));
             return true;
         }
@@ -51,7 +52,7 @@ public class ConsoleUI extends UI {
                 (
                     Arrays.stream(x), (y, j) ->
                     Arrays.stream(UnitSymbols.values()).
-                    filter(s -> s.match(y.getHolding())).
+                    filter(s -> s.match(y.getUnit())).
                     findFirst().
                     orElse
                     (
