@@ -1,4 +1,4 @@
 package chess.board;
 
-interface IBoard extends IPawnMark, IKingTracker {
+interface IBoard extends IPawnTracker, IKingTracker {
 }

@@ -40,4 +40,16 @@ public class Direction {
     public MovePolicy getMovePolicy() {
         return movePolicy;
     }
+
+    public int getDx() {
+        return dx;
+    }
+
+    public int getDy() {
+        return dy;
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
 }

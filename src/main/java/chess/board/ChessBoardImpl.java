@@ -171,10 +171,13 @@ public class ChessBoardImpl
                 this, endCell.getUnit(),
                 startPoint, endPoint
         );
+
+
     }
 
     private void chopFigure(Point pos) {
         onRaisingUnit(pos);
+        // getCell(pos).getUnit() - chopped figure
         this.moveHandlers.handle(
                 this, getCell(pos).getUnit(),
                 pos, null
@@ -205,5 +208,12 @@ public class ChessBoardImpl
     @Override
     public void trackKing(Team team, Point newPoint) {
         this.kingsCells.put(team, board[newPoint.getX()][newPoint.getY()]);
+    }
+
+    @Override
+    public void trackingPawn(Unit unit, Point currPos) {
+        var team = unit.getTeam();
+        unit = new Queen(team);
+        this.getCell(currPos).replace(unit);
     }
 }

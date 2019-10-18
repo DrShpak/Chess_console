@@ -43,6 +43,10 @@ public class Cell {
         from.unit = null;
     }
 
+    public void replace(Unit unit) {
+        this.unit = unit;
+    }
+
     public void addBarrageToContexts() {
         this.getContexts().stream().
                 map(AttackingContext::iterateContexts).

@@ -1,7 +1,7 @@
 package chess.units;
 
 import chess.board.IMoveHandler;
-import chess.board.IPawnMark;
+import chess.board.IPawnTracker;
 import chess.board.MoveHandlers;
 import chess.misc.Direction;
 import chess.misc.MovePolicy;
@@ -10,23 +10,28 @@ import chess.misc.Team;
 
 @SuppressWarnings("unused")
 public class Pawn extends Unit
-implements IMoveHandler<IPawnMark> {
+implements IMoveHandler<IPawnTracker> {
     public Pawn(Team team) {
         super(null, team);
     }
 
-    public Pawn(Team team, Integer multiplier) {
+    public Pawn(Team team, Direction direction) {
         super(new Direction[] {
-                new Direction((int)Math.signum(multiplier), 0, 1, MovePolicy.WALK),
-                new Direction((int)Math.signum(multiplier) * 2, 0, 1, MovePolicy.WALK),
-                new Direction((int)Math.signum(multiplier), 1, 1, MovePolicy.ATTACK),
-                new Direction((int)Math.signum(multiplier), -1, 1, MovePolicy.ATTACK),
+                direction,
+                new Direction(direction.getDx() * 2, direction.getDy(), direction.getMaxLength(), MovePolicy.WALK),
+                new Direction(direction.getDx(), direction.getDy() + 1, direction.getMaxLength(), MovePolicy.ATTACK),
+                new Direction(direction.getDx(), direction.getDy() - 1, direction.getMaxLength(), MovePolicy.ATTACK),
         }, team);
     }
 
+
     @Override
-    public void handleMove(IPawnMark feedback, Point oldPoint, Point newPoint) {
-        oldPoint.notify();//todo dummy
+    public void handleMove(IPawnTracker feedback, Point oldPoint, Point newPoint) {
+        if (newPoint == null)
+            return;
+        if (this.getDirections()[0].getPointsAlong(newPoint).count() == 0) {
+            feedback.trackingPawn(this, newPoint);
+        }
     }
 
     @Override
