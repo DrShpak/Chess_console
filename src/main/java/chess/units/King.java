@@ -7,7 +7,7 @@ import chess.misc.Direction;
 import chess.misc.Point;
 import chess.misc.Team;
 
-public class King extends Unit
+public class King extends Castling
 implements IMoveHandler<IKingTracker> {
     public King(Team team) {
         super(new Direction[] {
@@ -29,6 +29,7 @@ implements IMoveHandler<IKingTracker> {
 
     @Override
     public void handleMove(IKingTracker feedback, Point oldPoint, Point newPoint) {
+        handleMove();
         feedback.trackKing(this.getTeam(), newPoint);
     }
 

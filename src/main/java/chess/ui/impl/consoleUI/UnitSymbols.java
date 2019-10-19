@@ -87,13 +87,13 @@ public enum  UnitSymbols {
                     unit.getTeam().getTeamTag().equals("Black");
         }
     },
-    EvenCell("\u25EF"){
+    EvenCell("\u25A1"){
         @Override
         public boolean match(Unit unit) {
             return false;
         }
     },
-    OddCell("\u26AB"){
+    OddCell("\u25A0"){
         @Override
         public boolean match(Unit unit) {
             return false;

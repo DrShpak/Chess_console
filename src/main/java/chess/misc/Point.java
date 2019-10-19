@@ -42,7 +42,7 @@ public class Point {
         );
     }
 
-    static Point sum(Point rhs, Point lhs) {
+    public static Point sum(Point rhs, Point lhs) {
         return new Point(rhs.getX() + lhs.getX(), rhs.getY() + lhs.getY());
     }
 

@@ -18,26 +18,26 @@ public class ChessBoardImpl
 
     ChessBoardImpl(Unit[][] board) {
         this.board = Arrays.
-            stream(board).
-            map(x -> Arrays.stream(x).
-                map(Cell::new).
-                toArray(Cell[]::new)
-            ).
+                stream(board).
+                map(x -> Arrays.stream(x).
+                        map(Cell::new).
+                        toArray(Cell[]::new)
+                ).
                 toArray(Cell[][]::new);
         //noinspection UnstableApiUsage,unchecked
         Streams.mapWithIndex(
-            Arrays.stream(board), (x, i) ->
-                Streams.mapWithIndex(
-                    Arrays.stream(x), (y, j) -> new Pair<>(y, new Point(i, j))
-                )
+                Arrays.stream(board), (x, i) ->
+                        Streams.mapWithIndex(
+                                Arrays.stream(x), (y, j) -> new Pair<>(y, new Point(i, j))
+                        )
         ).
-            flatMap(x -> x).
-            filter(x -> x.getValue0() instanceof IMoveHandler).
-            map(x -> new Pair<>((IMoveHandler<? super IKingTracker>) x.getValue0(), x.getValue1())).
-            forEach(x -> {
-                x.getValue0().register(moveHandlers);
-                x.getValue0().handleMove(this, null, x.getValue1());
-            });
+                flatMap(x -> x).
+                filter(x -> x.getValue0() instanceof IMoveHandler).
+                map(x -> new Pair<>((IMoveHandler<? super IKingTracker>) x.getValue0(), x.getValue1())).
+                forEach(x -> {
+                    x.getValue0().register(moveHandlers);
+                    x.getValue0().handleMove(this, null, x.getValue1());
+                });
     }
 
     /**
@@ -54,43 +54,52 @@ public class ChessBoardImpl
         }
 
         return Arrays.stream(unit.getDirections()).
-            map(direction ->
-                StreamUtils.takeWhileEx
-                (
-                    direction.getPointsAlong(unitPos),
-                    y -> getCell(y).isEmpty()
+                map(direction ->
+                        StreamUtils.takeWhileEx
+                                (
+                                    direction.getPointsAlong(unitPos),
+                                    y -> getCell(y).isEmpty()
+                                ).
+                                filter(point -> checkPolicyRestrictions(unit, point, direction)).
+                                filter(point -> checkDefense(unit, getCell(point)))
                 ).
-                filter(point -> checkPolicyRestrictions(unit, point, direction)).
-                filter(point -> checkDefense(unit, getCell(point)))
-            ).
-            flatMap(x -> x).
-            toArray(Point[]::new);
+                flatMap(x -> x).
+                toArray(Point[]::new);
+    }
+
+    public boolean checkMovemementsForCastling(Direction direction, Point start) {
+        var king = getCell(start).getUnit();
+        return direction.getPointsAlong(start).takeWhile(point -> checkKingMovement(king, getCell(point))).count() == direction.getMaxLength();
     }
 
     /**
-     *  Forbid {@link Unit}
-     *  to move to {@link Point}
-     *  if such a movement violates policy restrictions for {@link Direction}
+     * Forbid {@link Unit}
+     * to move to {@link Point}
+     * if such a movement violates policy restrictions for {@link Direction}
      *
-     *  @param unit moving unit
-     *  @param point destination
-     *  @param direction direction of movement
-     *  @return check result
+     * @param unit      moving unit
+     * @param point     destination
+     * @param direction direction of movement
+     * @return check result
      */
-    private boolean checkPolicyRestrictions(Unit unit,
-                                            Point point,
-                                            Direction direction)
-    {
-        return getCell(point).hasEnemyUnit(unit) && direction.getMovePolicy().allowAttack() ||
-                getCell(point).isEmpty() && direction.getMovePolicy().allowWalk();
+    private boolean checkPolicyRestrictions(Unit unit, Point point, Direction direction) {
+        return getCell(point).hasEnemyUnit(unit) && direction.getMovePolicy().allowAttack()
+                || getCell(point).isEmpty() && direction.getMovePolicy().allowWalk();
     }
+//
+//    private boolean checkKing(Unit unit) {
+//        if (unit.getClass() == King.class) {
+//            return ((King) unit).canCastling();
+//        }
+//        return false;
+//    }
 
     /**
      * Forbid {@link Unit}
      * destination move destination {@link Point}
      * if such a movement cause destination King`s defenselessness
      *
-     * @param unit moving unit
+     * @param unit        moving unit
      * @param destination destination cell
      * @return check result
      */
@@ -99,11 +108,10 @@ public class ChessBoardImpl
         if (unit.isImportant()) {
             return this.checkKingMovement(unit, destination);
         } else return
-            this.checkDoubleShah(importantUnitCell, unit) &&
-            this.checkSingleShah(importantUnitCell, destination, unit) &&
-            this.checkBack(importantUnitCell, unit, destination);
+                this.checkDoubleShah(importantUnitCell, unit) &&
+                        this.checkSingleShah(importantUnitCell, destination, unit) &&
+                        this.checkBack(importantUnitCell, unit, destination);
     }
-    //todo check bug(1 and 2)
 
     private boolean checkKingMovement(Unit unit, Cell destination) {
         return destination.countAttackers(unit) < 1;
@@ -126,10 +134,10 @@ public class ChessBoardImpl
 
     private boolean checkBack(Cell importantUnitCell, Unit unit, Cell destination) {
         var context = importantUnitCell.
-            getPotentialAttackers(unit).
-            filter(x -> x.isInvolved(unit)).
-            findAny().
-            orElse(null);
+                getPotentialAttackers(unit).
+                filter(x -> x.isInvolved(unit)).
+                findAny().
+                orElse(null);
         return (context == null) || (context.getBarrages().size() != 1) ||
                 destination.
                         getContexts().
@@ -158,8 +166,13 @@ public class ChessBoardImpl
         if (!this.checkMove(startPoint, endPoint)) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= forbidden move");
         }
-        var endCell = board[endPoint.getX()][endPoint.getY()];
 
+        moveInternal(startPoint, endPoint);
+    }
+
+    private void moveInternal(Point startPoint, Point endPoint) {
+        var startCell = board[startPoint.getX()][startPoint.getY()];
+        var endCell = board[endPoint.getX()][endPoint.getY()];
         onRaisingUnit(startPoint);
         if (endCell.getUnit() != null) {
             chopFigure(endPoint);
@@ -171,9 +184,8 @@ public class ChessBoardImpl
                 this, endCell.getUnit(),
                 startPoint, endPoint
         );
-
-
     }
+
 
     private void chopFigure(Point pos) {
         onRaisingUnit(pos);
@@ -201,7 +213,7 @@ public class ChessBoardImpl
         return board;
     }
 
-    private Cell getCell(Point coords){
+    private Cell getCell(Point coords) {
         return this.board[coords.getX()][coords.getY()];
     }
 
@@ -215,5 +227,25 @@ public class ChessBoardImpl
         var team = unit.getTeam();
         unit = new Queen(team);
         this.getCell(currPos).replace(unit);
+    }
+
+
+    public void makeCastling(CastlingType type, Point start) {
+        var king = getCell(start).getUnit();
+        if (king != null && ((Castling) king).isMoved()) {
+            var direction = type.getDirection();
+            if (checkMovemementsForCastling(direction, start)) {
+                Point end = new Point(start.getX(), start.getY() + direction.getDy() * direction.getMaxLength());
+
+                var startRookPoint = Point.sum(end, new Point(0, (type == CastlingType.LONG ? 2 : 1) * (int) Math.signum(direction.getDy())));
+                var endRookPoint = Point.sum(end, new Point(0, - (int) Math.signum(direction.getDy())));
+
+                var rook = getCell(startRookPoint).getUnit();
+                if (rook != null && ((Castling) rook).isMoved()) {
+                    moveInternal(start, end);
+                    moveInternal(startRookPoint, endRookPoint);
+                }
+            }
+        }
     }
 }

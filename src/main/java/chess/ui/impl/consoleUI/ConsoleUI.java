@@ -1,6 +1,7 @@
 package chess.ui.impl.consoleUI;
 
 import chess.board.ChessBoardImpl;
+import chess.misc.CastlingType;
 import chess.misc.Point;
 import chess.ui.UI;
 import com.google.common.collect.Lists;
@@ -33,6 +34,13 @@ extends UI {
                     .reduce("", (s, c) -> s + c));
             return true;
         }
+
+        if (nextLine.matches("^0-0(-0)? [a-h][1-8]")) {
+            String[] temp = nextLine.split("\\s");
+            board.makeCastling(CastlingType.parse(temp[0]), Point.parse(temp[1]));
+            return true;
+        }
+
         if (!nextLine.matches("^([a-h][1-8](\\s|$)){2}")) {
             return false;
         }
