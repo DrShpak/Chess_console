@@ -25,15 +25,13 @@ public class AttackingContext {
         previous.next = this;
     }
 
-// --Commented out by Inspection START (10/7/2019 4:09 PM):
-//    public AttackingContext setBarrage(Unit unit) {
-//        if (unit == null) {
-//            return this;
-//        }
-//        this.getBarrages().add(unit);
-//        return this;
-//    }
-// --Commented out by Inspection STOP (10/7/2019 4:09 PM)
+    public AttackingContext setBarrage(Unit unit) {
+        if (unit == null) {
+            return this;
+        }
+        this.getBarrages().add(unit);
+        return this;
+    }
 
     Unit getAttacker() {
         return attacker;
@@ -61,5 +59,16 @@ public class AttackingContext {
 
     private AttackingContext getNext() {
         return next;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AttackingContext)) return false;
+        AttackingContext that = (AttackingContext) o;
+        return Objects.equals(attacker, that.attacker) &&
+                Objects.equals(identity, that.identity) &&
+                Objects.equals(barrages, that.barrages) &&
+                Objects.equals(next, that.next);
     }
 }

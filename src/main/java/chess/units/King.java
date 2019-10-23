@@ -7,8 +7,7 @@ import chess.misc.Direction;
 import chess.misc.Point;
 import chess.misc.Team;
 
-public class King extends Castling
-implements IMoveHandler<IKingTracker> {
+public class King extends Castling implements IMoveHandler<IKingTracker> {
     public King(Team team) {
         super(new Direction[] {
                 new Direction(1, 0, 1),

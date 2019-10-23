@@ -10,8 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class ChessBoardImpl
-        implements IBoard {
+public class ChessBoardImpl implements IBoard {
     private final Cell[][] board;
     private final MoveHandlers moveHandlers = new MoveHandlers();
     private final Map<Team, Cell> kingsCells = new HashMap<>();
@@ -26,17 +25,17 @@ public class ChessBoardImpl
                 toArray(Cell[][]::new);
         //noinspection UnstableApiUsage,unchecked
         Streams.mapWithIndex(
-                Arrays.stream(board), (x, i) ->
+                Arrays.stream(board), (units, i) ->
                         Streams.mapWithIndex(
-                                Arrays.stream(x), (y, j) -> new Pair<>(y, new Point(i, j))
+                                Arrays.stream(units), (unit, j) -> new Pair<>(unit, new Point(i, j))
                         )
         ).
                 flatMap(x -> x).
-                filter(x -> x.getValue0() instanceof IMoveHandler).
-                map(x -> new Pair<>((IMoveHandler<? super IKingTracker>) x.getValue0(), x.getValue1())).
-                forEach(x -> {
-                    x.getValue0().register(moveHandlers);
-                    x.getValue0().handleMove(this, null, x.getValue1());
+                filter(pair -> pair.getValue0() instanceof IMoveHandler).
+                map(pair -> new Pair<>((IMoveHandler<? super IKingTracker>) pair.getValue0(), pair.getValue1())).
+                forEach(pair -> {
+                    pair.getValue0().register(moveHandlers);
+                    pair.getValue0().handleMove(this, null, pair.getValue1());
                 });
     }
 
@@ -58,7 +57,7 @@ public class ChessBoardImpl
                         StreamUtils.takeWhileEx
                                 (
                                     direction.getPointsAlong(unitPos),
-                                    y -> getCell(y).isEmpty()
+                                    point -> getCell(point).isEmpty()
                                 ).
                                 filter(point -> checkPolicyRestrictions(unit, point, direction)).
                                 filter(point -> checkDefense(unit, getCell(point)))
@@ -67,7 +66,7 @@ public class ChessBoardImpl
                 toArray(Point[]::new);
     }
 
-    public boolean checkMovemementsForCastling(Direction direction, Point start) {
+    private boolean checkMovementsForCastling(Direction direction, Point start) {
         var king = getCell(start).getUnit();
         return direction.getPointsAlong(start).takeWhile(point -> checkKingMovement(king, getCell(point))).count() == direction.getMaxLength();
     }
@@ -86,13 +85,6 @@ public class ChessBoardImpl
         return getCell(point).hasEnemyUnit(unit) && direction.getMovePolicy().allowAttack()
                 || getCell(point).isEmpty() && direction.getMovePolicy().allowWalk();
     }
-//
-//    private boolean checkKing(Unit unit) {
-//        if (unit.getClass() == King.class) {
-//            return ((King) unit).canCastling();
-//        }
-//        return false;
-//    }
 
     /**
      * Forbid {@link Unit}
@@ -207,6 +199,7 @@ public class ChessBoardImpl
         var newCell = getCell(to);
         newCell.addBarrageToContexts();
         newCell.emitContexts(to, this::getCell);
+//        addBarrages();
     }
 
     public Cell[][] getBoard() {
@@ -234,7 +227,7 @@ public class ChessBoardImpl
         var king = getCell(start).getUnit();
         if (king != null && ((Castling) king).isMoved()) {
             var direction = type.getDirection();
-            if (checkMovemementsForCastling(direction, start)) {
+            if (checkMovementsForCastling(direction, start)) {
                 Point end = new Point(start.getX(), start.getY() + direction.getDy() * direction.getMaxLength());
 
                 var startRookPoint = Point.sum(end, new Point(0, (type == CastlingType.LONG ? 2 : 1) * (int) Math.signum(direction.getDy())));

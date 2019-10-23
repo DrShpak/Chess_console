@@ -1,7 +1,6 @@
 package chess.misc;
 
 import org.javatuples.Pair;
-
 import java.util.stream.Stream;
 
 public class Direction {

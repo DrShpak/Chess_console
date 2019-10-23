@@ -2,7 +2,6 @@ package chess.misc;
 
 import chess.units.Unit;
 import org.javatuples.Pair;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +29,7 @@ public class Cell {
         return contexts.stream().
                         filter(x -> unit.isEnemy(x.getAttacker()) && x.getBarrages().size() < 1).
                         findAny().
-                orElseThrow();
+                        orElseThrow();
     }
 
     public Stream<AttackingContext> getPotentialAttackers(Unit unitFor) {
@@ -61,16 +60,16 @@ public class Cell {
                 forEach(y -> y.getBarrages().remove(this.unit));
     }
 
-    public void emitContexts(Point to, Function<Point, Cell> cellsGetter) {
+    public void emitContexts(Point to, Function<Point, Cell> cellGetter) {
         this.pinContexts(Arrays.stream(this.unit.
                 getDirections()).
-                filter(x -> x.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0).
-                map(x ->
+                filter(direction -> direction.getMovePolicy().compareTo(MovePolicy.BOTH) >= 0).
+                map(direction ->
                         StreamUtils.mapEx(
                                 (Pair<Cell, AttackingContext>) null,
-                                x.getPointsAlong(to),
-                                (y, z) -> new Pair<>(cellsGetter.apply(z), y != null ?
-                                        new AttackingContext(y.getValue1()) :
+                                direction.getPointsAlong(to),
+                                (pair, point) -> new Pair<>(cellGetter.apply(point), pair != null ?
+                                        new AttackingContext(pair.getValue1()) :
                                         new AttackingContext(this.unit)
                                 )
                         )

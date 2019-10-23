@@ -9,8 +9,8 @@ import chess.misc.Point;
 import chess.misc.Team;
 
 @SuppressWarnings("unused")
-public class Pawn extends Unit
-implements IMoveHandler<IPawnTracker> {
+public class Pawn extends Unit implements IMoveHandler<IPawnTracker> {
+
     public Pawn(Team team) {
         super(null, team);
     }
