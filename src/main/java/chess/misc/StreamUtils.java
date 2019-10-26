@@ -20,7 +20,7 @@ public class StreamUtils {
     }
 
     @SuppressWarnings({"unchecked", "UnusedReturnValue"})
-    static <R, X> Stream<R> mapEx(R seed, Stream<X> stream, BiFunction<R, X, ? super R> action) {
+    public static <R, X> Stream<R> mapEx(R seed, Stream<X> stream, BiFunction<R, X, ? super R> action) {
         var previousElement = new Object[]{seed};
         var collection = new ArrayList<>();
         for (X x : stream.collect(Collectors.toList())) {

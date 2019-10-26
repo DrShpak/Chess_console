@@ -1,20 +1,20 @@
-package chess.units;
+package chess.unit;
 
 import chess.misc.Direction;
-import chess.misc.Team;
+import chess.base.Team;
 
 public abstract class Castling extends Unit {
-    private int moveCount = 0;
+    private boolean moved = false;
 
     Castling(Direction[] directions, Team team) {
         super(directions, team);
     }
 
     void handleMove() {
-        moveCount++;
+        this.moved = true;
     }
 
     public boolean isMoved() {
-        return moveCount != 0;
+        return this.moved;
     }
 }

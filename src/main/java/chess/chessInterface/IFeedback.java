@@ -1,4 +1,4 @@
-package chess.board;
+package chess.chessInterface;
 
 public interface IFeedback {
 }

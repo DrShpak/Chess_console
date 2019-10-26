@@ -1,16 +1,15 @@
-package chess.units;
+package chess.unit;
 
-import chess.board.IMoveHandler;
-import chess.board.IPawnTracker;
-import chess.board.MoveHandlers;
+import chess.chessInterface.IMoveHandler;
+import chess.chessInterface.boardPart.IPawnBoardPart;
+import chess.base.board.MoveHandlers;
 import chess.misc.Direction;
 import chess.misc.MovePolicy;
 import chess.misc.Point;
-import chess.misc.Team;
+import chess.base.Team;
 
 @SuppressWarnings("unused")
-public class Pawn extends Unit implements IMoveHandler<IPawnTracker> {
-
+public class Pawn extends Unit implements IMoveHandler<IPawnBoardPart> {
     public Pawn(Team team) {
         super(null, team);
     }
@@ -24,13 +23,19 @@ public class Pawn extends Unit implements IMoveHandler<IPawnTracker> {
         }, team);
     }
 
-
     @Override
-    public void handleMove(IPawnTracker feedback, Point oldPoint, Point newPoint) {
-        if (newPoint == null)
-            return;
+    public void handleMove(IPawnBoardPart feedback, Point oldPoint, Point newPoint) {
         if (this.getDirections()[0].getPointsAlong(newPoint).count() == 0) {
-            feedback.trackingPawn(this, newPoint);
+            feedback.transformPawn(this, newPoint);
+        } else {
+            var direction = Direction.getAvgDistance(Point.diff(newPoint, oldPoint));
+            direction.
+                    getPointsAlong(oldPoint).
+                    findFirst().
+                    ifPresentOrElse(
+                     x -> feedback.markPawnEnPassant(oldPoint, newPoint, x),
+                    () -> feedback.attemptEnPassant(newPoint)
+            );
         }
     }
 

@@ -1,11 +1,11 @@
 package chess;
 
-import chess.board.BoardBuilder;
+import chess.base.board.BoardBuilder;
 import chess.misc.Direction;
 import chess.misc.MovePolicy;
 import chess.ui.UI;
 import chess.ui.impl.consoleUI.ConsoleUI;
-import chess.units.*;
+import chess.unit.*;
 
 
 class Main {

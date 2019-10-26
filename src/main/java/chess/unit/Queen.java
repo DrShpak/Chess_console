@@ -1,7 +1,7 @@
-package chess.units;
+package chess.unit;
 
 import chess.misc.Direction;
-import chess.misc.Team;
+import chess.base.Team;
 
 public class Queen extends Unit {
     public Queen(Team team) {
@@ -16,5 +16,4 @@ public class Queen extends Unit {
                 new Direction(-1, -1),
         }, team);
     }
-
 }

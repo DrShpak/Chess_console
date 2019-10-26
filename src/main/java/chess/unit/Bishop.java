@@ -1,7 +1,7 @@
-package chess.units;
+package chess.unit;
 
 import chess.misc.Direction;
-import chess.misc.Team;
+import chess.base.Team;
 
 public class Bishop extends Unit {
     public Bishop(Team team) {
@@ -12,5 +12,4 @@ public class Bishop extends Unit {
                 new Direction(-1, -1)
         }, team);
     }
-
 }

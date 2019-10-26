@@ -1,6 +1,6 @@
 package chess.ui.impl.consoleUI;
 
-import chess.board.ChessBoardImpl;
+import chess.base.board.ChessBoardImpl;
 import chess.misc.CastlingType;
 import chess.misc.Point;
 import chess.ui.UI;
@@ -44,8 +44,8 @@ extends UI {
         if (!nextLine.matches("^([a-h][1-8](\\s|$)){2}")) {
             return false;
         }
-        var coords = Arrays.stream(nextLine.split("\\s")).map(Point::parse).toArray(Point[]::new);
-        board.move(coords[0], coords[1]);
+        var pos = Arrays.stream(nextLine.split("\\s")).map(Point::parse).toArray(Point[]::new);
+        board.move(pos[0], pos[1]);
         return true;
     }
 

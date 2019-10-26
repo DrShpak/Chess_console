@@ -1,10 +1,14 @@
-package chess.misc;
+package chess.base;
 
-import chess.units.Unit;
+import chess.misc.MovePolicy;
+import chess.misc.Point;
+import chess.misc.StreamUtils;
+import chess.unit.Unit;
 import org.javatuples.Pair;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -47,14 +51,16 @@ public class Cell {
     }
 
     public void addBarrageToContexts() {
-        this.getContexts().stream().
+        this.contexts.
+                stream().
                 map(AttackingContext::iterateContexts).
                 flatMap(y -> y).
                 forEach(y -> y.getBarrages().add(this.unit));
     }
 
     public void removeBarrageFromContexts() {
-        this.getContexts().stream().
+        this.contexts.
+                stream().
                 map(AttackingContext::iterateContexts).
                 flatMap(x -> x).
                 forEach(y -> y.getBarrages().remove(this.unit));
@@ -85,10 +91,6 @@ public class Cell {
 
     public boolean hasEnemyUnit(Unit friendlyUnit) { return unit != null && unit.isEnemy(friendlyUnit); }
 
-    public List<AttackingContext> getContexts() {
-        return contexts;
-    }
-
     private void pinContexts(Stream<Pair<Cell, AttackingContext>> contextStream) {
         if (!this.homeContexts.isEmpty()) {
             throw new IllegalStateException("home is busy!");
@@ -100,5 +102,19 @@ public class Cell {
     public void unpinContexts() {
         homeContexts.forEach(x -> x.getValue0().contexts.remove(x.getValue1()));
         homeContexts.clear();
+    }
+
+    public Optional<AttackingContext> getEquivalentContext(AttackingContext otherContext, Unit importantUnit) {
+        return this.contexts.
+                stream().
+                filter(x -> x.isEquivalent(otherContext)).
+                filter(x -> !x.getBarrages().contains(importantUnit)).
+                findAny();
+    }
+
+    public boolean hasInferiorContext(AttackingContext otherContext) {
+        return this.contexts.
+                stream().
+                anyMatch(otherContext::isInferior);
     }
 }

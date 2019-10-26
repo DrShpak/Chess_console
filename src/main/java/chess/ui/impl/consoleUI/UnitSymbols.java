@@ -1,8 +1,15 @@
 package chess.ui.impl.consoleUI;
 
-import chess.units.*;
+import chess.unit.*;
 
 public enum  UnitSymbols {
+    Dummy("?") {
+        @Override
+        public boolean match(Unit unit) {
+            //todo debug only
+            return unit instanceof Dummy;
+        }
+    },
     WhitePawn("\u2659") {
         @Override
         public boolean match(Unit unit) {
@@ -87,13 +94,13 @@ public enum  UnitSymbols {
                     unit.getTeam().getTeamTag().equals("Black");
         }
     },
-    EvenCell("\u25A1"){
+    EvenCell("\u25A1 "){
         @Override
         public boolean match(Unit unit) {
             return false;
         }
     },
-    OddCell("\u25A0"){
+    OddCell("\u25A0 "){
         @Override
         public boolean match(Unit unit) {
             return false;

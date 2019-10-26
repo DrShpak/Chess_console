@@ -46,6 +46,10 @@ public class Point {
         return new Point(rhs.getX() + lhs.getX(), rhs.getY() + lhs.getY());
     }
 
+    public static Direction diff(Point rhs, Point lhs) {
+        return new Direction(rhs.getX() - lhs.getX(), rhs.getY() - lhs.getY());
+    }
+
     public int getX() {
         return x;
     }

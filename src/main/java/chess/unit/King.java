@@ -1,13 +1,13 @@
-package chess.units;
+package chess.unit;
 
-import chess.board.IKingTracker;
-import chess.board.IMoveHandler;
-import chess.board.MoveHandlers;
+import chess.chessInterface.boardPart.IKingBoardPart;
+import chess.chessInterface.IMoveHandler;
+import chess.base.board.MoveHandlers;
 import chess.misc.Direction;
 import chess.misc.Point;
-import chess.misc.Team;
+import chess.base.Team;
 
-public class King extends Castling implements IMoveHandler<IKingTracker> {
+public class King extends Castling implements IMoveHandler<IKingBoardPart> {
     public King(Team team) {
         super(new Direction[] {
                 new Direction(1, 0, 1),
@@ -27,7 +27,7 @@ public class King extends Castling implements IMoveHandler<IKingTracker> {
     }
 
     @Override
-    public void handleMove(IKingTracker feedback, Point oldPoint, Point newPoint) {
+    public void handleMove(IKingBoardPart feedback, Point oldPoint, Point newPoint) {
         handleMove();
         feedback.trackKing(this.getTeam(), newPoint);
     }

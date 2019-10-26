@@ -1,7 +1,7 @@
-package chess.board;
+package chess.base.board;
 
-import chess.misc.Team;
-import chess.units.Unit;
+import chess.base.Team;
+import chess.unit.Unit;
 import com.google.common.collect.Iterables;
 import org.apache.commons.lang3.ArrayUtils;
 

@@ -1,6 +1,6 @@
 package chess.ui;
 
-import chess.board.ChessBoardImpl;
+import chess.base.board.ChessBoardImpl;
 
 public abstract class UI {
     protected final ChessBoardImpl board;

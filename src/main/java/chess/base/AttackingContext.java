@@ -1,6 +1,6 @@
-package chess.misc;
+package chess.base;
 
-import chess.units.Unit;
+import chess.unit.Unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +25,11 @@ public class AttackingContext {
         previous.next = this;
     }
 
-    public AttackingContext setBarrage(Unit unit) {
-        if (unit == null) {
-            return this;
-        }
-        this.getBarrages().add(unit);
-        return this;
-    }
-
     Unit getAttacker() {
         return attacker;
     }
 
-    public boolean isEquivalent(AttackingContext other) {
+    boolean isEquivalent(AttackingContext other) {
         return identity == other.identity;
     }
 
@@ -45,7 +37,7 @@ public class AttackingContext {
         return iterateContexts().anyMatch(x -> x.barrages.contains(other));
     }
 
-    public boolean isInferior(AttackingContext other) {
+    boolean isInferior(AttackingContext other) {
         return iterateContexts().anyMatch(x -> x == other);
     }
 
@@ -59,16 +51,5 @@ public class AttackingContext {
 
     private AttackingContext getNext() {
         return next;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AttackingContext)) return false;
-        AttackingContext that = (AttackingContext) o;
-        return Objects.equals(attacker, that.attacker) &&
-                Objects.equals(identity, that.identity) &&
-                Objects.equals(barrages, that.barrages) &&
-                Objects.equals(next, that.next);
     }
 }

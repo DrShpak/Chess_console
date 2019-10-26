@@ -26,6 +26,9 @@ public class Direction {
     }
 
     public Stream<Point> getPointsAlong(Point from) {
+        if (this.isZero()) {
+            return Stream.empty();
+        }
         return Stream.iterate(
                 new Pair<>(Point.sum(from, new Point(dx, dy)), 0),
                 x -> x.getValue0().validate() && x.getValue1() < maxLength,
@@ -50,5 +53,14 @@ public class Direction {
 
     public int getMaxLength() {
         return maxLength;
+    }
+
+    public static Direction getAvgDistance(Direction direction) {
+        return new Direction(direction.dx / 2, direction.dy / 2, direction.maxLength, direction.movePolicy);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public boolean isZero() {
+        return dx == 0 && dy == 0;
     }
 }

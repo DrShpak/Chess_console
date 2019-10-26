@@ -1,12 +1,13 @@
 package chess.tests.smoke;
 
-import chess.misc.Team;
-import chess.units.Unit;
+import chess.base.Team;
+import chess.unit.Unit;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 
 public class MainTest {
@@ -20,6 +21,7 @@ public class MainTest {
     public void main() {
         new Reflections(PACKAGE_NAME).
                 getSubTypesOf(Unit.class).stream().
+                filter(x -> !Modifier.isAbstract(x.getModifiers())).
                 map(
                         x -> {
                             try {

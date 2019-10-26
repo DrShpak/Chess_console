@@ -1,21 +1,24 @@
-package chess.board;
+package chess.base.board;
 
-import chess.misc.*;
-import chess.units.*;
+import chess.base.Cell;
+import chess.chessInterface.IBoard;
+import chess.chessInterface.IMoveHandler;
+import chess.misc.Direction;
+import chess.misc.Point;
+import chess.misc.StreamUtils;
+import chess.unit.Unit;
 import com.google.common.collect.Streams;
-import org.javatuples.Pair;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Objects;
 
-public class ChessBoardImpl implements IBoard {
+@SuppressWarnings("WeakerAccess")
+public abstract class ChessBoardBase implements IBoard {
     private final Cell[][] board;
     private final MoveHandlers moveHandlers = new MoveHandlers();
-    private final Map<Team, Cell> kingsCells = new HashMap<>();
 
-    ChessBoardImpl(Unit[][] board) {
+    @SuppressWarnings("UnstableApiUsage")
+    ChessBoardBase(Unit[][] board) {
         this.board = Arrays.
                 stream(board).
                 map(x -> Arrays.stream(x).
@@ -23,20 +26,28 @@ public class ChessBoardImpl implements IBoard {
                         toArray(Cell[]::new)
                 ).
                 toArray(Cell[][]::new);
-        //noinspection UnstableApiUsage,unchecked
+
         Streams.mapWithIndex(
                 Arrays.stream(board), (units, i) ->
                         Streams.mapWithIndex(
-                                Arrays.stream(units), (unit, j) -> new Pair<>(unit, new Point(i, j))
+                                Arrays.stream(units).
+                                        filter(Objects::nonNull),
+                                (unit, j) -> new Point(i, j)
                         )
         ).
                 flatMap(x -> x).
-                filter(pair -> pair.getValue0() instanceof IMoveHandler).
-                map(pair -> new Pair<>((IMoveHandler<? super IKingTracker>) pair.getValue0(), pair.getValue1())).
-                forEach(pair -> {
-                    pair.getValue0().register(moveHandlers);
-                    pair.getValue0().handleMove(this, null, pair.getValue1());
-                });
+                forEach(this::initUnit);
+    }
+
+    @SuppressWarnings("unchecked")
+    protected void initUnit(Point position) {
+        this.onLowedUnit(position);
+        var unit = this.getCell(position).getUnit();
+        if (unit instanceof IMoveHandler) {
+            var handler = (IMoveHandler<? super IBoard>)unit;
+            handler.register(this.moveHandlers);
+            handler.handleMove(this, position, position);
+        }
     }
 
     /**
@@ -66,11 +77,6 @@ public class ChessBoardImpl implements IBoard {
                 toArray(Point[]::new);
     }
 
-    private boolean checkMovementsForCastling(Direction direction, Point start) {
-        var king = getCell(start).getUnit();
-        return direction.getPointsAlong(start).takeWhile(point -> checkKingMovement(king, getCell(point))).count() == direction.getMaxLength();
-    }
-
     /**
      * Forbid {@link Unit}
      * to move to {@link Point}
@@ -96,16 +102,18 @@ public class ChessBoardImpl implements IBoard {
      * @return check result
      */
     private boolean checkDefense(Unit unit, Cell destination) {
-        var importantUnitCell = this.kingsCells.get(unit.getTeam());
+        var importantUnitCell = this.getImportantUnitCell(unit);
         if (unit.isImportant()) {
             return this.checkKingMovement(unit, destination);
         } else return
                 this.checkDoubleShah(importantUnitCell, unit) &&
                         this.checkSingleShah(importantUnitCell, destination, unit) &&
                         this.checkBack(importantUnitCell, unit, destination);
-    }
+    }//todo check bugs(1 and 2)
 
-    private boolean checkKingMovement(Unit unit, Cell destination) {
+    protected abstract Cell getImportantUnitCell(Unit friendlyUnit);
+
+    protected boolean checkKingMovement(Unit unit, Cell destination) {
         return destination.countAttackers(unit) < 1;
     }
 
@@ -115,8 +123,7 @@ public class ChessBoardImpl implements IBoard {
 
     private boolean checkSingleShah(Cell cell, Cell destination, Unit unit) {
         if (cell.countAttackers(unit) > 0) {
-            return this.getEquivalentContext(
-                    destination,
+            return destination.getEquivalentContext(
                     cell.getAttackerContext(unit),
                     cell.getUnit()
             ).isPresent();
@@ -130,20 +137,9 @@ public class ChessBoardImpl implements IBoard {
                 filter(x -> x.isInvolved(unit)).
                 findAny().
                 orElse(null);
-        return (context == null) || (context.getBarrages().size() != 1) ||
-                destination.
-                        getContexts().
-                        stream().
-                        anyMatch(context::isInferior);
-    }
-
-    private Optional<AttackingContext> getEquivalentContext(Cell destination, AttackingContext otherContext, Unit importantUnit) {
-        return destination.
-                getContexts().
-                stream().
-                filter(x -> x.isEquivalent(otherContext)).
-                filter(x -> !x.getBarrages().contains(importantUnit)).
-                findAny();
+        return  (context == null) ||
+                (context.getBarrages().size() != 1) ||
+                 destination.hasInferiorContext(context);
     }
 
     private boolean checkMove(Point startPoint, Point endPoint) {
@@ -151,42 +147,46 @@ public class ChessBoardImpl implements IBoard {
     }
 
     public void move(Point startPoint, Point endPoint) {
-        var startCell = board[startPoint.getX()][startPoint.getY()];
-        if (startCell.getUnit() == null) {
+        if (this.getCell(startPoint).getUnit() == null) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= unit not found");
         }
         if (!this.checkMove(startPoint, endPoint)) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= forbidden move");
         }
-
         moveInternal(startPoint, endPoint);
+        this.postMove(startPoint, endPoint);
     }
 
-    private void moveInternal(Point startPoint, Point endPoint) {
-        var startCell = board[startPoint.getX()][startPoint.getY()];
-        var endCell = board[endPoint.getX()][endPoint.getY()];
-        onRaisingUnit(startPoint);
-        if (endCell.getUnit() != null) {
+    protected void moveInternal(Point startPoint, Point endPoint) {
+        if (this.getCell(endPoint).getUnit() != null) {
             chopFigure(endPoint);
         }
-        Cell.moveUnit(startCell, getCell(endPoint));
-        onLowedUnit(endPoint);
-
-        this.moveHandlers.handle(
-                this, endCell.getUnit(),
-                startPoint, endPoint
-        );
+        if (!startPoint.equals(endPoint)) {
+            doMoveFigure(startPoint, endPoint);
+        }
     }
 
+    protected void newUnit(Unit unit, Point pos) {
+        this.getCell(pos).replace(unit);
+        this.initUnit(pos);
+    }
 
     private void chopFigure(Point pos) {
         onRaisingUnit(pos);
-        // getCell(pos).getUnit() - chopped figure
+        var choppedFigure = getCell(pos).getUnit();
+        this.moveHandlers.remove(choppedFigure);
+        getCell(pos).replace(null);
+    }
+
+    private void doMoveFigure(Point startPoint, Point endPoint) {
+        onRaisingUnit(startPoint);
+        Cell.moveUnit(getCell(startPoint), getCell(endPoint));
+        onLowedUnit(endPoint);
         this.moveHandlers.handle(
-                this, getCell(pos).getUnit(),
-                pos, null
+                this,
+                getCell(endPoint).getUnit(),
+                startPoint, endPoint
         );
-        this.moveHandlers.remove(getCell(pos).getUnit());
     }
 
     private void onRaisingUnit(Point from) {
@@ -202,43 +202,13 @@ public class ChessBoardImpl implements IBoard {
 //        addBarrages();
     }
 
+    protected Cell getCell(Point pos) {
+        return this.getBoard()[pos.getX()][pos.getY()];
+    }
+
+    protected abstract void postMove(Point from, Point to);
+
     public Cell[][] getBoard() {
         return board;
-    }
-
-    private Cell getCell(Point coords) {
-        return this.board[coords.getX()][coords.getY()];
-    }
-
-    @Override
-    public void trackKing(Team team, Point newPoint) {
-        this.kingsCells.put(team, board[newPoint.getX()][newPoint.getY()]);
-    }
-
-    @Override
-    public void trackingPawn(Unit unit, Point currPos) {
-        var team = unit.getTeam();
-        unit = new Queen(team);
-        this.getCell(currPos).replace(unit);
-    }
-
-
-    public void makeCastling(CastlingType type, Point start) {
-        var king = getCell(start).getUnit();
-        if (king != null && ((Castling) king).isMoved()) {
-            var direction = type.getDirection();
-            if (checkMovementsForCastling(direction, start)) {
-                Point end = new Point(start.getX(), start.getY() + direction.getDy() * direction.getMaxLength());
-
-                var startRookPoint = Point.sum(end, new Point(0, (type == CastlingType.LONG ? 2 : 1) * (int) Math.signum(direction.getDy())));
-                var endRookPoint = Point.sum(end, new Point(0, - (int) Math.signum(direction.getDy())));
-
-                var rook = getCell(startRookPoint).getUnit();
-                if (rook != null && ((Castling) rook).isMoved()) {
-                    moveInternal(start, end);
-                    moveInternal(startRookPoint, endRookPoint);
-                }
-            }
-        }
     }
 }

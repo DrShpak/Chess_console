@@ -1,5 +1,7 @@
-package chess.board;
+package chess.base.board;
 
+import chess.chessInterface.IBoard;
+import chess.chessInterface.IMoveHandler;
 import chess.misc.Point;
 
 import java.util.ArrayList;
@@ -9,7 +11,8 @@ public class MoveHandlers {
     private final Collection<IMoveHandler<? super IBoard>> handlers = new ArrayList<>();
 
     void handle(IBoard feedback, Object handler, Point oldPoint, Point newPoint) {
-        handlers.
+        //todo workaround
+        new ArrayList<>(handlers).
                 stream().
                 filter(x -> x == handler).
                 forEach(x -> x.handleMove(feedback, oldPoint, newPoint));

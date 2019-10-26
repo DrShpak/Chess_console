@@ -1,7 +1,7 @@
-package chess.units;
+package chess.unit;
 
 import chess.misc.Direction;
-import chess.misc.Team;
+import chess.base.Team;
 
 /**
  * Abstract class for chess units
