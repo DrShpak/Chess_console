@@ -1,13 +1,13 @@
 package chess.ui.impl.consoleUI;
 
+import chess.GlobalSettings;
 import chess.unit.*;
 
 public enum  UnitSymbols {
     Dummy("?") {
         @Override
         public boolean match(Unit unit) {
-            //todo debug only
-            return unit instanceof Dummy;
+            return GlobalSettings.DEBUG_MODE && unit instanceof Dummy;
         }
     },
     WhitePawn("\u2659") {

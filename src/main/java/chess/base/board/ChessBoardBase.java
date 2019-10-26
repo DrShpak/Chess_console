@@ -199,7 +199,6 @@ public abstract class ChessBoardBase implements IBoard {
         var newCell = getCell(to);
         newCell.addBarrageToContexts();
         newCell.emitContexts(to, this::getCell);
-//        addBarrages();
     }
 
     protected Cell getCell(Point pos) {

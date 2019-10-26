@@ -48,7 +48,9 @@ public final class ChessBoardImpl extends ChessBoardBase {
 
     @Override
     public void markPawnEnPassant(Point pawnOldPosition, Point pawnNewPosition, Point enPassant) {
+        this.cleanEnPassant(pawnNewPosition);
         this.enPassant = new Triplet<>(pawnOldPosition, pawnNewPosition, enPassant);
+
         var dummy = new Dummy(Team.INVALID_TEAM);
         this.newUnit(dummy, enPassant);
     }
@@ -63,9 +65,15 @@ public final class ChessBoardImpl extends ChessBoardBase {
     @Override
     protected void postMove(Point from, Point to) {
         if (this.enPassant != null && (!this.enPassant.getValue0().equals(from) || !this.enPassant.getValue1().equals(to))) {
-            this.moveInternal(this.enPassant.getValue2(), this.enPassant.getValue2());
-            this.enPassant = null;
+            cleanEnPassant(to);
         }
+    }
+
+    private void cleanEnPassant(Point to) {
+        if (this.enPassant != null && !this.enPassant.getValue2().equals(to)) {
+            this.moveInternal(this.enPassant.getValue2(), this.enPassant.getValue2());
+        }
+        this.enPassant = null;
     }
 
     private boolean checkMovementsForCastling(Direction direction, Point start) {

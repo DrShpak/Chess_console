@@ -11,7 +11,6 @@ public class MoveHandlers {
     private final Collection<IMoveHandler<? super IBoard>> handlers = new ArrayList<>();
 
     void handle(IBoard feedback, Object handler, Point oldPoint, Point newPoint) {
-        //todo workaround
         new ArrayList<>(handlers).
                 stream().
                 filter(x -> x == handler).
