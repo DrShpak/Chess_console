@@ -1,12 +1,19 @@
 package chess.misc;
 
 import org.javatuples.Pair;
+import xml.XML;
+
 import java.util.stream.Stream;
 
+@XML
 public class Direction {
+    @XML
     private final int dx;
+    @XML
     private final int dy;
+    @XML
     private int maxLength = Integer.MAX_VALUE;
+    @XML
     private MovePolicy movePolicy = MovePolicy.BOTH;
 
     public Direction(int dx, int dy) {

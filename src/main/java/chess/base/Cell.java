@@ -5,6 +5,8 @@ import chess.misc.Point;
 import chess.misc.StreamUtils;
 import chess.unit.Unit;
 import org.javatuples.Pair;
+import xml.XML;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@XML
 public class Cell {
+    @XML
     private Unit unit;
     private final List<AttackingContext> contexts = new ArrayList<>();
     private final List<Pair<Cell, AttackingContext>> homeContexts = new ArrayList<>();

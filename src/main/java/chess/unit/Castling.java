@@ -2,8 +2,10 @@ package chess.unit;
 
 import chess.misc.Direction;
 import chess.base.Team;
+import xml.XML;
 
 public abstract class Castling extends Unit {
+    @XML
     private boolean moved = false;
 
     Castling(Direction[] directions, Team team) {

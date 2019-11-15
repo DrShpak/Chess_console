@@ -6,7 +6,9 @@ import chess.base.board.MoveHandlers;
 import chess.misc.Direction;
 import chess.misc.Point;
 import chess.base.Team;
+import xml.XML;
 
+@XML
 public class King extends Castling implements IMoveHandler<IKingBoardPart> {
     public King(Team team) {
         super(new Direction[] {

@@ -2,7 +2,9 @@ package chess.unit;
 
 import chess.misc.Direction;
 import chess.base.Team;
+import xml.XML;
 
+@XML
 public class Queen extends Unit {
     public Queen(Team team) {
         super(new Direction[] {

@@ -1,5 +1,8 @@
 package chess.misc;
 
+import xml.XML;
+
+@XML
 public enum MovePolicy {
     WALK,
     BOTH,

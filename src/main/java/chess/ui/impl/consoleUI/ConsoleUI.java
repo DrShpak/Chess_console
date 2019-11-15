@@ -6,6 +6,7 @@ import chess.misc.Point;
 import chess.ui.UI;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
+import xml.XmlSerializer;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -27,6 +28,7 @@ extends UI {
 
     private boolean loop()
     {
+        XmlSerializer.saveXml(board);
         draw();
         var nextLine = input.nextLine();
         if (nextLine.matches("^test [a-h][1-8]$")) {

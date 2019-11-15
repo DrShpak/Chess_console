@@ -7,7 +7,9 @@ import chess.misc.Direction;
 import chess.misc.MovePolicy;
 import chess.misc.Point;
 import chess.base.Team;
+import xml.XML;
 
+@XML
 @SuppressWarnings("unused")
 public class Pawn extends Unit implements IMoveHandler<IPawnBoardPart> {
     public Pawn(Team team) {

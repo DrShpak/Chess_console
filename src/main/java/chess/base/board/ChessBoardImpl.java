@@ -10,10 +10,12 @@ import chess.unit.Dummy;
 import chess.unit.Queen;
 import chess.unit.Unit;
 import org.javatuples.Triplet;
+import xml.XML;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@XML
 public final class ChessBoardImpl extends ChessBoardBase {
     private Map<Team, Cell> kingsCells;
 

@@ -8,12 +8,14 @@ import chess.misc.Point;
 import chess.misc.StreamUtils;
 import chess.unit.Unit;
 import com.google.common.collect.Streams;
+import xml.XML;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class ChessBoardBase implements IBoard {
+    @XML
     private final Cell[][] board;
     private final MoveHandlers moveHandlers = new MoveHandlers();
 

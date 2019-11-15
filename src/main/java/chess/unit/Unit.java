@@ -2,12 +2,16 @@ package chess.unit;
 
 import chess.misc.Direction;
 import chess.base.Team;
+import xml.XML;
 
 /**
  * Abstract class for chess units
  */
+@XML
 public abstract class Unit {
+    @XML
     private final Direction[] directions;
+    @XML
     private final Team team;
 
     public Unit(Direction[] directions, Team team) {

@@ -6,7 +6,9 @@ import chess.base.board.MoveHandlers;
 import chess.misc.Direction;
 import chess.misc.Point;
 import chess.base.Team;
+import xml.XML;
 
+@XML
 public class Rook extends Castling implements IMoveHandler<IFeedback> {
     public Rook(Team team) {
         super(new Direction[]{
