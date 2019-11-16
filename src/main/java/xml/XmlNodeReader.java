@@ -8,22 +8,21 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class XmlNodeReader {
+class XmlNodeReader {
     private File file;
     private List<String> lines;
     private ArrayDeque<XmlNode> nodes = new ArrayDeque<>();
 
-    public XmlNodeReader(String savePath) {
+    XmlNodeReader(String savePath) {
         this.file = new File(savePath);
     }
 
-    public XmlNode load() {
+    XmlNode load() {
         if (!this.file.exists()) {
             throw new IllegalArgumentException("file " + this.file.getPath() + " does not exist!");
         }
@@ -66,10 +65,12 @@ public class XmlNodeReader {
                 this.nodes.peek().appendChild(newNode);
                 continue;
             }
-            var defaultTag = Pattern.compile("^<(.+?)>(.+?)</\\1>$").matcher(line);
+            var defaultTag = Pattern.compile("^<(.+?)( [^<>/]+?)?>(.+?)</\\1>$").matcher(line);
             defaultTag.matches();
             {
-                var newNode = new XmlNode(defaultTag.group(1), defaultTag.group(2));
+                var newNode = new XmlNode(defaultTag.group(1), defaultTag.group(3));
+                parseAttributes(defaultTag.group(2)).
+                        forEach(x -> newNode.appendAttribute(x.getKey(), x.getValue()));
                 assert this.nodes.peek() != null;
                 this.nodes.peek().appendChild(newNode);
             }
@@ -78,7 +79,7 @@ public class XmlNodeReader {
 
     private List<Map.Entry<String, String>> parseAttributes(String attrString) {
         return  getAllGroups(
-                    Pattern.compile("(.+?=\".+?\")").
+                    Pattern.compile(" (.+?=\".+?\")").
                     matcher(attrString != null ? attrString : "")
                 ).
                 map(x ->

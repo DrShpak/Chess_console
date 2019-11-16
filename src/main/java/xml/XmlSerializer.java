@@ -5,6 +5,7 @@ import org.apache.commons.lang3.ClassUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -47,8 +48,8 @@ public class XmlSerializer {
             saveEnum(target, xmlDescription);
         } else if (objectClazz.isArray()) {
             saveArray(target, xmlDescription);
-        } else if (Iterable.class.isAssignableFrom(objectClazz)) {
-            saveIterable(target, xmlDescription);
+        } else if (Collection.class.isAssignableFrom(objectClazz)) {
+            saveCollection(target, xmlDescription);
         } else if (Map.class.isAssignableFrom(objectClazz)) {
             saveMap(target, xmlDescription);
         } else {
@@ -57,24 +58,51 @@ public class XmlSerializer {
     }
 
     private static void savePrimitive(Object target, XmlNode xmlDescription) {
-        xmlDescription.putText(target.toString());
+        xmlDescription.setValue(target.toString());
+    }
+
+    private static void saveEnum(Object target, XmlNode xmlDescription) {
+        xmlDescription.setValue(((Enum<?>)target).name());
     }
 
     private static void saveArray(Object target, XmlNode xmlDescription) {
         for (Object o : ((Object[]) target)) {
-            saveAtomic(o, new XmlNode("item", xmlDescription));
+            saveAtomic(o, new XmlNode(
+                    "item",
+                    "class",
+                    o.getClass().getCanonicalName(),
+                    xmlDescription
+            ));
         }
     }
 
-    private static void saveIterable(Object target, XmlNode xmlDescription) {
-        ((Iterable<?>)target).forEach(x -> saveAtomic(x, new XmlNode("item", xmlDescription)));
+    private static void saveCollection(Object target, XmlNode xmlDescription) {
+        ((Collection<?>)target).
+                forEach(x -> saveAtomic(x, new XmlNode(
+                            "item",
+                            "class",
+                            x.getClass().getCanonicalName(),
+                            xmlDescription
+                            )
+                        )
+                );
     }
 
     private static void saveMap(Object target, XmlNode xmlDescription) {
         ((Map<?, ?>)target).forEach((k, v) -> {
                     var itemXmlDescription = new XmlNode("item", xmlDescription);
-                    var keyXmlDescription = new XmlNode("key", itemXmlDescription);
-                    var valueXmlDescription = new XmlNode("value", itemXmlDescription);
+                    var keyXmlDescription = new XmlNode(
+                            "key",
+                            "class",
+                            k.getClass().getCanonicalName(),
+                            itemXmlDescription
+                    );
+                    var valueXmlDescription = new XmlNode(
+                            "value",
+                            "class",
+                            v.getClass().getCanonicalName(),
+                            itemXmlDescription
+                    );
                     saveAtomic(k, keyXmlDescription);
                     saveAtomic(v, valueXmlDescription);
                 }
@@ -83,24 +111,6 @@ public class XmlSerializer {
 
     private static void saveComplexObject(Object target, XmlNode xmlDescription) {
         saveObject(target, xmlDescription);
-    }
-
-    private static void saveEnum(Object target, XmlNode xmlDescription) {
-        xmlDescription.putText(((Enum<?>)target).name());
-    }
-
-    private static Field[] collectFields(Class<?> clazz) {
-        var fields = new ArrayList<Field>();
-        collectFields(clazz, fields);
-        return fields.toArray(Field[]::new);
-    }
-
-    private static void collectFields(Class<?> clazz, ArrayList<Field> fields) {
-        if (clazz == Object.class) {
-            return;
-        }
-        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
-        collectFields(clazz.getSuperclass(), fields);
     }
 
     private static synchronized Object getFieldValue(Object target, Field field) {
@@ -114,5 +124,19 @@ public class XmlSerializer {
         }
         field.setAccessible(oldAccessibleState);
         return value;
+    }
+
+    static Field[] collectFields(Class<?> clazz) {
+        var fields = new ArrayList<Field>();
+        collectFields(clazz, fields);
+        return fields.toArray(Field[]::new);
+    }
+
+    private static void collectFields(Class<?> clazz, ArrayList<Field> fields) {
+        if (clazz == Object.class) {
+            return;
+        }
+        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+        collectFields(clazz.getSuperclass(), fields);
     }
 }

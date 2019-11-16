@@ -18,16 +18,39 @@ class XmlNode {
         parentChild.appendChild(this);
     }
 
+    XmlNode(String nodeName, String attrName, String attrValue, XmlNode parentChild) {
+        this.nodeName = nodeName;
+        this.appendAttribute(attrName, attrValue);
+        parentChild.appendChild(this);
+    }
+
     XmlNode(String nodeName, String nodeValue) {
         this.nodeName = nodeName;
         this.nodeValue = nodeValue;
+    }
+
+    XmlNode getChildNode(String nodeName) {
+        return childNodes.stream().
+                filter(x -> x.nodeName.equals(nodeName)).
+                findFirst().
+                orElseThrow();
+    }
+
+    XmlNode[] getChildNodes(@SuppressWarnings("SameParameterValue") String nodeName) {
+        return childNodes.stream().
+                filter(x -> x.nodeName.equals(nodeName)).
+                toArray(XmlNode[]::new);
+    }
+
+    String getAttribute(@SuppressWarnings("SameParameterValue") String attrName) {
+        return this.attributes.get(attrName);
     }
 
     void appendAttribute(@SuppressWarnings("SameParameterValue") String attrName, String attrValue) {
         this.attributes.put(attrName, attrValue);
     }
 
-    void putText(String content) {
+    void setValue(String content) {
         this.nodeValue = content;
     }
 
@@ -46,4 +69,13 @@ class XmlNode {
         }
         visitor.endNode();
     }
+
+    String getNodeName() {
+        return nodeName;
+    }
+
+    String getNodeValue() {
+        return nodeValue;
+    }
+
 }

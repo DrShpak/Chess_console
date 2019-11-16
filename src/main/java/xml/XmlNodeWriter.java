@@ -23,7 +23,6 @@ class XmlNodeWriter extends XmlNodeVisitor {
 
     void save(XmlNode node) {
         if (this.file.exists()) {
-            //throw new IllegalArgumentException("file " + this.file.getPath() + " already exists!");
             this.file.delete();
         }
         try {

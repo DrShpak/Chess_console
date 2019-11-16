@@ -4,8 +4,8 @@ import xml.XML;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
+@SuppressWarnings("ALL")
 @XML
 public class TestStructure {
     @XML
