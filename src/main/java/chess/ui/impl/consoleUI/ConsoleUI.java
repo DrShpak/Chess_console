@@ -28,7 +28,7 @@ extends UI {
 
     private boolean loop()
     {
-        XmlSerializer.saveXml(board);
+        XmlSerializer.saveXml(board, "board.xml");
         draw();
         var nextLine = input.nextLine();
         if (nextLine.matches("^test [a-h][1-8]$")) {

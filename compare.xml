@@ -1,0 +1,310 @@
+<root class="xml.example.TestStructure">
+	<objEnum class="xml.example.E1">CC</objEnum>
+	<primitive class="java.lang.Float">5.0</primitive>
+	<arrobj class="java.lang.Object" dimension="1">
+		<item class="java.lang.Integer">8</item>
+	</arrobj>
+	<lol class="java.lang.Object" dimension="1">
+		<item class="java.lang.Integer">12</item>
+		<item class="java.lang.String">String</item>
+		<item class="float" dimension="1">
+			<item class="java.lang.Float">3.14</item>
+			<item class="java.lang.Float">2.18</item>
+		</item>
+	</lol>
+	<ENUM class="xml.example.E1">BB</ENUM>
+	<EARR class="xml.example.E1" dimension="1">
+		<item class="xml.example.E1">AA</item>
+		<item class="xml.example.E1">BB</item>
+		<item class="xml.example.E1">CC</item>
+	</EARR>
+	<w class="int" dimension="2">
+		<item class="int" dimension="1">
+			<item class="java.lang.Integer">0</item>
+			<item class="java.lang.Integer">0</item>
+		</item>
+		<item class="int" dimension="1">
+			<item class="java.lang.Integer">0</item>
+			<item class="java.lang.Integer">0</item>
+		</item>
+	</w>
+	<n class="java.lang.Integer" dimension="2">
+		<item class="java.lang.Integer" dimension="1">
+			<item class="java.lang.Integer">1</item>
+			<item class="java.lang.Integer">2</item>
+		</item>
+		<item class="java.lang.Integer" dimension="1">
+			<item class="java.lang.Integer">3</item>
+			<item class="java.lang.Integer">4</item>
+		</item>
+	</n>
+	<test class="java.util.ArrayList">
+		<item class="java.util.ArrayList">
+			<item class="java.lang.Integer">3</item>
+			<item class="java.lang.Integer">4</item>
+		</item>
+		<item class="java.util.ArrayList">
+			<item class="java.lang.Integer">1</item>
+			<item class="java.lang.Integer">2</item>
+		</item>
+	</test>
+	<a class="java.lang.Integer">1</a>
+	<b class="java.lang.Float">1.5</b>
+	<c class="java.lang.String">TEST</c>
+	<d class="java.lang.Boolean">true</d>
+	<e class="xml.example.TestStructure">
+		<objEnum class="xml.example.E1">CC</objEnum>
+		<primitive class="java.lang.Float">5.0</primitive>
+		<arrobj class="java.lang.Object" dimension="1">
+			<item class="java.lang.Integer">8</item>
+		</arrobj>
+		<lol class="java.lang.Object" dimension="1">
+			<item class="java.lang.Integer">12</item>
+			<item class="java.lang.String">String</item>
+			<item class="float" dimension="1">
+				<item class="java.lang.Float">3.14</item>
+				<item class="java.lang.Float">2.18</item>
+			</item>
+		</lol>
+		<ENUM class="xml.example.E1">BB</ENUM>
+		<EARR class="xml.example.E1" dimension="1">
+			<item class="xml.example.E1">AA</item>
+			<item class="xml.example.E1">BB</item>
+			<item class="xml.example.E1">CC</item>
+		</EARR>
+		<w class="int" dimension="2">
+			<item class="int" dimension="1">
+				<item class="java.lang.Integer">0</item>
+				<item class="java.lang.Integer">0</item>
+			</item>
+			<item class="int" dimension="1">
+				<item class="java.lang.Integer">0</item>
+				<item class="java.lang.Integer">0</item>
+			</item>
+		</w>
+		<n class="java.lang.Integer" dimension="2">
+			<item class="java.lang.Integer" dimension="1">
+				<item class="java.lang.Integer">1</item>
+				<item class="java.lang.Integer">2</item>
+			</item>
+			<item class="java.lang.Integer" dimension="1">
+				<item class="java.lang.Integer">3</item>
+				<item class="java.lang.Integer">4</item>
+			</item>
+		</n>
+		<test class="java.util.ArrayList"/>
+		<a class="java.lang.Integer">1</a>
+		<b class="java.lang.Float">1.5</b>
+		<c class="java.lang.String">TEST</c>
+		<d class="java.lang.Boolean">true</d>
+		<e class="void">null</e>
+		<e1 class="void">null</e1>
+		<e2 class="void">null</e2>
+	</e>
+	<e1 class="xml.example.TestStructure" dimension="1">
+		<item class="xml.example.TestStructure">
+			<objEnum class="xml.example.E1">CC</objEnum>
+			<primitive class="java.lang.Float">5.0</primitive>
+			<arrobj class="java.lang.Object" dimension="1">
+				<item class="java.lang.Integer">8</item>
+			</arrobj>
+			<lol class="java.lang.Object" dimension="1">
+				<item class="java.lang.Integer">12</item>
+				<item class="java.lang.String">String</item>
+				<item class="float" dimension="1">
+					<item class="java.lang.Float">3.14</item>
+					<item class="java.lang.Float">2.18</item>
+				</item>
+			</lol>
+			<ENUM class="xml.example.E1">BB</ENUM>
+			<EARR class="xml.example.E1" dimension="1">
+				<item class="xml.example.E1">AA</item>
+				<item class="xml.example.E1">BB</item>
+				<item class="xml.example.E1">CC</item>
+			</EARR>
+			<w class="int" dimension="2">
+				<item class="int" dimension="1">
+					<item class="java.lang.Integer">0</item>
+					<item class="java.lang.Integer">0</item>
+				</item>
+				<item class="int" dimension="1">
+					<item class="java.lang.Integer">0</item>
+					<item class="java.lang.Integer">0</item>
+				</item>
+			</w>
+			<n class="java.lang.Integer" dimension="2">
+				<item class="java.lang.Integer" dimension="1">
+					<item class="java.lang.Integer">1</item>
+					<item class="java.lang.Integer">2</item>
+				</item>
+				<item class="java.lang.Integer" dimension="1">
+					<item class="java.lang.Integer">3</item>
+					<item class="java.lang.Integer">4</item>
+				</item>
+			</n>
+			<test class="java.util.ArrayList"/>
+			<a class="java.lang.Integer">1</a>
+			<b class="java.lang.Float">1.5</b>
+			<c class="java.lang.String">TEST</c>
+			<d class="java.lang.Boolean">false</d>
+			<e class="void">null</e>
+			<e1 class="void">null</e1>
+			<e2 class="void">null</e2>
+		</item>
+		<item class="xml.example.TestStructure">
+			<objEnum class="xml.example.E1">CC</objEnum>
+			<primitive class="java.lang.Float">5.0</primitive>
+			<arrobj class="java.lang.Object" dimension="1">
+				<item class="java.lang.Integer">8</item>
+			</arrobj>
+			<lol class="java.lang.Object" dimension="1">
+				<item class="java.lang.Integer">12</item>
+				<item class="java.lang.String">String</item>
+				<item class="float" dimension="1">
+					<item class="java.lang.Float">3.14</item>
+					<item class="java.lang.Float">2.18</item>
+				</item>
+			</lol>
+			<ENUM class="xml.example.E1">BB</ENUM>
+			<EARR class="xml.example.E1" dimension="1">
+				<item class="xml.example.E1">AA</item>
+				<item class="xml.example.E1">BB</item>
+				<item class="xml.example.E1">CC</item>
+			</EARR>
+			<w class="int" dimension="2">
+				<item class="int" dimension="1">
+					<item class="java.lang.Integer">0</item>
+					<item class="java.lang.Integer">0</item>
+				</item>
+				<item class="int" dimension="1">
+					<item class="java.lang.Integer">0</item>
+					<item class="java.lang.Integer">0</item>
+				</item>
+			</w>
+			<n class="java.lang.Integer" dimension="2">
+				<item class="java.lang.Integer" dimension="1">
+					<item class="java.lang.Integer">1</item>
+					<item class="java.lang.Integer">2</item>
+				</item>
+				<item class="java.lang.Integer" dimension="1">
+					<item class="java.lang.Integer">3</item>
+					<item class="java.lang.Integer">4</item>
+				</item>
+			</n>
+			<test class="java.util.ArrayList"/>
+			<a class="java.lang.Integer">1</a>
+			<b class="java.lang.Float">1.5</b>
+			<c class="java.lang.String">TEST</c>
+			<d class="java.lang.Boolean">false</d>
+			<e class="void">null</e>
+			<e1 class="void">null</e1>
+			<e2 class="void">null</e2>
+		</item>
+	</e1>
+	<e2 class="java.util.HashMap">
+		<item>
+			<key class="java.lang.Integer">0</key>
+			<value class="xml.example.TestStructure">
+				<objEnum class="xml.example.E1">CC</objEnum>
+				<primitive class="java.lang.Float">5.0</primitive>
+				<arrobj class="java.lang.Object" dimension="1">
+					<item class="java.lang.Integer">8</item>
+				</arrobj>
+				<lol class="java.lang.Object" dimension="1">
+					<item class="java.lang.Integer">12</item>
+					<item class="java.lang.String">String</item>
+					<item class="float" dimension="1">
+						<item class="java.lang.Float">3.14</item>
+						<item class="java.lang.Float">2.18</item>
+					</item>
+				</lol>
+				<ENUM class="xml.example.E1">BB</ENUM>
+				<EARR class="xml.example.E1" dimension="1">
+					<item class="xml.example.E1">AA</item>
+					<item class="xml.example.E1">BB</item>
+					<item class="xml.example.E1">CC</item>
+				</EARR>
+				<w class="int" dimension="2">
+					<item class="int" dimension="1">
+						<item class="java.lang.Integer">0</item>
+						<item class="java.lang.Integer">0</item>
+					</item>
+					<item class="int" dimension="1">
+						<item class="java.lang.Integer">0</item>
+						<item class="java.lang.Integer">0</item>
+					</item>
+				</w>
+				<n class="java.lang.Integer" dimension="2">
+					<item class="java.lang.Integer" dimension="1">
+						<item class="java.lang.Integer">1</item>
+						<item class="java.lang.Integer">2</item>
+					</item>
+					<item class="java.lang.Integer" dimension="1">
+						<item class="java.lang.Integer">3</item>
+						<item class="java.lang.Integer">4</item>
+					</item>
+				</n>
+				<test class="java.util.ArrayList"/>
+				<a class="java.lang.Integer">1</a>
+				<b class="java.lang.Float">1.5</b>
+				<c class="java.lang.String">TEST</c>
+				<d class="java.lang.Boolean">true</d>
+				<e class="void">null</e>
+				<e1 class="void">null</e1>
+				<e2 class="void">null</e2>
+			</value>
+		</item>
+		<item>
+			<key class="java.lang.Integer">1</key>
+			<value class="xml.example.TestStructure">
+				<objEnum class="xml.example.E1">CC</objEnum>
+				<primitive class="java.lang.Float">5.0</primitive>
+				<arrobj class="java.lang.Object" dimension="1">
+					<item class="java.lang.Integer">8</item>
+				</arrobj>
+				<lol class="java.lang.Object" dimension="1">
+					<item class="java.lang.Integer">12</item>
+					<item class="java.lang.String">String</item>
+					<item class="float" dimension="1">
+						<item class="java.lang.Float">3.14</item>
+						<item class="java.lang.Float">2.18</item>
+					</item>
+				</lol>
+				<ENUM class="xml.example.E1">BB</ENUM>
+				<EARR class="xml.example.E1" dimension="1">
+					<item class="xml.example.E1">AA</item>
+					<item class="xml.example.E1">BB</item>
+					<item class="xml.example.E1">CC</item>
+				</EARR>
+				<w class="int" dimension="2">
+					<item class="int" dimension="1">
+						<item class="java.lang.Integer">0</item>
+						<item class="java.lang.Integer">0</item>
+					</item>
+					<item class="int" dimension="1">
+						<item class="java.lang.Integer">0</item>
+						<item class="java.lang.Integer">0</item>
+					</item>
+				</w>
+				<n class="java.lang.Integer" dimension="2">
+					<item class="java.lang.Integer" dimension="1">
+						<item class="java.lang.Integer">1</item>
+						<item class="java.lang.Integer">2</item>
+					</item>
+					<item class="java.lang.Integer" dimension="1">
+						<item class="java.lang.Integer">3</item>
+						<item class="java.lang.Integer">4</item>
+					</item>
+				</n>
+				<test class="java.util.ArrayList"/>
+				<a class="java.lang.Integer">1</a>
+				<b class="java.lang.Float">1.5</b>
+				<c class="java.lang.String">TEST</c>
+				<d class="java.lang.Boolean">true</d>
+				<e class="void">null</e>
+				<e1 class="void">null</e1>
+				<e2 class="void">null</e2>
+			</value>
+		</item>
+	</e2>
+</root>

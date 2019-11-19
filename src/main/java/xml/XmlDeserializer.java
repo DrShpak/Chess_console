@@ -7,78 +7,59 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class XmlDeserializer {
-    public static Object loadXml() {
-        var xmlReader = new XmlNodeReader("test.xml");
+    private static final Map<String,Class> builtInMap = new HashMap<>();
+
+    public static Object loadXml(String path) {
+        var xmlReader = new XmlNodeReader(path);
         var xmlObject = xmlReader.load();
-        return loadObject(xmlObject);
+        return loadAtomic(xmlObject);
     }
 
-    private static Object loadObject(XmlNode xmlDescription) {
-        var clazzCanonicalName = xmlDescription.getAttribute("class");
-        if (clazzCanonicalName == null) {
+    private static Object loadAtomic(XmlNode xmlDescription) {
+        var actualType = xmlDescription.hasAttribute("class") ? getClassInformation(xmlDescription) : null;
+        if (actualType == null) {
             return null;
         }
-        Class<?> clazz;
-        try {
-            clazz = Class.forName(clazzCanonicalName);
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException(e);
+        if (isNull(actualType)) {
+            return loadNull(actualType, xmlDescription);
         }
-        if (!clazz.isAnnotationPresent(XML.class)) {
-            throw new IllegalStateException(clazz + " isn`t annotated with @xml.XML");
-        }
-
-        Object object;
-        try {
-            object = clazz.getConstructor().newInstance();
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
-        var loadableFields = Arrays.stream(XmlSerializer.collectFields(clazz)).
-                filter(x -> x.isAnnotationPresent(XML.class)).
-                collect(Collectors.toList());
-        loadableFields.forEach(x -> loadField(object, x, xmlDescription));
-        return object;
-    }
-
-    private static void loadField(Object target, Field field, XmlNode parent) {
-        var xmlDescription = parent.getChildNode(field.getName());
-        var fieldValue = loadAtomic(field.getType(), xmlDescription);
-        setFieldValue(target, fieldValue, field);
-    }
-
-    private static Object loadAtomic(Class<?> clazz, XmlNode xmlDescription) {
-        if (xmlDescription.getNodeName() == null) {
-            return null;
-        }
-        if (ClassUtils.isPrimitiveOrWrapper(clazz) || clazz == String.class) {
-            return loadPrimitive(clazz, xmlDescription);
-        } else if (clazz.isEnum()) {
-            return loadEnum(clazz, xmlDescription);
-        } else if (clazz.isArray()) {
-            return loadArray(clazz, xmlDescription);
-        } else if (Collection.class.isAssignableFrom(clazz)) {
-            return loadCollection(clazz, xmlDescription);
-        } else if (Map.class.isAssignableFrom(clazz)) {
-            return loadMap(clazz, xmlDescription);
+        if (ClassUtils.isPrimitiveOrWrapper(actualType) || actualType == String.class) {
+            return loadPrimitive(actualType, xmlDescription);
+        } else if (actualType.isEnum()) {
+            return loadEnum(actualType, xmlDescription);
+        } else if (actualType.isArray()) {
+            return loadArray(actualType, xmlDescription);
+        } else if (Collection.class.isAssignableFrom(actualType)) {
+            return loadCollection(actualType, xmlDescription);
+        } else if (Map.class.isAssignableFrom(actualType)) {
+            return loadMap(actualType, xmlDescription);
         } else {
-            return loadComplexObject(xmlDescription);
+            return loadObject(actualType, xmlDescription);
         }
+    }
+
+    @SuppressWarnings("SameReturnValue")
+    private static Object loadNull(
+            @SuppressWarnings("unused") Class<?> clazz,
+            @SuppressWarnings("unused") XmlNode xmlDescription
+    ) {
+        return null;
     }
 
     private static Object loadPrimitive(Class<?> clazz, XmlNode xmlDescription) {
         var value = xmlDescription.getNodeValue();
-        if( Boolean.class == clazz || Boolean.TYPE == clazz ) return Boolean.parseBoolean( value );
-        if( Byte.class == clazz || Byte.TYPE == clazz ) return Byte.parseByte( value );
-        if( Short.class == clazz || Short.TYPE == clazz ) return Short.parseShort( value );
-        if( Integer.class == clazz || Integer.TYPE == clazz ) return Integer.parseInt( value );
-        if( Long.class == clazz || Long.TYPE == clazz ) return Long.parseLong( value );
-        if( Float.class == clazz || Float.TYPE == clazz ) return Float.parseFloat( value );
-        if( Double.class == clazz || Double.TYPE == clazz ) return Double.parseDouble( value );
+        if(Boolean.class == clazz || Boolean.TYPE == clazz) return Boolean.parseBoolean(value);
+        if(Byte.class == clazz || Byte.TYPE == clazz) return Byte.parseByte(value);
+        if(Short.class == clazz || Short.TYPE == clazz) return Short.parseShort(value);
+        if(Integer.class == clazz || Integer.TYPE == clazz) return Integer.parseInt(value);
+        if(Long.class == clazz || Long.TYPE == clazz) return Long.parseLong(value);
+        if(Float.class == clazz || Float.TYPE == clazz) return Float.parseFloat(value);
+        if(Double.class == clazz || Double.TYPE == clazz) return Double.parseDouble(value);
         return value;
     }
 
@@ -93,11 +74,11 @@ public class XmlDeserializer {
     }
 
     private static Object loadArray(Class<?> clazz, XmlNode xmlDescription) {
-        var c_type = clazz.getComponentType();
         var items = xmlDescription.getChildNodes("item");
-        var value = (Object[])Array.newInstance(c_type, items.length);
+        var c_type = clazz.getComponentType();
+        var value = Array.newInstance(c_type, items.length);
         for (int i = 0; i < items.length; i++) {
-            value[i] = loadAtomic(getClassInformation(items[i]), items[i]);
+            Array.set(value, i, loadAtomic(items[i]));
         }
         return value;
     }
@@ -105,8 +86,9 @@ public class XmlDeserializer {
     private static Object loadCollection(Class<?> clazz, XmlNode xmlDescription) {
         try {
             var value = (Collection)clazz.getConstructor().newInstance();
+            //noinspection unchecked
             Arrays.stream(xmlDescription.getChildNodes("item")).
-                    forEach(x -> value.add(loadAtomic(getClassInformation(x), x)));
+                    forEach(x -> value.add(loadAtomic(x)));
             return value;
         } catch (Exception e) {
            throw new IllegalStateException(e);
@@ -120,9 +102,10 @@ public class XmlDeserializer {
                     forEach(x -> {
                         var key = x.getChildNode("key");
                         var val = x.getChildNode("value");
+                        //noinspection unchecked
                         value.put(
-                                loadAtomic(getClassInformation(key), key),
-                                loadAtomic(getClassInformation(val), val)
+                                loadAtomic(key),
+                                loadAtomic(val)
                         );
                     });
             return value;
@@ -131,15 +114,52 @@ public class XmlDeserializer {
         }
     }
 
-    private static Object loadComplexObject(XmlNode xmlDescription) {
-        return loadObject(xmlDescription);
+    private static Object loadObject(Class<?> clazz, XmlNode xmlDescription) {
+        if (!clazz.isAnnotationPresent(XML.class)) {
+            throw new IllegalStateException(clazz + " isn`t annotated with @xml.XML");
+        }
+
+        try {
+            var object = clazz.getConstructor().newInstance();
+            var loadableFields = Arrays.stream(XmlSerializer.collectFields(clazz)).
+                    filter(x -> x.isAnnotationPresent(XML.class)).
+                    collect(Collectors.toList());
+            loadableFields.forEach(x -> loadField(object, x, xmlDescription));
+            return object;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    private static void loadField(Object target, Field field, XmlNode parent) {
+        var xmlDescription = parent.getChildNode(field.getName());
+        var fieldValue = loadAtomic(xmlDescription);
+        setFieldValue(target, fieldValue, field);
     }
 
     private static Class<?> getClassInformation(XmlNode xmlDescription) {
         try {
-            return Class.forName(xmlDescription.getAttribute("class"));
+            var clazzName = xmlDescription.getAttribute("class");
+            var clazzType = builtInMap.containsKey(clazzName) ? builtInMap.get(clazzName) : Class.forName(clazzName);
+            return obtainArrayClass(clazzType,
+                    xmlDescription.hasAttribute("dimension") ?
+                    Integer.parseInt(xmlDescription.getAttribute("dimension")) :
+                    0
+           );
         } catch (ClassNotFoundException e) {
             throw new IllegalStateException(e);
+        }
+    }
+
+    private static boolean isNull(Class<?> clazz) {
+        return (Void.class == clazz || Void.TYPE == clazz);
+    }
+
+    private static Class<?> obtainArrayClass(Class<?> c_type, int dimension) {
+        if (dimension < 1) {
+            return c_type;
+        } else {
+            return obtainArrayClass(Array.newInstance(c_type, 0).getClass(), dimension - 1);
         }
     }
 
@@ -159,5 +179,17 @@ public class XmlDeserializer {
         } catch (Exception e) {
             throw new IllegalStateException("wtf");
         }
+    }
+
+    static {
+        builtInMap.put("int", Integer.TYPE);
+        builtInMap.put("long", Long.TYPE);
+        builtInMap.put("double", Double.TYPE);
+        builtInMap.put("float", Float.TYPE);
+        builtInMap.put("bool", Boolean.TYPE);
+        builtInMap.put("char", Character.TYPE);
+        builtInMap.put("byte", Byte.TYPE);
+        builtInMap.put("void", Void.TYPE);
+        builtInMap.put("short", Short.TYPE);
     }
 }

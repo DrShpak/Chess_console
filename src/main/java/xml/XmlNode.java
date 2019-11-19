@@ -2,12 +2,13 @@ package xml;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 class XmlNode {
-    private String nodeName;
+    private final String nodeName;
     private String nodeValue;
-    private HashMap<String, String> attributes = new HashMap<>();
-    private ArrayList<XmlNode> childNodes = new ArrayList<>();
+    private final HashMap<String, String> attributes = new HashMap<>();
+    private final ArrayList<XmlNode> childNodes = new ArrayList<>();
 
     XmlNode(String nodeName) {
         this.nodeName = nodeName;
@@ -18,9 +19,12 @@ class XmlNode {
         parentChild.appendChild(this);
     }
 
-    XmlNode(String nodeName, String attrName, String attrValue, XmlNode parentChild) {
+    @SafeVarargs
+    XmlNode(String nodeName, XmlNode parentChild, Map.Entry<String, String>... attributes) {
         this.nodeName = nodeName;
-        this.appendAttribute(attrName, attrValue);
+        for (Map.Entry<String, String> attribute : attributes) {
+            this.appendAttribute(attribute.getKey(), attribute.getValue());
+        }
         parentChild.appendChild(this);
     }
 
@@ -44,6 +48,10 @@ class XmlNode {
 
     String getAttribute(@SuppressWarnings("SameParameterValue") String attrName) {
         return this.attributes.get(attrName);
+    }
+
+    boolean hasAttribute(@SuppressWarnings("SameParameterValue") String attrName) {
+        return this.attributes.containsKey(attrName);
     }
 
     void appendAttribute(@SuppressWarnings("SameParameterValue") String attrName, String attrValue) {
@@ -70,12 +78,7 @@ class XmlNode {
         visitor.endNode();
     }
 
-    String getNodeName() {
-        return nodeName;
-    }
-
     String getNodeValue() {
         return nodeValue;
     }
-
 }

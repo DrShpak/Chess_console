@@ -5,18 +5,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class XmlNodeReader {
-    private File file;
+    private final File file;
     private List<String> lines;
-    private ArrayDeque<XmlNode> nodes = new ArrayDeque<>();
+    private final ArrayDeque<XmlNode> nodes = new ArrayDeque<>();
 
     XmlNodeReader(String savePath) {
         this.file = new File(savePath);
@@ -58,48 +55,44 @@ class XmlNodeReader {
                 }
                 continue;
             }
-            var emptyTag = Pattern.compile("^<(.+?)/>$").matcher(line);
+            var emptyTag = Pattern.compile("^<(.+?)( [^<>/]+?)?/>$").matcher(line);
             if (emptyTag.matches()) {
                 var newNode = new XmlNode(emptyTag.group(1));
+                parseAttributes(emptyTag.group(2)).
+                        forEach(x -> newNode.appendAttribute(x.getKey(), x.getValue()));
                 assert this.nodes.peek() != null;
                 this.nodes.peek().appendChild(newNode);
                 continue;
             }
             var defaultTag = Pattern.compile("^<(.+?)( [^<>/]+?)?>(.+?)</\\1>$").matcher(line);
-            defaultTag.matches();
+            if (defaultTag.matches())
             {
                 var newNode = new XmlNode(defaultTag.group(1), defaultTag.group(3));
                 parseAttributes(defaultTag.group(2)).
                         forEach(x -> newNode.appendAttribute(x.getKey(), x.getValue()));
                 assert this.nodes.peek() != null;
                 this.nodes.peek().appendChild(newNode);
+                continue;
             }
+            throw new IllegalStateException(
+                    String.format("unknown token at line <%d> - `%s`", lines.indexOf(line), line)
+            );
         }
     }
 
     private List<Map.Entry<String, String>> parseAttributes(String attrString) {
-        return  getAllGroups(
-                    Pattern.compile(" (.+?=\".+?\")").
-                    matcher(attrString != null ? attrString : "")
-                ).
+        //noinspection OptionalGetWithoutIsPresent
+        return Pattern.compile(" (.+?=\".+?\")").
+                matcher(attrString != null ? attrString : "").
+                results().
                 map(x ->
-                        getAllGroups(
-                                Pattern.compile("(.+?)=\"(.+?)\"").
-                                matcher(x)
-                        ).toArray(String[]::new)
+                    Pattern.compile("(.+?)=\"(.+?)\"").
+                    matcher(x.group(1)).
+                    results().
+                    findFirst().
+                    get()
                 ).
-                map(x -> Map.entry(x[0], x[1])).
+                map(x -> Map.entry(x.group(1), x.group(2))).
                 collect(Collectors.toList());
-    }
-
-    private Stream<String> getAllGroups(Matcher matcher) {
-        var groups = new ArrayList<String>();
-        if (!matcher.matches()) {
-            return Stream.empty();
-        }
-        for (int i = 1; i <= matcher.groupCount(); i++) {
-            groups.add(matcher.group(i));
-        }
-        return groups.stream();
     }
 }

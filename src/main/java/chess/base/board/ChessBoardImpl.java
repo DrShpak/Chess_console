@@ -17,6 +17,11 @@ import java.util.Map;
 
 @XML
 public final class ChessBoardImpl extends ChessBoardBase {
+    @SuppressWarnings("unused")
+    public ChessBoardImpl() {
+        super(new Unit[0][0]);
+    }
+
     private Map<Team, Cell> kingsCells;
 
     private Map<Team, Cell> getKingsCells() {

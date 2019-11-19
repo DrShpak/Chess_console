@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.Set;
 
 class XmlNodeWriter extends XmlNodeVisitor {
-    private File file;
-    private String indentationString;
+    private final File file;
+    private final String indentationString;
 
     private PrintWriter pw;
     private int depth;
-    private ArrayDeque<String> conclusions = new ArrayDeque<>();
+    private final ArrayDeque<String> conclusions = new ArrayDeque<>();
 
     XmlNodeWriter(String savePath) {
         this.file = new File(savePath);
@@ -23,7 +23,9 @@ class XmlNodeWriter extends XmlNodeVisitor {
 
     void save(XmlNode node) {
         if (this.file.exists()) {
-            this.file.delete();
+            if (!this.file.delete()) {
+                throw new IllegalArgumentException("old file " + this.file.getPath() + " cannot be deleted!");
+            }
         }
         try {
             if (!this.file.createNewFile()) {
@@ -58,7 +60,7 @@ class XmlNodeWriter extends XmlNodeVisitor {
     @Override
     void beginNode(String nodeName, String nodeValue, Set<Map.Entry<String, String>> attributes) {
         String sub;
-        if (nodeValue.isEmpty()) {
+        if (nodeValue == null || nodeValue.isEmpty()) {
             sub = String.format(
                     "%s<%s%s/>",
                     this.indentationString.repeat(this.depth),
@@ -94,8 +96,8 @@ class XmlNodeWriter extends XmlNodeVisitor {
             return "";
         }
         return attributes.stream().reduce(
-            " ",
-             (x, y) -> x + String.format("%s=\"%s\"", y.getKey(), y.getValue()),
+            "",
+             (x, y) -> x + String.format(" %s=\"%s\"", y.getKey(), y.getValue()),
              (x, y) -> x + y
         );
     }
