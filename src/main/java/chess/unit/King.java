@@ -23,6 +23,11 @@ public class King extends Castling implements IMoveHandler<IKingBoardPart> {
         }, team);
     }
 
+    @SuppressWarnings("unused")
+    public King() {
+        super(new Direction[0], Team.INVALID_TEAM);
+    }
+
     @Override
     public boolean isImportant() {
         return true;

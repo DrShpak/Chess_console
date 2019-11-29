@@ -21,6 +21,12 @@ public class Direction {
         this.dy = dy;
     }
 
+    @SuppressWarnings("unused")
+    public Direction() {
+        this.dx = 0;
+        this.dy = 0;
+    }
+
     public Direction(int dx, int dy, int maxLength) {
         this(dx, dy);
         this.maxLength = maxLength;

@@ -19,6 +19,11 @@ public class Rook extends Castling implements IMoveHandler<IFeedback> {
         }, team);
     }
 
+    @SuppressWarnings("unused")
+    public Rook() {
+        super(new Direction[0], Team.INVALID_TEAM);
+    }
+
     @Override
     public void handleMove(IFeedback feedback, Point oldPoint, Point newPoint) {
         handleMove();

@@ -25,6 +25,11 @@ public class Pawn extends Unit implements IMoveHandler<IPawnBoardPart> {
         }, team);
     }
 
+    @SuppressWarnings("unused")
+    public Pawn() {
+        super(new Direction[0], Team.INVALID_TEAM);
+    }
+
     @Override
     public void handleMove(IPawnBoardPart feedback, Point oldPoint, Point newPoint) {
         if (this.getDirections()[0].getPointsAlong(newPoint).count() == 0) {

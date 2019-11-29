@@ -26,6 +26,10 @@ public class Cell {
         this.unit = unit;
     }
 
+    @SuppressWarnings("unused")
+    public Cell() {
+    }
+
     public int countAttackers(Unit unit) {
         return (int)
                 contexts.stream().

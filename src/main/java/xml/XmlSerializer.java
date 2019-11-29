@@ -52,7 +52,7 @@ public class XmlSerializer {
 
     private static void saveEnum(Object target, XmlNode xmlDescription) {
         xmlDescription.appendAttribute("class", target.getClass().getCanonicalName());
-        xmlDescription.setValue(((Enum<?>)target).name());
+        xmlDescription.setValue(((Enum<?>) target).name());
     }
 
     private static void saveArray(Object target, XmlNode xmlDescription) {
@@ -60,41 +60,41 @@ public class XmlSerializer {
         xmlDescription.appendAttribute("dimension", String.valueOf(getArrayDimension(target.getClass())));
         for (Object e : getObjectArraySafe(target)) {
             saveAtomic(e, new XmlNode(
-                    "item",
-                    xmlDescription
+                "item",
+                xmlDescription
             ));
         }
     }
 
     private static void saveCollection(Object target, XmlNode xmlDescription) {
         xmlDescription.appendAttribute("class", target.getClass().getCanonicalName());
-        ((Collection<?>)target).
-                forEach(x -> saveAtomic(x, new XmlNode(
-                            "item",
-                                xmlDescription,
-                                Map.entry("class", x.getClass().getCanonicalName())
-                            )
-                        )
-                );
+        ((Collection<?>) target).
+            forEach(x -> saveAtomic(x, new XmlNode(
+                    "item",
+                    xmlDescription,
+                    Map.entry("class", x.getClass().getCanonicalName())
+                    )
+                )
+            );
     }
 
     private static void saveMap(Object target, XmlNode xmlDescription) {
         xmlDescription.appendAttribute("class", target.getClass().getCanonicalName());
-        ((Map<?, ?>)target).forEach((k, v) -> {
-                    var itemXmlDescription = new XmlNode("item", xmlDescription);
-                    var keyXmlDescription = new XmlNode(
-                            "key",
-                            itemXmlDescription,
-                            Map.entry("class", k.getClass().getCanonicalName())
-                    );
-                    var valueXmlDescription = new XmlNode(
-                            "value",
-                            itemXmlDescription,
-                            Map.entry("class", k.getClass().getCanonicalName())
-                    );
-                    saveAtomic(k, keyXmlDescription);
-                    saveAtomic(v, valueXmlDescription);
-                }
+        ((Map<?, ?>) target).forEach((k, v) -> {
+                var itemXmlDescription = new XmlNode("item", xmlDescription);
+                var keyXmlDescription = new XmlNode(
+                    "key",
+                    itemXmlDescription,
+                    Map.entry("class", k.getClass().getCanonicalName())
+                );
+                var valueXmlDescription = new XmlNode(
+                    "value",
+                    itemXmlDescription,
+                    Map.entry("class", k.getClass().getCanonicalName())
+                );
+                saveAtomic(k, keyXmlDescription);
+                saveAtomic(v, valueXmlDescription);
+            }
         );
     }
 
@@ -105,8 +105,8 @@ public class XmlSerializer {
         }
         xmlDescription.appendAttribute("class", clazz.getCanonicalName());
         var savableFields = Arrays.stream(collectFields(clazz)).
-                filter(x -> x.isAnnotationPresent(XML.class)).
-                collect(Collectors.toList());
+            filter(x -> x.isAnnotationPresent(XML.class)).
+            collect(Collectors.toList());
         savableFields.forEach(x -> saveField(object, x, xmlDescription));
     }
 

@@ -14,4 +14,9 @@ public class Bishop extends Unit {
                 new Direction(-1, -1)
         }, team);
     }
+
+    @SuppressWarnings("unused")
+    public Bishop() {
+        super(new Direction[0], Team.INVALID_TEAM);
+    }
 }

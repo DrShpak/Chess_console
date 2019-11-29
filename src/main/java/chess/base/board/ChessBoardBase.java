@@ -8,18 +8,21 @@ import chess.misc.Point;
 import chess.misc.StreamUtils;
 import chess.unit.Unit;
 import com.google.common.collect.Streams;
+import xml.ISerializerHandler;
 import xml.XML;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class ChessBoardBase implements IBoard {
+public abstract class ChessBoardBase implements IBoard, ISerializerHandler {
     @XML
     private final Cell[][] board;
     private final MoveHandlers moveHandlers = new MoveHandlers();
 
-    @SuppressWarnings("UnstableApiUsage")
+    ChessBoardBase() {
+        this.board = null;
+    }
+
     ChessBoardBase(Unit[][] board) {
         this.board = Arrays.
                 stream(board).
@@ -29,22 +32,32 @@ public abstract class ChessBoardBase implements IBoard {
                 ).
                 toArray(Cell[][]::new);
 
+        initUnits();
+    }
+
+    @Override
+    public void handleSerializer() {
+        this.initUnits();
+    }
+
+    private void initUnits() {
+        //noinspection UnstableApiUsage
         Streams.mapWithIndex(
-                Arrays.stream(board), (units, i) ->
-                        Streams.mapWithIndex(
-                                Arrays.stream(units).
-                                        filter(Objects::nonNull),
-                                (unit, j) -> new Point(i, j)
-                        )
+            Arrays.stream(board), (units, i) ->
+                Streams.mapWithIndex(
+                    Arrays.stream(units),
+                    (unit, j) -> new Point(i, j)
+                )
         ).
-                flatMap(x -> x).
-                forEach(this::initUnit);
+            flatMap(x -> x).
+            filter(x -> !getCell(x).isEmpty()).
+            forEach(this::initUnit);
     }
 
     @SuppressWarnings("unchecked")
     protected void initUnit(Point position) {
-        this.onLowedUnit(position);
         var unit = this.getCell(position).getUnit();
+        this.onLowedUnit(position);
         if (unit instanceof IMoveHandler) {
             var handler = (IMoveHandler<? super IBoard>)unit;
             handler.register(this.moveHandlers);

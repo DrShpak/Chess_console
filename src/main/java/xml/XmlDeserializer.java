@@ -17,7 +17,11 @@ public class XmlDeserializer {
     public static Object loadXml(String path) {
         var xmlReader = new XmlNodeReader(path);
         var xmlObject = xmlReader.load();
-        return loadAtomic(xmlObject);
+        var object = loadAtomic(xmlObject);
+        if (object instanceof ISerializerHandler) {
+            ((ISerializerHandler)object).handleSerializer();
+        }
+        return object;
     }
 
     private static Object loadAtomic(XmlNode xmlDescription) {

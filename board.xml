@@ -1,0 +1,1370 @@
+<root class="chess.base.board.ChessBoardImpl">
+	<board class="chess.base.Cell" dimension="2">
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Rook">
+					<moved class="java.lang.Boolean">true</moved>
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Knight">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Bishop">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Queen">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.King">
+					<moved class="java.lang.Boolean">true</moved>
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Bishop">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Knight">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Rook">
+					<moved class="java.lang.Boolean">true</moved>
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">White</teamTag>
+					</team>
+				</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="void">null</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Pawn">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+		</item>
+		<item class="chess.base.Cell" dimension="1">
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Rook">
+					<moved class="java.lang.Boolean">true</moved>
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Knight">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Bishop">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Queen">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.King">
+					<moved class="java.lang.Boolean">true</moved>
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Bishop">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Knight">
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">-2</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-2</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">1</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+			<item class="chess.base.Cell">
+				<unit class="chess.unit.Rook">
+					<moved class="java.lang.Boolean">true</moved>
+					<directions class="chess.misc.Direction" dimension="1">
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">-1</dx>
+							<dy class="java.lang.Integer">0</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+						<item class="chess.misc.Direction">
+							<dx class="java.lang.Integer">0</dx>
+							<dy class="java.lang.Integer">-1</dy>
+							<maxLength class="java.lang.Integer">2147483647</maxLength>
+							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+						</item>
+					</directions>
+					<team class="chess.base.Team">
+						<teamTag class="java.lang.String">Black</teamTag>
+					</team>
+				</unit>
+			</item>
+		</item>
+	</board>
+</root>

@@ -19,7 +19,7 @@ import java.util.Map;
 public final class ChessBoardImpl extends ChessBoardBase {
     @SuppressWarnings("unused")
     public ChessBoardImpl() {
-        super(new Unit[0][0]);
+        super();
     }
 
     private Map<Team, Cell> kingsCells;
