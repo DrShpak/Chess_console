@@ -37,12 +37,13 @@ public class ConsoleUI
         }
 
         if (nextLine.matches("save")) {
-            XmlSerializer.saveXml(board, "test.xml");
+            XmlSerializer.saveXml(board, "board.xml");
             return true;
         }
 
+        //todo fix load equal obj + en passant
         if (nextLine.matches("load")) {
-            board = (ChessBoardImpl) XmlDeserializer.loadXml("test.xml");
+            board = (ChessBoardImpl) XmlDeserializer.loadXml("board.xml");
             return true;
         }
 

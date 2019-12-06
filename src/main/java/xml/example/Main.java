@@ -5,6 +5,7 @@ import xml.XmlSerializer;
 
 class Main {
     public static void main(String[] args) {
+        //todo tell
         var load = true;
         TestStructure testStructure;
         //noinspection ConstantConditions

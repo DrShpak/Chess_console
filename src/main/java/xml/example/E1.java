@@ -4,4 +4,5 @@ public enum E1 {
     AA,
     BB,
     CC,
+    DD,
 }

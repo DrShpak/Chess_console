@@ -14,7 +14,13 @@ import java.util.stream.Collectors;
 public class XmlDeserializer {
     private static final Map<String,Class> builtInMap = new HashMap<>();
 
+    private HashMap<String, Object> trackingObjects = new HashMap<>();
+
     public static Object loadXml(String path) {
+        return new XmlDeserializer().loadXmlInternal(path);
+    }
+
+    private Object loadXmlInternal(String path) {
         var xmlReader = new XmlNodeReader(path);
         var xmlObject = xmlReader.load();
         var object = loadAtomic(xmlObject);
@@ -24,9 +30,12 @@ public class XmlDeserializer {
         return object;
     }
 
-    private static Object loadAtomic(XmlNode xmlDescription) {
+    private Object loadAtomic(XmlNode xmlDescription) {
         var actualType = xmlDescription.hasAttribute("class") ? getClassInformation(xmlDescription) : null;
         if (actualType == null) {
+            if (xmlDescription.hasAttribute("objectId")) {
+                return loadObject(null, xmlDescription);
+            }
             return null;
         }
         if (isNull(actualType)) {
@@ -48,14 +57,14 @@ public class XmlDeserializer {
     }
 
     @SuppressWarnings("SameReturnValue")
-    private static Object loadNull(
+    private Object loadNull(
             @SuppressWarnings("unused") Class<?> clazz,
             @SuppressWarnings("unused") XmlNode xmlDescription
     ) {
         return null;
     }
 
-    private static Object loadPrimitive(Class<?> clazz, XmlNode xmlDescription) {
+    private Object loadPrimitive(Class<?> clazz, XmlNode xmlDescription) {
         var value = xmlDescription.getNodeValue();
         if(Boolean.class == clazz || Boolean.TYPE == clazz) return Boolean.parseBoolean(value);
         if(Byte.class == clazz || Byte.TYPE == clazz) return Byte.parseByte(value);
@@ -67,7 +76,7 @@ public class XmlDeserializer {
         return value;
     }
 
-    private static Object loadEnum(Class<?> clazz, XmlNode xmlDescription) {
+    private Object loadEnum(Class<?> clazz, XmlNode xmlDescription) {
         try {
             return clazz.
                     getMethod("valueOf", String.class).
@@ -77,7 +86,7 @@ public class XmlDeserializer {
         }
     }
 
-    private static Object loadArray(Class<?> clazz, XmlNode xmlDescription) {
+    private Object loadArray(Class<?> clazz, XmlNode xmlDescription) {
         var items = xmlDescription.getChildNodes("item");
         var c_type = clazz.getComponentType();
         var value = Array.newInstance(c_type, items.length);
@@ -87,7 +96,7 @@ public class XmlDeserializer {
         return value;
     }
 
-    private static Object loadCollection(Class<?> clazz, XmlNode xmlDescription) {
+    private Object loadCollection(Class<?> clazz, XmlNode xmlDescription) {
         try {
             var value = (Collection)clazz.getConstructor().newInstance();
             //noinspection unchecked
@@ -99,7 +108,7 @@ public class XmlDeserializer {
         }
     }
 
-    private static Object loadMap(Class<?> clazz, XmlNode xmlDescription) {
+    private Object loadMap(Class<?> clazz, XmlNode xmlDescription) {
         try {
             var value = (Map)clazz.getConstructor().newInstance();
             Arrays.stream(xmlDescription.getChildNodes("item")).
@@ -118,13 +127,19 @@ public class XmlDeserializer {
         }
     }
 
-    private static Object loadObject(Class<?> clazz, XmlNode xmlDescription) {
+    private Object loadObject(Class<?> clazz, XmlNode xmlDescription) {
+        var identity = this.getObjIdentity(xmlDescription);
+        if (this.isTracking(identity)) {
+            return this.getTrackingObject(identity);
+        }
+
         if (!clazz.isAnnotationPresent(XML.class)) {
             throw new IllegalStateException(clazz + " isn`t annotated with @xml.XML");
         }
 
         try {
             var object = clazz.getConstructor().newInstance();
+            this.trackObject(identity, object); // <- !
             var loadableFields = Arrays.stream(XmlSerializer.collectFields(clazz)).
                     filter(x -> x.isAnnotationPresent(XML.class)).
                     collect(Collectors.toList());
@@ -135,10 +150,28 @@ public class XmlDeserializer {
         }
     }
 
-    private static void loadField(Object target, Field field, XmlNode parent) {
+    private void loadField(Object target, Field field, XmlNode parent) {
         var xmlDescription = parent.getChildNode(field.getName());
         var fieldValue = loadAtomic(xmlDescription);
         setFieldValue(target, fieldValue, field);
+    }
+
+    private void trackObject(String objectId, Object object) {
+        if (!this.isTracking(objectId)) {
+            this.trackingObjects.put(objectId, object);
+        }
+    }
+
+    private boolean isTracking(String objectId) {
+        return this.trackingObjects.containsKey(objectId);
+    }
+
+    private Object getTrackingObject(String objectId) {
+        return this.trackingObjects.get(objectId);
+    }
+
+    private String getObjIdentity(XmlNode xmlDescription) {
+        return xmlDescription.getAttribute("objectId");
     }
 
     private static Class<?> getClassInformation(XmlNode xmlDescription) {

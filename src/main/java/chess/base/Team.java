@@ -27,11 +27,6 @@ public class Team {
         return Objects.equals(teamTag, team.teamTag);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(teamTag);
-    }
-
     public String getTeamTag() {
         return teamTag;
     }

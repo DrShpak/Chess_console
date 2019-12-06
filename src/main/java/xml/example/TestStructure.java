@@ -2,9 +2,7 @@ package xml.example;
 
 import xml.XML;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @SuppressWarnings("ALL")
 @XML
@@ -74,5 +72,28 @@ public class TestStructure {
 
     TestStructure(boolean bool) {
         d = bool;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestStructure that = (TestStructure) o;
+        return a == that.a &&
+                Float.compare(that.b, b) == 0 &&
+                Objects.deepEquals(objEnum, that.objEnum) &&
+                Objects.deepEquals(primitive, that.primitive) &&
+                Objects.deepEquals(arrobj, that.arrobj) &&
+                Arrays.deepEquals(lol, that.lol) &&
+                ENUM == that.ENUM &&
+                Arrays.deepEquals(EARR, that.EARR) &&
+                Arrays.deepEquals(w, that.w) &&
+                Arrays.deepEquals(n, that.n) &&
+                Objects.deepEquals(test, that.test) &&
+                Objects.deepEquals(c, that.c) &&
+                Objects.deepEquals(d, that.d) &&
+                Objects.deepEquals(e, that.e) &&
+                Arrays.deepEquals(e1, that.e1) &&
+                Objects.deepEquals(e2, that.e2);
     }
 }

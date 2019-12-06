@@ -3,6 +3,7 @@ package chess.misc;
 import org.javatuples.Pair;
 import xml.XML;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 @XML
@@ -75,5 +76,17 @@ public class Direction {
     @SuppressWarnings("WeakerAccess")
     public boolean isZero() {
         return dx == 0 && dy == 0;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        //todo deepEquals
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Direction direction = (Direction) object;
+        return dx == direction.dx &&
+                dy == direction.dy &&
+                maxLength == direction.maxLength &&
+                movePolicy == direction.movePolicy;
     }
 }
