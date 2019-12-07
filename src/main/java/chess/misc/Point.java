@@ -1,7 +1,12 @@
 package chess.misc;
 
+import xml.XML;
+
+@XML
 public class Point {
+    @XML
     private final int x;
+    @XML
     private final int y;
 
     @SuppressWarnings("FieldCanBeLocal")
@@ -12,6 +17,10 @@ public class Point {
     private final int ux = 7;
     @SuppressWarnings("FieldCanBeLocal")
     private final int uy = 7;
+
+    public Point() {
+        x = y = 0;
+    }
 
     Point(int x, int y) {
         this.x = x;

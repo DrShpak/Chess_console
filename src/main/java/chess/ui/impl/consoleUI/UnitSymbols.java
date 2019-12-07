@@ -105,6 +105,18 @@ public enum  UnitSymbols {
         public boolean match(Unit unit) {
             return false;
         }
+    },
+    EvenCellNT("\u25A1 "){
+        @Override
+        public boolean match(Unit unit) {
+            return false;
+        }
+    },
+    OddCellNT("\u2B1B"){
+        @Override
+        public boolean match(Unit unit) {
+            return false;
+        }
     };
 
     private final String symbol;

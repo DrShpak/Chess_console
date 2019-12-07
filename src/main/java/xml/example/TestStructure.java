@@ -45,6 +45,8 @@ public class TestStructure {
     private TestStructure[] e1;
     @XML
     private HashMap<Integer, TestStructure> e2;
+    @XML
+    private TestStructure self = this;
 
     public TestStructure() {
         e = new TestStructure(true);

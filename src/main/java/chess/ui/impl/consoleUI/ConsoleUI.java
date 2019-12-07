@@ -6,8 +6,12 @@ import chess.misc.Point;
 import chess.ui.UI;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
+import org.apache.commons.lang3.SystemUtils;
+import org.javatuples.Triplet;
+import org.javatuples.Tuple;
 import xml.XmlDeserializer;
 import xml.XmlSerializer;
+import xml.XmlSerializerRegistry;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -16,6 +20,23 @@ import java.util.stream.Collectors;
 public class ConsoleUI
     extends UI {
     private final Scanner input = new Scanner(System.in);
+
+    private XmlSerializerRegistry registry;
+
+    {
+        registry = new XmlSerializerRegistry();
+        try {
+            registry.addClass(
+                    Triplet.class,
+                    () -> Triplet.with(new Object(), new Object(), new Object()),
+                    Triplet.class.getDeclaredField("val0"),
+                    Triplet.class.getDeclaredField("val1"),
+                    Triplet.class.getDeclaredField("val2")
+            );
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
 
     public ConsoleUI(ChessBoardImpl board) {
         super(board);
@@ -37,13 +58,13 @@ public class ConsoleUI
         }
 
         if (nextLine.matches("save")) {
-            XmlSerializer.saveXml(board, "board.xml");
+            XmlSerializer.saveXml(board, "board.xml", registry);
             return true;
         }
 
         //todo fix load equal obj + en passant
         if (nextLine.matches("load")) {
-            board = (ChessBoardImpl) XmlDeserializer.loadXml("board.xml");
+            board = (ChessBoardImpl) XmlDeserializer.loadXml("board.xml", registry);
             return true;
         }
 
@@ -76,8 +97,8 @@ public class ConsoleUI
                                     orElse
                                         (
                                             (i + j) % 2 == 0 ?
-                                                UnitSymbols.EvenCell :
-                                                UnitSymbols.OddCell
+                                                SystemUtils.IS_OS_WINDOWS ? UnitSymbols.EvenCellNT : UnitSymbols.EvenCell :
+                                                SystemUtils.IS_OS_WINDOWS ? UnitSymbols.OddCellNT : UnitSymbols.OddCell
                                         )
                         )
                 ).

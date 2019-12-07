@@ -1,7 +1,9 @@
 package xml;
 
 import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.SerializationUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -15,9 +17,16 @@ public class XmlDeserializer {
     private static final Map<String,Class> builtInMap = new HashMap<>();
 
     private HashMap<String, Object> trackingObjects = new HashMap<>();
+    private XmlSerializerRegistry registry;
 
     public static Object loadXml(String path) {
         return new XmlDeserializer().loadXmlInternal(path);
+    }
+
+    public static Object loadXml(String path, XmlSerializerRegistry registry) {
+        var deserializer = new XmlDeserializer();
+        deserializer.registry = registry;
+        return deserializer.loadXmlInternal(path);
     }
 
     private Object loadXmlInternal(String path) {
@@ -130,20 +139,28 @@ public class XmlDeserializer {
     private Object loadObject(Class<?> clazz, XmlNode xmlDescription) {
         var identity = this.getObjIdentity(xmlDescription);
         if (this.isTracking(identity)) {
+            var trackingObj = this.getTrackingObject(identity);
+            if (trackingObj.getClass().getAnnotation(XML.class).isClone() && trackingObj instanceof Serializable) {
+                return SerializationUtils.clone((Serializable)trackingObj);
+            }
             return this.getTrackingObject(identity);
         }
 
-        if (!clazz.isAnnotationPresent(XML.class)) {
+        XmlSerializerRegistry.XmlSerializationStrategy strategy = null;
+        if (this.registry != null) {
+            strategy = this.registry.getClassStrategy(clazz);
+        }
+        if (!clazz.isAnnotationPresent(XML.class) && strategy == null) {
             throw new IllegalStateException(clazz + " isn`t annotated with @xml.XML");
         }
 
         try {
-            var object = clazz.getConstructor().newInstance();
+            var object = strategy != null ? strategy.getGenerator().get() : clazz.getConstructor().newInstance();
             this.trackObject(identity, object); // <- !
-            var loadableFields = Arrays.stream(XmlSerializer.collectFields(clazz)).
+            var loadableFields = strategy != null ? strategy.getFields() : Arrays.stream(XmlSerializer.collectFields(clazz)).
                     filter(x -> x.isAnnotationPresent(XML.class)).
-                    collect(Collectors.toList());
-            loadableFields.forEach(x -> loadField(object, x, xmlDescription));
+                    toArray(Field[]::new);
+            Arrays.stream(loadableFields).forEach(x -> loadField(object, x, xmlDescription));
             return object;
         } catch (Exception e) {
             throw new IllegalStateException(e);

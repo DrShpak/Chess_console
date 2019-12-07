@@ -100,6 +100,7 @@
 		<e class="void">null</e>
 		<e1 class="void">null</e1>
 		<e2 class="void">null</e2>
+		<self objectId="1001"/>
 	</e>
 	<e1 class="xml.example.TestStructure" dimension="1">
 		<item class="xml.example.TestStructure" objectId="1002">
@@ -150,6 +151,7 @@
 			<e class="void">null</e>
 			<e1 class="void">null</e1>
 			<e2 class="void">null</e2>
+			<self objectId="1002"/>
 		</item>
 		<item objectId="1002"/>
 	</e1>
@@ -163,4 +165,5 @@
 			<value objectId="1001"/>
 		</item>
 	</e2>
+	<self objectId="1000"/>
 </root>

@@ -3,11 +3,11 @@ package chess.misc;
 import org.javatuples.Pair;
 import xml.XML;
 
-import java.util.Objects;
+import java.io.Serializable;
 import java.util.stream.Stream;
 
-@XML
-public class Direction {
+@XML(isClone=true)
+public class Direction implements Serializable {
     @XML
     private final int dx;
     @XML

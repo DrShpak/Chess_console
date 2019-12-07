@@ -24,6 +24,9 @@ public final class ChessBoardImpl extends ChessBoardBase {
 
     private Map<Team, Cell> kingsCells;
 
+    @XML
+    private Triplet<Point, Point, Point> enPassant;
+
     private Map<Team, Cell> getKingsCells() {
         if (this.kingsCells == null) {
             this.kingsCells = new HashMap<>();
@@ -50,8 +53,6 @@ public final class ChessBoardImpl extends ChessBoardBase {
         var newUnit = new Queen(unit.getTeam());
         this.newUnit(newUnit, currPos);
     }
-
-    private Triplet<Point, Point, Point> enPassant;
 
     @Override
     public void markPawnEnPassant(Point pawnOldPosition, Point pawnNewPosition, Point enPassant) {

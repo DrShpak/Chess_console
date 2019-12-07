@@ -8,6 +8,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class XmlSerializer {
+    private XmlSerializerRegistry registry;
+
+    public static void saveXml(Object object, String path, XmlSerializerRegistry registry) {
+        var serializer = new XmlSerializer();
+        serializer.registry = registry;
+        serializer.saveXmlInternal(object, path);
+    }
+
     public static void saveXml(Object object, String path) {
         new XmlSerializer().saveXmlInternal(object, path);
     }
@@ -100,7 +108,11 @@ public class XmlSerializer {
 
     private void saveObject(Object object, XmlNode xmlDescription) {
         var clazz = object.getClass();
-        if (!clazz.isAnnotationPresent(XML.class)) {
+        XmlSerializerRegistry.XmlSerializationStrategy strategy = null;
+        if (this.registry != null) {
+            strategy = this.registry.getClassStrategy(clazz);
+        }
+        if (!clazz.isAnnotationPresent(XML.class) && strategy == null) {
             throw new IllegalStateException(object.getClass() + " isn`t annotated with @xml.XML");
         }
         if (this.isTracking(object)) {
@@ -111,10 +123,10 @@ public class XmlSerializer {
             xmlDescription.appendAttribute("objectId", this.getObjIdentity(object));
         }
         xmlDescription.appendAttribute("class", clazz.getCanonicalName());
-        var savableFields = Arrays.stream(collectFields(clazz)).
+        var savableFields = strategy != null ? strategy.getFields() : Arrays.stream(collectFields(clazz)).
             filter(x -> x.isAnnotationPresent(XML.class)).
-            collect(Collectors.toList());
-        savableFields.forEach(x -> saveField(object, x, xmlDescription));
+            toArray(Field[]::new);
+        Arrays.stream(savableFields).forEach(x -> saveField(object, x, xmlDescription));
     }
 
     private void saveField(Object target, Field field, XmlNode parent) {
