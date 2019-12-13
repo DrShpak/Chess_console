@@ -9,8 +9,8 @@ import java.util.LinkedList;
 
 @XML(isClone=true)
 public class ChessState {
-    private static final int MAX_EQUAL_MOVES = 1;
-    private static final int MAX_REVERSIBLE_MOVES = 5;
+    private static final int MAX_EQUAL_MOVES = 1; //повторение позиции
+    private static final int MAX_REVERSIBLE_MOVES = 5; //обратимые ходы
 
     @XML
     private final LinkedList<ChessBoardImpl> positionHistory = new LinkedList<>();
@@ -31,6 +31,7 @@ public class ChessState {
         return this.getHeadBoard().getPossibleMovements(point);
     }
 
+    @SuppressWarnings("unused")
     public ChessState() {
 
     }
@@ -41,6 +42,7 @@ public class ChessState {
     }
 
     public void makeCastling(CastlingType type, Point point) {
+        this.positionHistory.add((ChessBoardImpl)this.getHeadBoard().fork());
         this.getHeadBoard().makeCastling(type, point);
     }
 
@@ -54,7 +56,8 @@ public class ChessState {
     }
 
     public boolean checkDraw() {
-        return checkReversibleLength() > MAX_REVERSIBLE_MOVES || checkEqualsLength() > MAX_EQUAL_MOVES;
+        return checkReversibleLength() > MAX_REVERSIBLE_MOVES ||
+            checkEqualsLength() > MAX_EQUAL_MOVES;
     }
 
     public int checkReversibleLength() {

@@ -17,8 +17,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class ConsoleUI
-    extends UI {
+public class ConsoleUI extends UI {
     private final Scanner input = new Scanner(System.in);
 
     private final XmlSerializerRegistry registry;
@@ -28,7 +27,7 @@ public class ConsoleUI
         try {
             registry.addClass(
                     Triplet.class,
-                    () -> Triplet.with(new Object(), new Object(), new Object()),
+                    () -> new Triplet<>(new Object(), new Object(), new Object()),
                     Triplet.class.getDeclaredField("val0"),
                     Triplet.class.getDeclaredField("val1"),
                     Triplet.class.getDeclaredField("val2")

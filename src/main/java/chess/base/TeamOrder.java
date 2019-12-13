@@ -15,6 +15,7 @@ public class TeamOrder implements Serializable {
     @XML
     private int index = -1;
 
+    @SuppressWarnings("unused")
     public TeamOrder() {
 
     }

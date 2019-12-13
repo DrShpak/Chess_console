@@ -80,7 +80,6 @@ public class Direction implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        //todo tell deepEquals
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Direction direction = (Direction) object;
