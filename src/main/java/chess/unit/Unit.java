@@ -4,11 +4,13 @@ import chess.misc.Direction;
 import chess.base.Team;
 import xml.XML;
 
+import java.io.Serializable;
+
 /**
  * Abstract class for chess units
  */
 @XML
-public abstract class Unit {
+public abstract class Unit implements Serializable {
     @XML
     private final Direction[] directions;
     @XML

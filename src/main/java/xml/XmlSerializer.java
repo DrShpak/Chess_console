@@ -5,7 +5,6 @@ import org.apache.commons.lang3.ClassUtils;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class XmlSerializer {
     private XmlSerializerRegistry registry;
@@ -20,7 +19,7 @@ public class XmlSerializer {
         new XmlSerializer().saveXmlInternal(object, path);
     }
 
-    private HashMap<Object, String> trackingObjects = new HashMap<>();
+    private final HashMap<Object, String> trackingObjects = new HashMap<>();
 
     private void saveXmlInternal(Object object, String path) {
         var xmlObject = new XmlNode("root");
@@ -152,7 +151,7 @@ public class XmlSerializer {
         return this.trackingObjects.
                 entrySet().
                 stream().
-                filter(x -> x.getKey().equals(object)).
+                filter(x -> object.getClass().getAnnotation(XML.class).isStrict() ? x.getKey() == object : x.getKey().equals(object)).
                 map(Map.Entry::getValue).
                 findAny().
                 orElse(null);

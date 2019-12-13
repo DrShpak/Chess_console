@@ -1,6 +1,7 @@
 package chess;
 
 import chess.base.board.BoardBuilder;
+import chess.base.board.ChessState;
 import chess.misc.Direction;
 import chess.misc.MovePolicy;
 import chess.ui.UI;
@@ -31,7 +32,8 @@ class Main {
                 height(8).
                 width(8).
                 build();
-        UI ui = new ConsoleUI(board);
+        var state = new ChessState(board);
+        UI ui = new ConsoleUI(state);
         ui.start();
     }
 }

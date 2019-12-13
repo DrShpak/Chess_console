@@ -2,10 +2,11 @@ package chess.base;
 
 import xml.XML;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-@XML
-public class Team {
+@XML(isStrict=true)
+public class Team implements Serializable {
     public static final Team INVALID_TEAM = new Team("__invalid__");
 
     @XML

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import static com.google.common.collect.Streams.mapWithIndex;
 
 public class BoardBuilder {
+    private final List<Team> allTeams = new ArrayList<>();
     private final Set<String> usedTags = new HashSet<>();
     private final List<Unit> units = new ArrayList<>();
     private final List<Integer> divisionIndices = new ArrayList<>();
@@ -51,6 +52,7 @@ public class BoardBuilder {
         }
         currentTeam = new Team(teamTag);
         usedTags.add(teamTag);
+        allTeams.add(currentTeam);
         return this;
     }
 
@@ -111,7 +113,7 @@ public class BoardBuilder {
                     ("unable to instantiate board " + height + "x" + width + " unit`s count(" + units.size() + ") > size(" + size + ")");
         }
         var iterator = new UnitIterator(size);
-        return new ChessBoardImpl(fillMatrix(iterator));
+        return new ChessBoardImpl(allTeams.toArray(Team[]::new), fillMatrix(iterator));
     }
 
     private Unit[][] fillMatrix(UnitIterator iterator) {

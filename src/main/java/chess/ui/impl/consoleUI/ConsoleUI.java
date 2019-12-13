@@ -1,6 +1,6 @@
 package chess.ui.impl.consoleUI;
 
-import chess.base.board.ChessBoardImpl;
+import chess.base.board.ChessState;
 import chess.misc.CastlingType;
 import chess.misc.Point;
 import chess.ui.UI;
@@ -8,20 +8,20 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
 import org.apache.commons.lang3.SystemUtils;
 import org.javatuples.Triplet;
-import org.javatuples.Tuple;
 import xml.XmlDeserializer;
 import xml.XmlSerializer;
 import xml.XmlSerializerRegistry;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ConsoleUI
     extends UI {
     private final Scanner input = new Scanner(System.in);
 
-    private XmlSerializerRegistry registry;
+    private final XmlSerializerRegistry registry;
 
     {
         registry = new XmlSerializerRegistry();
@@ -38,8 +38,8 @@ public class ConsoleUI
         }
     }
 
-    public ConsoleUI(ChessBoardImpl board) {
-        super(board);
+    public ConsoleUI(ChessState chessState) {
+        super(chessState);
     }
 
     @Override
@@ -50,27 +50,43 @@ public class ConsoleUI
 
     private boolean loop() {
         draw();
+        if (chessState.checkDraw()) {
+            System.out.println("draw detected! Program terminated");
+            return false;
+        }
         var nextLine = input.nextLine();
+
         if (nextLine.matches("^test [a-h][1-8]$")) {
-            System.out.println(Arrays.stream(board.getPossibleMovements(Point.parse(nextLine.replaceFirst("test ", "")))).map(x -> x + " ")
+            System.out.println(Arrays.stream(chessState.getPossibleMovements(Point.parse(nextLine.replaceFirst("test ", "")))).map(x -> x + " ")
                 .reduce("", (s, c) -> s + c));
             return true;
         }
 
         if (nextLine.matches("save")) {
-            XmlSerializer.saveXml(board, "board.xml", registry);
+            XmlSerializer.saveXml(chessState, "board.xml", registry);
             return true;
         }
 
-        //todo fix load equal obj + en passant
         if (nextLine.matches("load")) {
-            board = (ChessBoardImpl) XmlDeserializer.loadXml("board.xml", registry);
+            chessState = (ChessState) XmlDeserializer.loadXml("board.xml", registry);
+            return true;
+        }
+
+        if (nextLine.matches("undo (\\d)")) {
+            //noinspection OptionalGetWithoutIsPresent
+            var length = Integer.parseInt(Pattern.compile("undo (\\d)")
+                    .matcher(nextLine).
+                    results().
+                    findFirst().
+                    get().
+                    group(1));
+            chessState.undo(length);
             return true;
         }
 
         if (nextLine.matches("^0-0(-0)? [a-h][1-8]")) {
             String[] temp = nextLine.split("\\s");
-            board.makeCastling(CastlingType.parse(temp[0]), Point.parse(temp[1]));
+            chessState.makeCastling(CastlingType.parse(temp[0]), Point.parse(temp[1]));
             return true;
         }
 
@@ -78,16 +94,19 @@ public class ConsoleUI
             return false;
         }
         var pos = Arrays.stream(nextLine.split("\\s")).map(Point::parse).toArray(Point[]::new);
-        board.move(pos[0], pos[1]);
+        chessState.move(pos[0], pos[1]);
         return true;
     }
 
     private void draw() {
+        System.out.println(chessState.getBoard().isIrreversible());
+        System.out.println(chessState.checkReversibleLength());
+        System.out.println(chessState.checkEqualsLength());
         //noinspection UnstableApiUsage
         Lists.reverse(
             Streams.mapWithIndex
                 (
-                    Arrays.stream(board.getBoard()),
+                    Arrays.stream(chessState.getBoard().getBoard()),
                     (x, i) -> Streams.mapWithIndex
                         (
                             Arrays.stream(x), (y, j) ->

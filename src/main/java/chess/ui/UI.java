@@ -1,12 +1,12 @@
 package chess.ui;
 
-import chess.base.board.ChessBoardImpl;
+import chess.base.board.ChessState;
 
 public abstract class UI {
-    protected ChessBoardImpl board;
+    protected ChessState chessState;
 
-    protected UI(ChessBoardImpl board) {
-        this.board = board;
+    protected UI(ChessState chessState) {
+        this.chessState = chessState;
     }
 
     public abstract void start();

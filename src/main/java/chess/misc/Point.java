@@ -2,8 +2,10 @@ package chess.misc;
 
 import xml.XML;
 
+import java.io.Serializable;
+
 @XML
-public class Point {
+public class Point implements Serializable {
     @XML
     private final int x;
     @XML

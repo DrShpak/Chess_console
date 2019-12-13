@@ -2,12 +2,13 @@ package chess.base;
 
 import chess.unit.Unit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public class AttackingContext {
+public class AttackingContext implements Serializable {
     private final Unit attacker;
     private final AttackingContext identity;
     private final List<Unit> barrages = new ArrayList<>();

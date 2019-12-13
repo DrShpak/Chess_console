@@ -1,689 +1,2240 @@
-<root class="chess.base.board.ChessBoardImpl" objectId="1000">
-	<enPassant class="org.javatuples.Triplet" objectId="1001">
-		<val0 class="chess.misc.Point" objectId="1002">
-			<x class="java.lang.Integer">1</x>
-			<y class="java.lang.Integer">4</y>
-		</val0>
-		<val1 class="chess.misc.Point" objectId="1003">
-			<x class="java.lang.Integer">3</x>
-			<y class="java.lang.Integer">4</y>
-		</val1>
-		<val2 class="chess.misc.Point" objectId="1004">
-			<x class="java.lang.Integer">2</x>
-			<y class="java.lang.Integer">4</y>
-		</val2>
-	</enPassant>
-	<board class="chess.base.Cell" dimension="2">
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1005">
-				<unit class="chess.unit.Rook" objectId="1006">
-					<moved class="java.lang.Boolean">true</moved>
-					<directions class="chess.misc.Direction" dimension="1">
-						<item class="chess.misc.Direction" objectId="1007">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1008">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1009">
-							<dx class="java.lang.Integer">0</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1010">
-							<dx class="java.lang.Integer">0</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-					</directions>
-					<team class="chess.base.Team" objectId="1011">
-						<teamTag class="java.lang.String">White</teamTag>
-					</team>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1012">
-				<unit class="chess.unit.Knight" objectId="1013">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item class="chess.misc.Direction" objectId="1014">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">2</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1015">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">2</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1016">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">-2</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1017">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">-2</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1018">
-							<dx class="java.lang.Integer">2</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1019">
-							<dx class="java.lang.Integer">-2</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1020">
-							<dx class="java.lang.Integer">2</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1021">
-							<dx class="java.lang.Integer">-2</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1022">
-				<unit class="chess.unit.Bishop" objectId="1023">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item class="chess.misc.Direction" objectId="1024">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1025">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1026">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1027">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">2147483647</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1028">
-				<unit class="chess.unit.Queen" objectId="1029">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1007"/>
-						<item objectId="1024"/>
-						<item objectId="1008"/>
-						<item objectId="1009"/>
-						<item objectId="1010"/>
-						<item objectId="1025"/>
-						<item objectId="1026"/>
-						<item objectId="1027"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1030">
-				<unit class="chess.unit.King" objectId="1031">
-					<moved class="java.lang.Boolean">true</moved>
-					<directions class="chess.misc.Direction" dimension="1">
-						<item class="chess.misc.Direction" objectId="1032">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1033">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1034">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1035">
-							<dx class="java.lang.Integer">0</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1036">
-							<dx class="java.lang.Integer">0</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1037">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1038">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1039">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
-						</item>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1040">
-				<unit class="chess.unit.Bishop" objectId="1041">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1024"/>
-						<item objectId="1025"/>
-						<item objectId="1026"/>
-						<item objectId="1027"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1042">
-				<unit class="chess.unit.Knight" objectId="1043">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1014"/>
-						<item objectId="1015"/>
-						<item objectId="1016"/>
-						<item objectId="1017"/>
-						<item objectId="1018"/>
-						<item objectId="1019"/>
-						<item objectId="1020"/>
-						<item objectId="1021"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1044">
-				<unit class="chess.unit.Rook" objectId="1045">
-					<moved class="java.lang.Boolean">true</moved>
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1007"/>
-						<item objectId="1008"/>
-						<item objectId="1009"/>
-						<item objectId="1010"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
+<root class="chess.base.board.ChessState" objectId="1000">
+	<positionHistory class="java.util.LinkedList">
+		<item class="chess.base.board.ChessBoardImpl" objectId="1001">
+			<irreversible class="java.lang.Boolean">false</irreversible>
+			<enPassant class="void">null</enPassant>
+			<board class="chess.base.Cell" dimension="2">
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1002">
+						<unit class="chess.unit.Rook" objectId="1003">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item class="chess.misc.Direction" objectId="1004">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1005">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1006">
+									<dx class="java.lang.Integer">0</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1007">
+									<dx class="java.lang.Integer">0</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+							</directions>
+							<team class="chess.base.Team" objectId="1008">
+								<teamTag class="java.lang.String">White</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1009">
+						<unit class="chess.unit.Knight" objectId="1010">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item class="chess.misc.Direction" objectId="1011">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">2</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1012">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">2</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1013">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">-2</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1014">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">-2</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1015">
+									<dx class="java.lang.Integer">2</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1016">
+									<dx class="java.lang.Integer">-2</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1017">
+									<dx class="java.lang.Integer">2</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1018">
+									<dx class="java.lang.Integer">-2</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1019">
+						<unit class="chess.unit.Bishop" objectId="1020">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item class="chess.misc.Direction" objectId="1021">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1022">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1023">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1024">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">2147483647</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1025">
+						<unit class="chess.unit.Queen" objectId="1026">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1027">
+						<unit class="chess.unit.King" objectId="1028">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item class="chess.misc.Direction" objectId="1029">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1030">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1031">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1032">
+									<dx class="java.lang.Integer">0</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1033">
+									<dx class="java.lang.Integer">0</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1034">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1035">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1036">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">BOTH</movePolicy>
+								</item>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1037">
+						<unit class="chess.unit.Bishop" objectId="1038">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1039">
+						<unit class="chess.unit.Knight" objectId="1040">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1041">
+						<unit class="chess.unit.Rook" objectId="1042">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1043">
+						<unit class="chess.unit.Pawn" objectId="1044">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item class="chess.misc.Direction" objectId="1045">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1046">
+									<dx class="java.lang.Integer">2</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1047">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1048">
+									<dx class="java.lang.Integer">1</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+								</item>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1049">
+						<unit class="chess.unit.Pawn" objectId="1050">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1051">
+						<unit class="chess.unit.Pawn" objectId="1052">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1053">
+						<unit class="chess.unit.Pawn" objectId="1054">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1055">
+						<unit class="chess.unit.Pawn" objectId="1056">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1057">
+						<unit class="chess.unit.Pawn" objectId="1058">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1059">
+						<unit class="chess.unit.Pawn" objectId="1060">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1061">
+						<unit class="chess.unit.Pawn" objectId="1062">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1008"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1063">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1064">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1065">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1066">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1067">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1068">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1069">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1070">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1071">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1072">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1073">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1074">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1075">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1076">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1077">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1078">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1079">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1080">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1081">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1082">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1083">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1084">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1085">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1086">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1087">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1088">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1089">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1090">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1091">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1092">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1093">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1094">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1095">
+						<unit class="chess.unit.Pawn" objectId="1096">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item class="chess.misc.Direction" objectId="1097">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1098">
+									<dx class="java.lang.Integer">-2</dx>
+									<dy class="java.lang.Integer">0</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1099">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+								</item>
+								<item class="chess.misc.Direction" objectId="1100">
+									<dx class="java.lang.Integer">-1</dx>
+									<dy class="java.lang.Integer">-1</dy>
+									<maxLength class="java.lang.Integer">1</maxLength>
+									<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
+								</item>
+							</directions>
+							<team class="chess.base.Team" objectId="1101">
+								<teamTag class="java.lang.String">Black</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1102">
+						<unit class="chess.unit.Pawn" objectId="1103">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1104">
+						<unit class="chess.unit.Pawn" objectId="1105">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1106">
+						<unit class="chess.unit.Pawn" objectId="1107">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1108">
+						<unit class="chess.unit.Pawn" objectId="1109">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1110">
+						<unit class="chess.unit.Pawn" objectId="1111">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1112">
+						<unit class="chess.unit.Pawn" objectId="1113">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1114">
+						<unit class="chess.unit.Pawn" objectId="1115">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1116">
+						<unit class="chess.unit.Rook" objectId="1117">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1118">
+						<unit class="chess.unit.Knight" objectId="1119">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1120">
+						<unit class="chess.unit.Bishop" objectId="1121">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1122">
+						<unit class="chess.unit.Queen" objectId="1123">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1124">
+						<unit class="chess.unit.King" objectId="1125">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1126">
+						<unit class="chess.unit.Bishop" objectId="1127">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1128">
+						<unit class="chess.unit.Knight" objectId="1129">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1130">
+						<unit class="chess.unit.Rook" objectId="1131">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1101"/>
+						</unit>
+					</item>
+				</item>
+			</board>
+			<order class="chess.base.TeamOrder" objectId="1132">
+				<teams class="java.util.ArrayList">
+					<item objectId="1008"/>
+					<item objectId="1101"/>
+				</teams>
+				<index class="java.lang.Integer">0</index>
+			</order>
 		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1046">
-				<unit class="chess.unit.Pawn" objectId="1047">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item class="chess.misc.Direction" objectId="1048">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1049">
-							<dx class="java.lang.Integer">2</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1050">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1051">
-							<dx class="java.lang.Integer">1</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
-						</item>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1052">
-				<unit class="chess.unit.Pawn" objectId="1053">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1054">
-				<unit class="chess.unit.Pawn" objectId="1055">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1056">
-				<unit class="chess.unit.Pawn" objectId="1057">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1058">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1059">
-				<unit class="chess.unit.Pawn" objectId="1060">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1061">
-				<unit class="chess.unit.Pawn" objectId="1062">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1063">
-				<unit class="chess.unit.Pawn" objectId="1064">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
+		<item class="chess.base.board.ChessBoardImpl" objectId="1133">
+			<irreversible class="java.lang.Boolean">false</irreversible>
+			<enPassant class="void">null</enPassant>
+			<board class="chess.base.Cell" dimension="2">
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1134">
+						<unit class="chess.unit.Rook" objectId="1135">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team class="chess.base.Team" objectId="1136">
+								<teamTag class="java.lang.String">White</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1137">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1138">
+						<unit class="chess.unit.Bishop" objectId="1139">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1140">
+						<unit class="chess.unit.Queen" objectId="1141">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1142">
+						<unit class="chess.unit.King" objectId="1143">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1144">
+						<unit class="chess.unit.Bishop" objectId="1145">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1146">
+						<unit class="chess.unit.Knight" objectId="1147">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1148">
+						<unit class="chess.unit.Rook" objectId="1149">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1150">
+						<unit class="chess.unit.Pawn" objectId="1151">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1152">
+						<unit class="chess.unit.Pawn" objectId="1153">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1154">
+						<unit class="chess.unit.Pawn" objectId="1155">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1156">
+						<unit class="chess.unit.Pawn" objectId="1157">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1158">
+						<unit class="chess.unit.Pawn" objectId="1159">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1160">
+						<unit class="chess.unit.Pawn" objectId="1161">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1162">
+						<unit class="chess.unit.Pawn" objectId="1163">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1164">
+						<unit class="chess.unit.Pawn" objectId="1165">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1166">
+						<unit class="chess.unit.Knight" objectId="1167">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1136"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1168">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1169">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1170">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1171">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1172">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1173">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1174">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1175">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1176">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1177">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1178">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1179">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1180">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1181">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1182">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1183">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1184">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1185">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1186">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1187">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1188">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1189">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1190">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1191">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1192">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1193">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1194">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1195">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1196">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1197">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1198">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1199">
+						<unit class="chess.unit.Pawn" objectId="1200">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team class="chess.base.Team" objectId="1201">
+								<teamTag class="java.lang.String">Black</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1202">
+						<unit class="chess.unit.Pawn" objectId="1203">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1204">
+						<unit class="chess.unit.Pawn" objectId="1205">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1206">
+						<unit class="chess.unit.Pawn" objectId="1207">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1208">
+						<unit class="chess.unit.Pawn" objectId="1209">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1210">
+						<unit class="chess.unit.Pawn" objectId="1211">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1212">
+						<unit class="chess.unit.Pawn" objectId="1213">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1214">
+						<unit class="chess.unit.Pawn" objectId="1215">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1216">
+						<unit class="chess.unit.Rook" objectId="1217">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1218">
+						<unit class="chess.unit.Knight" objectId="1219">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1220">
+						<unit class="chess.unit.Bishop" objectId="1221">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1222">
+						<unit class="chess.unit.Queen" objectId="1223">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1224">
+						<unit class="chess.unit.King" objectId="1225">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1226">
+						<unit class="chess.unit.Bishop" objectId="1227">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1228">
+						<unit class="chess.unit.Knight" objectId="1229">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1230">
+						<unit class="chess.unit.Rook" objectId="1231">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1201"/>
+						</unit>
+					</item>
+				</item>
+			</board>
+			<order class="chess.base.TeamOrder" objectId="1232">
+				<teams class="java.util.ArrayList">
+					<item objectId="1136"/>
+					<item objectId="1201"/>
+				</teams>
+				<index class="java.lang.Integer">1</index>
+			</order>
 		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1065">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1066">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1067">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1068">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1069">
-				<unit class="chess.unit.Dummy" objectId="1070">
-					<directions class="chess.misc.Direction" dimension="1"/>
-					<team class="chess.base.Team" objectId="1071">
-						<teamTag class="java.lang.String">__invalid__</teamTag>
-					</team>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1072">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1073">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1074">
-				<unit class="void">null</unit>
-			</item>
+		<item class="chess.base.board.ChessBoardImpl" objectId="1233">
+			<irreversible class="java.lang.Boolean">false</irreversible>
+			<enPassant class="void">null</enPassant>
+			<board class="chess.base.Cell" dimension="2">
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1234">
+						<unit class="chess.unit.Rook" objectId="1235">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team class="chess.base.Team" objectId="1236">
+								<teamTag class="java.lang.String">White</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1237">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1238">
+						<unit class="chess.unit.Bishop" objectId="1239">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1240">
+						<unit class="chess.unit.Queen" objectId="1241">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1242">
+						<unit class="chess.unit.King" objectId="1243">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1244">
+						<unit class="chess.unit.Bishop" objectId="1245">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1246">
+						<unit class="chess.unit.Knight" objectId="1247">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1248">
+						<unit class="chess.unit.Rook" objectId="1249">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1250">
+						<unit class="chess.unit.Pawn" objectId="1251">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1252">
+						<unit class="chess.unit.Pawn" objectId="1253">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1254">
+						<unit class="chess.unit.Pawn" objectId="1255">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1256">
+						<unit class="chess.unit.Pawn" objectId="1257">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1258">
+						<unit class="chess.unit.Pawn" objectId="1259">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1260">
+						<unit class="chess.unit.Pawn" objectId="1261">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1262">
+						<unit class="chess.unit.Pawn" objectId="1263">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1264">
+						<unit class="chess.unit.Pawn" objectId="1265">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1266">
+						<unit class="chess.unit.Knight" objectId="1267">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1236"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1268">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1269">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1270">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1271">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1272">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1273">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1274">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1275">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1276">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1277">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1278">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1279">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1280">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1281">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1282">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1283">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1284">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1285">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1286">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1287">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1288">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1289">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1290">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1291">
+						<unit class="chess.unit.Knight" objectId="1292">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team class="chess.base.Team" objectId="1293">
+								<teamTag class="java.lang.String">Black</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1294">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1295">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1296">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1297">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1298">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1299">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1300">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1301">
+						<unit class="chess.unit.Pawn" objectId="1302">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1303">
+						<unit class="chess.unit.Pawn" objectId="1304">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1305">
+						<unit class="chess.unit.Pawn" objectId="1306">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1307">
+						<unit class="chess.unit.Pawn" objectId="1308">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1309">
+						<unit class="chess.unit.Pawn" objectId="1310">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1311">
+						<unit class="chess.unit.Pawn" objectId="1312">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1313">
+						<unit class="chess.unit.Pawn" objectId="1314">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1315">
+						<unit class="chess.unit.Pawn" objectId="1316">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1317">
+						<unit class="chess.unit.Rook" objectId="1318">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1319">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1320">
+						<unit class="chess.unit.Bishop" objectId="1321">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1322">
+						<unit class="chess.unit.Queen" objectId="1323">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1324">
+						<unit class="chess.unit.King" objectId="1325">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1326">
+						<unit class="chess.unit.Bishop" objectId="1327">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1328">
+						<unit class="chess.unit.Knight" objectId="1329">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1330">
+						<unit class="chess.unit.Rook" objectId="1331">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1293"/>
+						</unit>
+					</item>
+				</item>
+			</board>
+			<order class="chess.base.TeamOrder" objectId="1332">
+				<teams class="java.util.ArrayList">
+					<item objectId="1236"/>
+					<item objectId="1293"/>
+				</teams>
+				<index class="java.lang.Integer">0</index>
+			</order>
 		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1075">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1076">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1077">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1078">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1079">
-				<unit class="chess.unit.Pawn" objectId="1080">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1048"/>
-						<item objectId="1049"/>
-						<item objectId="1050"/>
-						<item objectId="1051"/>
-					</directions>
-					<team objectId="1011"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1081">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1082">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1083">
-				<unit class="void">null</unit>
-			</item>
+		<item class="chess.base.board.ChessBoardImpl" objectId="1333">
+			<irreversible class="java.lang.Boolean">false</irreversible>
+			<enPassant class="void">null</enPassant>
+			<board class="chess.base.Cell" dimension="2">
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1334">
+						<unit class="chess.unit.Rook" objectId="1335">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team class="chess.base.Team" objectId="1336">
+								<teamTag class="java.lang.String">White</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1337">
+						<unit class="chess.unit.Knight" objectId="1338">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1339">
+						<unit class="chess.unit.Bishop" objectId="1340">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1341">
+						<unit class="chess.unit.Queen" objectId="1342">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1343">
+						<unit class="chess.unit.King" objectId="1344">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1345">
+						<unit class="chess.unit.Bishop" objectId="1346">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1347">
+						<unit class="chess.unit.Knight" objectId="1348">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1349">
+						<unit class="chess.unit.Rook" objectId="1350">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1351">
+						<unit class="chess.unit.Pawn" objectId="1352">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1353">
+						<unit class="chess.unit.Pawn" objectId="1354">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1355">
+						<unit class="chess.unit.Pawn" objectId="1356">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1357">
+						<unit class="chess.unit.Pawn" objectId="1358">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1359">
+						<unit class="chess.unit.Pawn" objectId="1360">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1361">
+						<unit class="chess.unit.Pawn" objectId="1362">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1363">
+						<unit class="chess.unit.Pawn" objectId="1364">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1365">
+						<unit class="chess.unit.Pawn" objectId="1366">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1045"/>
+								<item objectId="1046"/>
+								<item objectId="1047"/>
+								<item objectId="1048"/>
+							</directions>
+							<team objectId="1336"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1367">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1368">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1369">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1370">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1371">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1372">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1373">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1374">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1375">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1376">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1377">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1378">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1379">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1380">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1381">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1382">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1383">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1384">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1385">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1386">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1387">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1388">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1389">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1390">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1391">
+						<unit class="chess.unit.Knight" objectId="1392">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team class="chess.base.Team" objectId="1393">
+								<teamTag class="java.lang.String">Black</teamTag>
+							</team>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1394">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1395">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1396">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1397">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1398">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1399">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1400">
+						<unit class="void">null</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1401">
+						<unit class="chess.unit.Pawn" objectId="1402">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1403">
+						<unit class="chess.unit.Pawn" objectId="1404">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1405">
+						<unit class="chess.unit.Pawn" objectId="1406">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1407">
+						<unit class="chess.unit.Pawn" objectId="1408">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1409">
+						<unit class="chess.unit.Pawn" objectId="1410">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1411">
+						<unit class="chess.unit.Pawn" objectId="1412">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1413">
+						<unit class="chess.unit.Pawn" objectId="1414">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1415">
+						<unit class="chess.unit.Pawn" objectId="1416">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1097"/>
+								<item objectId="1098"/>
+								<item objectId="1099"/>
+								<item objectId="1100"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+				</item>
+				<item class="chess.base.Cell" dimension="1">
+					<item class="chess.base.Cell" objectId="1417">
+						<unit class="chess.unit.Rook" objectId="1418">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1419">
+						<unit class="void">null</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1420">
+						<unit class="chess.unit.Bishop" objectId="1421">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1422">
+						<unit class="chess.unit.Queen" objectId="1423">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1021"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1424">
+						<unit class="chess.unit.King" objectId="1425">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1029"/>
+								<item objectId="1030"/>
+								<item objectId="1031"/>
+								<item objectId="1032"/>
+								<item objectId="1033"/>
+								<item objectId="1034"/>
+								<item objectId="1035"/>
+								<item objectId="1036"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1426">
+						<unit class="chess.unit.Bishop" objectId="1427">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1021"/>
+								<item objectId="1022"/>
+								<item objectId="1023"/>
+								<item objectId="1024"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1428">
+						<unit class="chess.unit.Knight" objectId="1429">
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1011"/>
+								<item objectId="1012"/>
+								<item objectId="1013"/>
+								<item objectId="1014"/>
+								<item objectId="1015"/>
+								<item objectId="1016"/>
+								<item objectId="1017"/>
+								<item objectId="1018"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+					<item class="chess.base.Cell" objectId="1430">
+						<unit class="chess.unit.Rook" objectId="1431">
+							<moved class="java.lang.Boolean">true</moved>
+							<directions class="chess.misc.Direction" dimension="1">
+								<item objectId="1004"/>
+								<item objectId="1005"/>
+								<item objectId="1006"/>
+								<item objectId="1007"/>
+							</directions>
+							<team objectId="1393"/>
+						</unit>
+					</item>
+				</item>
+			</board>
+			<order class="chess.base.TeamOrder" objectId="1432">
+				<teams class="java.util.ArrayList">
+					<item objectId="1336"/>
+					<item objectId="1393"/>
+				</teams>
+				<index class="java.lang.Integer">1</index>
+			</order>
 		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1084">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1085">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1086">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1087">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1088">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1089">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1090">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1091">
-				<unit class="void">null</unit>
-			</item>
-		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1092">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1093">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1094">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1095">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1096">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1097">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1098">
-				<unit class="void">null</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1099">
-				<unit class="void">null</unit>
-			</item>
-		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1100">
-				<unit class="chess.unit.Pawn" objectId="1101">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item class="chess.misc.Direction" objectId="1102">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1103">
-							<dx class="java.lang.Integer">-2</dx>
-							<dy class="java.lang.Integer">0</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">WALK</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1104">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
-						</item>
-						<item class="chess.misc.Direction" objectId="1105">
-							<dx class="java.lang.Integer">-1</dx>
-							<dy class="java.lang.Integer">-1</dy>
-							<maxLength class="java.lang.Integer">1</maxLength>
-							<movePolicy class="chess.misc.MovePolicy">ATTACK</movePolicy>
-						</item>
-					</directions>
-					<team class="chess.base.Team" objectId="1106">
-						<teamTag class="java.lang.String">Black</teamTag>
-					</team>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1107">
-				<unit class="chess.unit.Pawn" objectId="1108">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1109">
-				<unit class="chess.unit.Pawn" objectId="1110">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1111">
-				<unit class="chess.unit.Pawn" objectId="1112">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1113">
-				<unit class="chess.unit.Pawn" objectId="1114">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1115">
-				<unit class="chess.unit.Pawn" objectId="1116">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1117">
-				<unit class="chess.unit.Pawn" objectId="1118">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1119">
-				<unit class="chess.unit.Pawn" objectId="1120">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1102"/>
-						<item objectId="1103"/>
-						<item objectId="1104"/>
-						<item objectId="1105"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-		</item>
-		<item class="chess.base.Cell" dimension="1">
-			<item class="chess.base.Cell" objectId="1121">
-				<unit class="chess.unit.Rook" objectId="1122">
-					<moved class="java.lang.Boolean">true</moved>
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1007"/>
-						<item objectId="1008"/>
-						<item objectId="1009"/>
-						<item objectId="1010"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1123">
-				<unit class="chess.unit.Knight" objectId="1124">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1014"/>
-						<item objectId="1015"/>
-						<item objectId="1016"/>
-						<item objectId="1017"/>
-						<item objectId="1018"/>
-						<item objectId="1019"/>
-						<item objectId="1020"/>
-						<item objectId="1021"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1125">
-				<unit class="chess.unit.Bishop" objectId="1126">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1024"/>
-						<item objectId="1025"/>
-						<item objectId="1026"/>
-						<item objectId="1027"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1127">
-				<unit class="chess.unit.Queen" objectId="1128">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1007"/>
-						<item objectId="1024"/>
-						<item objectId="1008"/>
-						<item objectId="1009"/>
-						<item objectId="1010"/>
-						<item objectId="1025"/>
-						<item objectId="1026"/>
-						<item objectId="1027"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1129">
-				<unit class="chess.unit.King" objectId="1130">
-					<moved class="java.lang.Boolean">true</moved>
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1032"/>
-						<item objectId="1033"/>
-						<item objectId="1034"/>
-						<item objectId="1035"/>
-						<item objectId="1036"/>
-						<item objectId="1037"/>
-						<item objectId="1038"/>
-						<item objectId="1039"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1131">
-				<unit class="chess.unit.Bishop" objectId="1132">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1024"/>
-						<item objectId="1025"/>
-						<item objectId="1026"/>
-						<item objectId="1027"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1133">
-				<unit class="chess.unit.Knight" objectId="1134">
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1014"/>
-						<item objectId="1015"/>
-						<item objectId="1016"/>
-						<item objectId="1017"/>
-						<item objectId="1018"/>
-						<item objectId="1019"/>
-						<item objectId="1020"/>
-						<item objectId="1021"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-			<item class="chess.base.Cell" objectId="1135">
-				<unit class="chess.unit.Rook" objectId="1136">
-					<moved class="java.lang.Boolean">true</moved>
-					<directions class="chess.misc.Direction" dimension="1">
-						<item objectId="1007"/>
-						<item objectId="1008"/>
-						<item objectId="1009"/>
-						<item objectId="1010"/>
-					</directions>
-					<team objectId="1106"/>
-				</unit>
-			</item>
-		</item>
-	</board>
+	</positionHistory>
 </root>

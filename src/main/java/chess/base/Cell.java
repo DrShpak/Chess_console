@@ -7,16 +7,14 @@ import chess.unit.Unit;
 import org.javatuples.Pair;
 import xml.XML;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.io.Serializable;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@XML
-public class Cell {
+@XML(isStrict=true)
+public class Cell implements Serializable {
     @XML
     private Unit unit;
     private final List<AttackingContext> contexts = new ArrayList<>();
@@ -124,5 +122,17 @@ public class Cell {
         return this.contexts.
                 stream().
                 anyMatch(otherContext::isInferior);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Cell cell = (Cell) object;
+        var otherUnit = cell.unit;
+        //todo xml Serializable
+        return (unit == null && otherUnit == null) || (unit != null && otherUnit != null &&
+                unit.getClass().equals(otherUnit.getClass()) &&
+                unit.getTeam().getTeamTag().equals(otherUnit.getTeam().getTeamTag()));
     }
 }

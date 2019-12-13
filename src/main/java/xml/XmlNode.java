@@ -2,7 +2,6 @@ package xml;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 class XmlNode {
     private final String nodeName;
@@ -16,15 +15,6 @@ class XmlNode {
 
     XmlNode(String nodeName, XmlNode parentChild) {
         this.nodeName = nodeName;
-        parentChild.appendChild(this);
-    }
-
-    @SafeVarargs
-    XmlNode(String nodeName, XmlNode parentChild, Map.Entry<String, String>... attributes) {
-        this.nodeName = nodeName;
-        for (Map.Entry<String, String> attribute : attributes) {
-            this.appendAttribute(attribute.getKey(), attribute.getValue());
-        }
         parentChild.appendChild(this);
     }
 

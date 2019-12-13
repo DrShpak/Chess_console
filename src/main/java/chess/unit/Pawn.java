@@ -32,6 +32,9 @@ public class Pawn extends Unit implements IMoveHandler<IPawnBoardPart> {
 
     @Override
     public void handleMove(IPawnBoardPart feedback, Point oldPoint, Point newPoint) {
+        if (!oldPoint.equals(newPoint)) {
+            feedback.markBoardAsIrreversible();
+        }
         if (this.getDirections()[0].getPointsAlong(newPoint).count() == 0) {
             feedback.transformPawn(this, newPoint);
         } else {

@@ -11,12 +11,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class XmlDeserializer {
     private static final Map<String,Class> builtInMap = new HashMap<>();
 
-    private HashMap<String, Object> trackingObjects = new HashMap<>();
+    private final HashMap<String, Object> trackingObjects = new HashMap<>();
     private XmlSerializerRegistry registry;
 
     public static Object loadXml(String path) {
@@ -32,11 +31,7 @@ public class XmlDeserializer {
     private Object loadXmlInternal(String path) {
         var xmlReader = new XmlNodeReader(path);
         var xmlObject = xmlReader.load();
-        var object = loadAtomic(xmlObject);
-        if (object instanceof ISerializerHandler) {
-            ((ISerializerHandler)object).handleSerializer();
-        }
-        return object;
+        return loadAtomic(xmlObject);
     }
 
     private Object loadAtomic(XmlNode xmlDescription) {
@@ -161,6 +156,9 @@ public class XmlDeserializer {
                     filter(x -> x.isAnnotationPresent(XML.class)).
                     toArray(Field[]::new);
             Arrays.stream(loadableFields).forEach(x -> loadField(object, x, xmlDescription));
+            if (object instanceof ISerializerHandler) {
+                ((ISerializerHandler)object).handleSerializer();
+            }
             return object;
         } catch (Exception e) {
             throw new IllegalStateException(e);

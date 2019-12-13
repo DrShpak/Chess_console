@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 
 public class XmlSerializerRegistry {
-    private HashMap<Class, XmlSerializationStrategy> classes = new HashMap<>();
+    private final HashMap<Class, XmlSerializationStrategy> classes = new HashMap<>();
 
     public void addClass(Class clazz, Supplier generator, Field... fields) {
         if (!classes.containsKey(clazz)) {
@@ -20,8 +20,8 @@ public class XmlSerializerRegistry {
     }
 
     static class XmlSerializationStrategy {
-        private ArrayList<Field> fields = new ArrayList<>();
-        private Supplier generator;
+        private final ArrayList<Field> fields = new ArrayList<>();
+        private final Supplier generator;
 
         XmlSerializationStrategy(Supplier generator, Field... fields) {
             this.fields.addAll(Arrays.asList(fields));

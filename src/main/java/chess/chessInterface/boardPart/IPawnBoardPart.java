@@ -9,4 +9,5 @@ extends IFeedback {
     void transformPawn(Unit unit, Point currPos);
     void markPawnEnPassant(Point pawnOldPosition, Point pawnNewPosition, Point enPassant);
     void attemptEnPassant(Point position);
+    void markBoardAsIrreversible();
 }

@@ -1,6 +1,8 @@
 package chess.base.board;
 
 import chess.base.Cell;
+import chess.base.Team;
+import chess.base.TeamOrder;
 import chess.chessInterface.IBoard;
 import chess.chessInterface.IMoveHandler;
 import chess.misc.Direction;
@@ -8,22 +10,29 @@ import chess.misc.Point;
 import chess.misc.StreamUtils;
 import chess.unit.Unit;
 import com.google.common.collect.Streams;
+import org.apache.commons.lang3.SerializationUtils;
 import xml.ISerializerHandler;
 import xml.XML;
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class ChessBoardBase implements IBoard, ISerializerHandler {
+public abstract class ChessBoardBase implements IBoard, ISerializerHandler, Serializable {
     @XML
     private final Cell[][] board;
     private final MoveHandlers moveHandlers = new MoveHandlers();
+    @XML
+    private final TeamOrder order;
 
     ChessBoardBase() {
         this.board = null;
+        this.order = null;
     }
 
-    ChessBoardBase(Unit[][] board) {
+    ChessBoardBase(Team[] teams, Unit[][] board) {
+        this.order = new TeamOrder(teams);
         this.board = Arrays.
                 stream(board).
                 map(x -> Arrays.stream(x).
@@ -165,11 +174,15 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler {
         if (this.getCell(startPoint).getUnit() == null) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= unit not found");
         }
+        if (this.getCell(startPoint).getUnit().getTeam() != this.order.get()) {
+            throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= wrong order");
+        }
         if (!this.checkMove(startPoint, endPoint)) {
             throw new IllegalArgumentException("can`t move from " + startPoint + " to " + endPoint + " <= forbidden move");
         }
         moveInternal(startPoint, endPoint);
         this.postMove(startPoint, endPoint);
+        this.order.next();
     }
 
     protected void moveInternal(Point startPoint, Point endPoint) {
@@ -191,7 +204,10 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler {
         var choppedFigure = getCell(pos).getUnit();
         this.moveHandlers.remove(choppedFigure);
         getCell(pos).replace(null);
+        this.postChop();
     }
+
+    protected abstract void postChop();
 
     private void doMoveFigure(Point startPoint, Point endPoint) {
         onRaisingUnit(startPoint);
@@ -224,5 +240,18 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler {
 
     public Cell[][] getBoard() {
         return board;
+    }
+
+    public ChessBoardBase fork() {
+        return SerializationUtils.clone(this);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        ChessBoardBase that = (ChessBoardBase) object;
+        return Arrays.deepEquals(board, that.board) &&
+                Objects.equals(order, that.order);
     }
 }

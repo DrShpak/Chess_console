@@ -23,7 +23,8 @@ public final class ChessBoardImpl extends ChessBoardBase {
     }
 
     private Map<Team, Cell> kingsCells;
-
+    @XML
+    private boolean irreversible = false;
     @XML
     private Triplet<Point, Point, Point> enPassant;
 
@@ -34,8 +35,14 @@ public final class ChessBoardImpl extends ChessBoardBase {
         return this.kingsCells;
     }
 
-    ChessBoardImpl(Unit[][] board) {
-        super(board);
+    ChessBoardImpl(Team[] teams, Unit[][] board) {
+        super(teams, board);
+    }
+
+    @Override
+    public void move(Point start, Point end) {
+        this.irreversible = false;
+        super.move(start, end);
     }
 
     @Override
@@ -89,7 +96,7 @@ public final class ChessBoardImpl extends ChessBoardBase {
         return direction.getPointsAlong(start).takeWhile(point -> checkKingMovement(king, getCell(point))).count() == direction.getMaxLength();
     }
 
-    public void makeCastling(CastlingType type, Point start) {
+    void makeCastling(CastlingType type, Point start) {
         var king = getCell(start).getUnit();
         if (king != null && ((Castling) king).isMoved()) {
             var direction = type.getDirection();
@@ -108,5 +115,19 @@ public final class ChessBoardImpl extends ChessBoardBase {
                 }
             }
         }
+    }
+
+    public boolean isIrreversible()
+    {
+        return this.irreversible;
+    }
+
+    @Override
+    public void markBoardAsIrreversible() {
+        this.irreversible = true;
+    }
+
+    public void postChop() {
+        this.markBoardAsIrreversible();
     }
 }

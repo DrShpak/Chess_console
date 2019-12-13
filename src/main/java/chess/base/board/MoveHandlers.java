@@ -4,10 +4,11 @@ import chess.chessInterface.IBoard;
 import chess.chessInterface.IMoveHandler;
 import chess.misc.Point;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MoveHandlers {
+public class MoveHandlers implements Serializable {
     private final Collection<IMoveHandler<? super IBoard>> handlers = new ArrayList<>();
 
     void handle(IBoard feedback, Object handler, Point oldPoint, Point newPoint) {
