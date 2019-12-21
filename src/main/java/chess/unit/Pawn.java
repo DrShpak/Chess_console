@@ -7,6 +7,7 @@ import chess.misc.Direction;
 import chess.misc.MovePolicy;
 import chess.misc.Point;
 import chess.base.Team;
+import org.apache.commons.lang3.ArrayUtils;
 import xml.XML;
 
 @XML
@@ -32,8 +33,12 @@ public class Pawn extends Unit implements IMoveHandler<IPawnBoardPart> {
 
     @Override
     public void handleMove(IPawnBoardPart feedback, Point oldPoint, Point newPoint) {
-        if (!oldPoint.equals(newPoint)) {
-            feedback.markBoardAsIrreversible();
+        if (oldPoint.equals(newPoint)) {
+            return;
+        }
+        feedback.markBoardAsIrreversible();
+        if (this.getDirections().length > 3) {
+            this.directions = ArrayUtils.remove(this.getDirections(), 1);
         }
         if (this.getDirections()[0].getPointsAlong(newPoint).count() == 0) {
             feedback.transformPawn(this, newPoint);

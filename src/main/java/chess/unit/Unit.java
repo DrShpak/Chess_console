@@ -12,7 +12,7 @@ import java.io.Serializable;
 @XML
 public abstract class Unit implements Serializable {
     @XML
-    private final Direction[] directions;
+    Direction[] directions;
     @XML
     private final Team team;
 
@@ -28,6 +28,11 @@ public abstract class Unit implements Serializable {
      */
     public boolean isEnemy(Unit unit) {
         return !this.getTeam().equals(unit.getTeam());
+    }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean isEnemy(Team team) {
+        return !this.getTeam().equals(team);
     }
 
     /**

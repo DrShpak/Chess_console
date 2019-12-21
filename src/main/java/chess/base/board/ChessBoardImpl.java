@@ -22,13 +22,13 @@ public final class ChessBoardImpl extends ChessBoardBase {
         super();
     }
 
-    private Map<Team, Cell> kingsCells;
+    private Map<Team, Point> kingsCells;
     @XML
     private boolean irreversible = false;
     @XML
     private Triplet<Point, Point, Point> enPassant;
 
-    private Map<Team, Cell> getKingsCells() {
+    private Map<Team, Point> getKingsCells() {
         if (this.kingsCells == null) {
             this.kingsCells = new HashMap<>();
         }
@@ -47,12 +47,12 @@ public final class ChessBoardImpl extends ChessBoardBase {
 
     @Override
     protected Cell getImportantUnitCell(Unit friendlyUnit) {
-        return this.getKingsCells().get(friendlyUnit.getTeam());
+        return this.getCell(this.getKingsCells().get(friendlyUnit.getTeam()));
     }
 
     @Override
     public void trackKing(Team team, Point newPoint) {
-        this.getKingsCells().put(team, this.getCell(newPoint));
+        this.getKingsCells().put(team, newPoint);
     }
 
     @Override
@@ -117,7 +117,7 @@ public final class ChessBoardImpl extends ChessBoardBase {
         }
     }
 
-    public boolean isIrreversible()
+    boolean isIrreversible()
     {
         return this.irreversible;
     }

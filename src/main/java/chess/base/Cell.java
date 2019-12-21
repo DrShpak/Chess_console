@@ -19,9 +19,12 @@ public class Cell implements Serializable {
     private Unit unit;
     private final List<AttackingContext> contexts = new ArrayList<>();
     private final List<Pair<Cell, AttackingContext>> homeContexts = new ArrayList<>();
+    @XML
+    private Point position;
 
-    public Cell(Unit unit) {
+    public Cell(Unit unit, Point point) {
         this.unit = unit;
+        this.position = point;
     }
 
     @SuppressWarnings("unused")
@@ -57,14 +60,20 @@ public class Cell implements Serializable {
     }
 
     public void addBarrageToContexts() {
+        if (this.unit == null) {
+            return;
+        }
         this.contexts.
                 stream().
-                map(AttackingContext::iterateContexts).
+                map(x -> x.iterateContexts().skip(1)).
                 flatMap(y -> y).
                 forEach(y -> y.getBarrages().add(this.unit));
     }
 
     public void removeBarrageFromContexts() {
+        if (this.unit == null) {
+            return;
+        }
         this.contexts.
                 stream().
                 map(AttackingContext::iterateContexts).
@@ -80,10 +89,17 @@ public class Cell implements Serializable {
                         StreamUtils.mapEx(
                                 (Pair<Cell, AttackingContext>) null,
                                 direction.getPointsAlong(to),
-                                (pair, point) -> new Pair<>(cellGetter.apply(point), pair != null ?
-                                        new AttackingContext(pair.getValue1()) :
-                                        new AttackingContext(this.unit)
-                                )
+                                (pair, point) -> {
+                                    var result = new Pair<>(cellGetter.apply(point), pair != null ?
+                                            new AttackingContext(pair.getValue1()) :
+                                            new AttackingContext(this.unit)
+                                    );
+                                    var unit = pair != null ? pair.getValue0().getUnit() : null;
+                                    if (unit != null) {
+                                        result.getValue1().getBarrages().add(unit);
+                                    }
+                                    return result;
+                                }
                         )
                 ).
                 flatMap(x -> x));
@@ -130,9 +146,13 @@ public class Cell implements Serializable {
         if (object == null || getClass() != object.getClass()) return false;
         Cell cell = (Cell) object;
         var otherUnit = cell.unit;
-        //todo xml Serializable
         return (unit == null && otherUnit == null) || (unit != null && otherUnit != null &&
                 unit.getClass().equals(otherUnit.getClass()) &&
                 unit.getTeam().getTeamTag().equals(otherUnit.getTeam().getTeamTag()));
     }
+
+    public Point getPosition() {
+        return this.position;
+    }
+
 }

@@ -1,42 +1,26 @@
 package chess.ui.impl.consoleUI;
 
+import chess.SaverUtils;
 import chess.base.board.ChessState;
+import chess.base.board.GameState;
 import chess.misc.CastlingType;
 import chess.misc.Point;
 import chess.ui.UI;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
 import org.apache.commons.lang3.SystemUtils;
-import org.javatuples.Triplet;
-import xml.XmlDeserializer;
-import xml.XmlSerializer;
-import xml.XmlSerializerRegistry;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ConsoleUI
-    extends UI {
+extends UI {
+    private final AtomicBoolean finished = new AtomicBoolean(false);
+
     private final Scanner input = new Scanner(System.in);
-
-    private final XmlSerializerRegistry registry;
-
-    {
-        registry = new XmlSerializerRegistry();
-        try {
-            registry.addClass(
-                    Triplet.class,
-                    () -> Triplet.with(new Object(), new Object(), new Object()),
-                    Triplet.class.getDeclaredField("val0"),
-                    Triplet.class.getDeclaredField("val1"),
-                    Triplet.class.getDeclaredField("val2")
-            );
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ConsoleUI(ChessState chessState) {
         super(chessState);
@@ -44,34 +28,59 @@ public class ConsoleUI
 
     @Override
     public void start() {
-        //noinspection StatementWithEmptyBody
-        while (loop()) ;
+        var whitePlayer = new Thread(() -> {
+            try {
+                this.play("White");
+            } catch (InterruptedException e) {
+                throw new IllegalStateException("interrupted");
+            }
+        });
+        var blackPlayer = new Thread(() -> {
+            try {
+                this.play("Black");
+            } catch (InterruptedException e) {
+                throw new IllegalStateException("interrupted");
+            }
+        });
+        blackPlayer.start();
+        whitePlayer.start();
     }
 
-    private boolean loop() {
+    private void play(String teamTag) throws InterruptedException {
+        //noinspection StatementWithEmptyBody
+        while (frame(teamTag)) ;
+    }
+
+    private synchronized boolean frame(String teamTag) throws InterruptedException {
+        if (!chessState.getCurrentTeam().getTeamTag().equals(teamTag)) {
+            this.notify();
+            this.wait();
+        }
+        if (this.finished.get()) {
+            return false;
+        }
         draw();
-        if (chessState.checkDraw()) {
-            System.out.println("draw detected! Program terminated");
+        System.out.println(teamTag);
+        if (chessState.getState() != GameState.RUNNING) {
+            System.out.println(chessState.getState() + "!Program terminated");
+            this.finished.set(true);
+            this.notify();
             return false;
         }
         var nextLine = input.nextLine();
-
         if (nextLine.matches("^test [a-h][1-8]$")) {
             System.out.println(Arrays.stream(chessState.getPossibleMovements(Point.parse(nextLine.replaceFirst("test ", "")))).map(x -> x + " ")
                 .reduce("", (s, c) -> s + c));
             return true;
         }
-
         if (nextLine.matches("save")) {
-            XmlSerializer.saveXml(chessState, "board.xml", registry);
+            SaverUtils.saveState(this.chessState);
             return true;
         }
-
         if (nextLine.matches("load")) {
-            chessState = (ChessState) XmlDeserializer.loadXml("board.xml", registry);
+            this.chessState = SaverUtils.loadState();
             return true;
         }
-
         if (nextLine.matches("undo (\\d)")) {
             //noinspection OptionalGetWithoutIsPresent
             var length = Integer.parseInt(Pattern.compile("undo (\\d)")
@@ -83,14 +92,14 @@ public class ConsoleUI
             chessState.undo(length);
             return true;
         }
-
         if (nextLine.matches("^0-0(-0)? [a-h][1-8]")) {
             String[] temp = nextLine.split("\\s");
             chessState.makeCastling(CastlingType.parse(temp[0]), Point.parse(temp[1]));
             return true;
         }
-
         if (!nextLine.matches("^([a-h][1-8](\\s|$)){2}")) {
+            this.finished.set(true);
+            this.notify();
             return false;
         }
         var pos = Arrays.stream(nextLine.split("\\s")).map(Point::parse).toArray(Point[]::new);
@@ -99,9 +108,6 @@ public class ConsoleUI
     }
 
     private void draw() {
-        System.out.println(chessState.getBoard().isIrreversible());
-        System.out.println(chessState.checkReversibleLength());
-        System.out.println(chessState.checkEqualsLength());
         //noinspection UnstableApiUsage
         Lists.reverse(
             Streams.mapWithIndex

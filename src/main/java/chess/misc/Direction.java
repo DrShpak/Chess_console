@@ -6,7 +6,7 @@ import xml.XML;
 import java.io.Serializable;
 import java.util.stream.Stream;
 
-@XML(isClone=true)
+@XML(isClone=true, isStrict=true)
 public class Direction implements Serializable {
     @XML
     private final int dx;
@@ -80,7 +80,6 @@ public class Direction implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        //todo tell deepEquals
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Direction direction = (Direction) object;

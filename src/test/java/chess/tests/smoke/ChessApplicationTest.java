@@ -10,7 +10,7 @@ import org.reflections.Reflections;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
 
-public class MainTest {
+public class ChessApplicationTest {
     private static final Class<?>[] ARG_TYPES = new Class<?>[]{Team.class};
     private static final String PACKAGE_NAME = "chess.units";
 

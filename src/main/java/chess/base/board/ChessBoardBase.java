@@ -17,6 +17,7 @@ import xml.XML;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class ChessBoardBase implements IBoard, ISerializerHandler, Serializable {
@@ -26,6 +27,10 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler, Seri
     @XML
     private final TeamOrder order;
 
+    public Team getCurrentTeam() {
+        return this.order.get();
+    }
+
     ChessBoardBase() {
         this.board = null;
         this.order = null;
@@ -33,13 +38,15 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler, Seri
 
     ChessBoardBase(Team[] teams, Unit[][] board) {
         this.order = new TeamOrder(teams);
-        this.board = Arrays.
-                stream(board).
-                map(x -> Arrays.stream(x).
-                        map(Cell::new).
+        //noinspection UnstableApiUsage
+        this.board = Streams.mapWithIndex(
+                Arrays.stream(board), (units, i) ->
+                        Streams.mapWithIndex(
+                                Arrays.stream(units),
+                                (unit, j) -> new Cell(unit, new Point(i, j))
+                        ).
                         toArray(Cell[]::new)
-                ).
-                toArray(Cell[][]::new);
+        ).toArray(Cell[][]::new);
 
         initUnits();
     }
@@ -49,18 +56,27 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler, Seri
         this.initUnits();
     }
 
-    private void initUnits() {
+    public Stream<Point> enumerateUnitPos() {
         //noinspection UnstableApiUsage
-        Streams.mapWithIndex(
-            Arrays.stream(board), (units, i) ->
-                Streams.mapWithIndex(
-                    Arrays.stream(units),
-                    (unit, j) -> new Point(i, j)
-                )
+        return Streams.mapWithIndex(
+                Arrays.stream(board), (units, i) ->
+                        Streams.mapWithIndex(
+                                Arrays.stream(units),
+                                (unit, j) -> new Point(i, j)
+                        )
         ).
-            flatMap(x -> x).
-            filter(x -> !getCell(x).isEmpty()).
-            forEach(this::initUnit);
+                flatMap(x -> x).
+                filter(x -> !getCell(x).isEmpty());
+    }
+
+    public Stream<Cell> getUnitCells() {
+        return this.
+                enumerateUnitPos().
+                map(this::getCell);
+    }
+
+    private void initUnits() {
+        this.enumerateUnitPos().forEach(this::initUnit);
     }
 
     @SuppressWarnings("unchecked")
@@ -133,7 +149,7 @@ public abstract class ChessBoardBase implements IBoard, ISerializerHandler, Seri
                 this.checkDoubleShah(importantUnitCell, unit) &&
                         this.checkSingleShah(importantUnitCell, destination, unit) &&
                         this.checkBack(importantUnitCell, unit, destination);
-    }//todo check bugs(1 and 2)
+    }
 
     protected abstract Cell getImportantUnitCell(Unit friendlyUnit);
 
